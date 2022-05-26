@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     def index
         render json: User.all, status: :ok
     end
-
+ 
     def show
         current_user = User.find_by(id: session[:current_user]) 
         render json: current_user, status: :ok
