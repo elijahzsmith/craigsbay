@@ -1,17 +1,34 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-    User.create([
-        {username: 'xXCharlie420Xx' , password_digest: '123' , age: 19, name: "Charlie"}
-    ])
 
-    Listing.create([
-        {location: "Craigsville Bay Area", image_url: "https://assets.specialized.com/i/specialized/96120-41_ROLL-ELITE-LTD-BLK-CMLNGRN-HLGCP_FDSQ?bg=rgb(241,241,241)&w=2500&h=1406&fmt=auto", what_it_is: "Kush Cycle", category: "Bikes", description: "Flex on all your friends" }
-    ])
+puts "Seeding Users...."
+# 50.times do
+#     User.create(username: 'xXCharlie420Xx' , password: '123' , age: 19, name: "Charlie")
+# end
+    u1 = User.create(username: 'xXCharlie420Xx' , password: '123' , age: 19, name: "Charlie")
+    u2 = User.create(username: 'jacob98' , password: '123' , age: 19, name: "Jacob")
+    u3 = User.create(username: 'elijahzmith' , password: '123' , age: 22, name: "Elijah")
+    u4 = User.create(username: 'bitz820' , password: '123' , age: 65, name: "Mark")
+    u5 = User.create(username: 'elizabethtreahy' , password: '123' , age: 19, name: "Elizabeth")
+    u6 = User.create(username: 'wowzers' , password: '123' , age: 23, name: "Potato")
+puts "Done Seeding Users!"
 
-    Favorite.create([
-        {user_id: 1, listing_id: 1}
-    ])
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts "Seeding Listings...."
+# 50.times do 
+#     Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: Faker::Lorem)
+# end
+
+    l1 = Listing.create(location: Faker::Address.city, image_url: "https://assets.specialized.com/i/specialized/96120-41_ROLL-ELITE-LTD-BLK-CMLNGRN-HLGCP_FDSQ?bg=rgb(241,241,241)&w=2500&h=1406&fmt=auto", what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: "Flex on all your friends")
+    l2 = Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: Faker::Lorem)
+    l3 = Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: "Flex on all your friends")
+    l4 = Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: "Flex on all your friends")
+    l5 = Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.product_name, description: "Flex on all your friends")
+    l6 = Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: "Flex on all your friends")
+    l7 = Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: "Flex on all your friends")
+puts "Done Seeding Listings!"
+
+puts "Seeding Favorites....."
+    f1 = Favorite.create(user_id: u1.id, listing_id: l1.id)
+    f2 = Favorite.create(user_id: u2.id, listing_id: l1.id)
+    f3 = Favorite.create(user_id: u3.id, listing_id: l1.id)
+    f4 = Favorite.create(user_id: u4.id, listing_id: l1.id)
+    f5 = Favorite.create(user_id: u5.id, listing_id: l1.id)
+puts "Done Seeding Favorites!"
