@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import ListingDetails from "./pages/ListingDetails";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -50,6 +51,9 @@ function App() {
         </Route>
         <Route exact path="/favorites">
           <Favorites />
+        </Route>
+        <Route exact path="/details">
+          <ListingDetails/>
         </Route>
       </Switch>
     </div>
