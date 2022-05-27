@@ -46,3 +46,22 @@ ActiveRecord::Schema.define(version: 2022_05_26_185338) do
   add_foreign_key "favorites", "listings"
   add_foreign_key "favorites", "users"
 end
+
+
+# When you post it is yours Under your listings
+
+# When you win an item, it 
+
+
+
+
+# Listings belongs to user
+# Listing has many favorites
+# Listing has many users through favorites
+
+# Favorites belongs to Listing
+# Favorites belongs to User
+
+# User has many favorites
+# User has many listings
+# User has many listings, through favorites
