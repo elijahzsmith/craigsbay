@@ -1,9 +1,12 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { useHistory } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
-function ListingItem({ listing, user }) {
-  const { id, location, image_url, what_it_is, description } = listing;
+function ListingItem({ listing, user, handleCardClick }) {
+  const { id, image_url, what_it_is } = listing;
 
   const handleAddToFavorites = (id) => {
     const newFavorite = {
@@ -27,22 +30,22 @@ function ListingItem({ listing, user }) {
       });
   };
 
-  const history = useHistory();
-  
-  const routeChange = (e) => {
-    let path = '/details';
-    history.push(path, {id:id, location: location, image_url: image_url, what_it_is: what_it_is, description: description})
-  }
-
   return (
-    <Card>
-      <h1>{what_it_is}</h1>
-      <img src={image_url} alt="listing" />
-      <h1>{location}</h1>
-      <p>{description}</p>
-      <button style={{ padding: "10px", margin: "auto"}} onClick={() => handleAddToFavorites(id)} > Add To Favorites </button>
-      <button style={{ padding: "10px", margin: "auto"}} onClick={routeChange}> Details </button>
-    </Card>
+    <Col>
+      <Card >
+        <Card.Img src={image_url} alt="listing" onClick={() => handleCardClick(id, listing)} role="button" />
+        <Card.Body>
+          <Card.Title className="text-center">{what_it_is}</Card.Title>
+          <Container className="ms-2">
+            <Row>
+              <Col className="d-flex justify-content-center">
+                <Button variant="primary" onClick={() => handleAddToFavorites(id)} > Favorite </Button>
+              </Col>
+            </Row>
+          </Container>
+        </Card.Body>
+      </Card>
+    </Col>
   );
 }
 

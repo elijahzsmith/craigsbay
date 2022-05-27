@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import ListingDetails from "./pages/ListingDetails";
 
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+
+  const history = useHistory()
 
   useEffect(() => {
     fetch("/authorized_user").then((res) => {
@@ -38,6 +41,10 @@ function App() {
     setIsAuthenticated(value);
   }
 
+  const handleCardClick = (id, listing) => {
+    history.push(`/details/${id}`, listing)
+  }
+
   if (!isAuthenticated) {
     return <Login setUser={handleUser} setIsAuthenticated={handleAuth} />;
   }
@@ -47,13 +54,13 @@ function App() {
       <NavBar handleLogout={handleLogout} />
       <Switch>
         <Route exact path="/home">
-          <Home user={user} />
+          <Home user={user} handleCardClick={handleCardClick} />
         </Route>
         <Route exact path="/favorites">
           <Favorites />
         </Route>
-        <Route exact path="/details">
-          <ListingDetails/>
+        <Route exact path="/details/:id">
+          <ListingDetails />
         </Route>
       </Switch>
     </div>
