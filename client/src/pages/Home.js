@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import ListingItem from "../components/ListingItem";
 
-function Home() {
+
+function Home({ handleAddToFavorites }) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [listings, setListings] = useState([])
 
@@ -18,9 +19,8 @@ function Home() {
 
   if (!isLoaded) return <h3>Loading...</h3>
 
-
   const renderListings = listings.map((listing) => {
-    return <ListingItem key={listing.id} listing={listing} />;
+    return <ListingItem key={listing.id} listing={listing} handleAddToFavorites={handleAddToFavorites} />;
   });
 
   return <div>{renderListings}</div>;
