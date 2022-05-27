@@ -16,6 +16,7 @@ function NavBar({ handleLogout, handleSort }) {
           <Nav className="me-auto">
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/favorites">Favorites</Nav.Link>
+            <Nav.Link href="/profile">Profile</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item >Sort</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
