@@ -16,19 +16,26 @@ function App() {
         });
       }
     });
+
   }, []);
 
+  function handleUser(user) {
+    setUser(user)
+  }
+
+  function handleAuth(value) {
+    setIsAuthenticated(value)
+  }
+
   if (!isAuthenticated) {
-    return <Login setUser={setUser} setIsAuthenticated={setIsAuthenticated} />;
+    return <Login setUser={handleUser} setIsAuthenticated={handleAuth} />;
   }
 
   return (
     <div>
-      <NavBar />
+      <NavBar setIsAuthenticated={setIsAuthenticated} />
       <Switch>
-        <Route exact to="/login">
-          <Login setUser={setUser} setIsAuthenticated={setIsAuthenticated} />
-        </Route>
+
       </Switch>
     </div>
   );

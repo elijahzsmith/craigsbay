@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :favorites
   resources :listings
 
-  get 'authorized_user', to: 'users#show'
+  get '/authorized_user', to: 'users#show'
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
