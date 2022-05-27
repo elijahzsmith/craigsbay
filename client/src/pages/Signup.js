@@ -29,7 +29,7 @@ function Signup({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("/Signup", configObjPOST).then((res) => {
+    fetch("/signup", configObjPOST).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
           setUser(user);
