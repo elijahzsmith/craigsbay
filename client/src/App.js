@@ -5,7 +5,6 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import ListingDetails from "./pages/ListingDetails";
-//experiment
 import Profile from "./pages/Profile";
 import PostListingForm from "./pages/PostListingForm";
 
