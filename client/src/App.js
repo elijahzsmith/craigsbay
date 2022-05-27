@@ -21,6 +21,7 @@ function App() {
         });
       }
     });
+
   }, []);
 
   const handleLogout = () => {
@@ -31,9 +32,17 @@ function App() {
       },
     }).then(setIsAuthenticated(false));
   };
+  
+  function handleUser(user) {
+    setUser(user)
+  }
+
+  function handleAuth(value) {
+    setIsAuthenticated(value)
+  }
 
   if (!isAuthenticated) {
-    return <Login setUser={setUser} setIsAuthenticated={setIsAuthenticated} />;
+    return <Login setUser={handleUser} setIsAuthenticated={handleAuth} />;
   }
 
   return (
