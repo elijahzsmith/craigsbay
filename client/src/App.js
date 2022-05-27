@@ -7,25 +7,16 @@ import Favorites from "./pages/Favorites";
 import ListingDetails from "./pages/ListingDetails";
 //experiment
 import Profile from "./pages/Profile";
-
+import PostListingForm from "./pages/PostListingForm";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isUserLoaded, setIsUserLoaded] = useState(false);
   const [user, setUser] = useState(null);
-  const [listings, setListings] = useState([])
-  const [isLoaded, setIsLoaded] = useState(false)
-  
+
   const history = useHistory()
 
   useEffect(() => {
-    fetch("/listings")
-    .then((res) => res.json())
-    .then((listings) => {
-      setListings(listings)
-      setIsLoaded(true)
-    });
-
     fetch("/authorized_user").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
@@ -55,8 +46,8 @@ function App() {
   }
 
   const handleCardClick = (id, listing) => {
-    history.push(`/details/${id}`, listing)
-  }
+    history.push(`/details/${id}`, listing);
+  };
 
   if (!isAuthenticated) {
     return <Login setUser={handleUser} setIsAuthenticated={handleAuth} />;
@@ -66,8 +57,8 @@ function App() {
     <div>
       <NavBar handleLogout={handleLogout} />
       <Switch>
-        <Route exact path="/home">
-          <Home isLoaded={isLoaded} listings={listings} user={user} handleCardClick={handleCardClick} />
+        <Route exact path="/">
+          <Home user={user} handleCardClick={handleCardClick} />
         </Route>
         <Route exact path="/favorites">
           <Favorites handleCardClick={handleCardClick} />
@@ -77,6 +68,9 @@ function App() {
         </Route>
         <Route exact path="/profile">
           <Profile user={user} isUserLoaded={isUserLoaded} />
+        </Route>
+        <Route exact path="/postlisting">
+          <PostListingForm />
         </Route>
       </Switch>
     </div>

@@ -25,7 +25,6 @@ function Login({ setUser, setIsAuthenticated }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     fetch("/login", configObjPOST).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
