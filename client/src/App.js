@@ -8,6 +8,8 @@ import Favorites from "./pages/Favorites";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const [listings, setListings] = useState([]);
+  // const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     fetch("/authorized_user").then((res) => {
@@ -30,12 +32,33 @@ function App() {
   };
 
   function handleUser(user) {
-    setUser(user)
+    setUser(user);
   }
 
   function handleAuth(value) {
-    setIsAuthenticated(value)
+    setIsAuthenticated(value);
   }
+  const handleAddToFavorites = (id) => {
+    const newFavorite = {
+      user_id: user.id,
+      listing_id: id,
+    };
+
+    const configObjPOST = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(newFavorite),
+    };
+
+    fetch(`/favorites`, configObjPOST)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   if (!isAuthenticated) {
     return <Login setUser={handleUser} setIsAuthenticated={handleAuth} />;
@@ -45,11 +68,11 @@ function App() {
     <div>
       <NavBar handleLogout={handleLogout} />
       <Switch>
-        <Route exact path="/home">
-          <Home user={user} />
+        <Route exact to="/">
+          <Home handleAddToFavorites={handleAddToFavorites} />
         </Route>
-        <Route path="/favorites">
-          <Favorites user={user} />
+        <Route exact to="/favorites">
+          <Favorites />
         </Route>
       </Switch>
     </div>
