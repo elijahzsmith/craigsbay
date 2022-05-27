@@ -12,10 +12,10 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isUserLoaded, setIsUserLoaded] = useState(false);
   const [user, setUser] = useState(null);
-  // moved from login/signup
-  const [usernameInput, setUsernameInput] = useState("");
-  const [passwordInput, setPasswordInput] = useState("");
-  const [error, setError] = useState([]);
+  // // moved from login/signup
+  // const [usernameInput, setUsernameInput] = useState("");
+  // const [passwordInput, setPasswordInput] = useState("");
+  // const [error, setError] = useState([]);
 
   const history = useHistory();
 
@@ -59,9 +59,9 @@ function App() {
         setUser={handleUser}
         setIsAuthenticated={handleAuth}
         // here because we moved state up from login/signup
-        usernameInput={usernameInput}
-        passwordInput={passwordInput}
-        error={error}
+        // usernameInput={usernameInput}
+        // passwordInput={passwordInput}
+        // error={error}
       />
     );
   }
