@@ -7,7 +7,7 @@ import Favorites from "./pages/Favorites";
 import ListingDetails from "./pages/ListingDetails";
 //experiment
 import Profile from "./pages/Profile";
-
+import PostListingForm from "./pages/PostListingForm";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,8 +46,8 @@ function App() {
   }
 
   const handleCardClick = (id, listing) => {
-    history.push(`/details/${id}`, listing)
-  }
+    history.push(`/details/${id}`, listing);
+  };
 
   if (!isAuthenticated) {
     return <Login setUser={handleUser} setIsAuthenticated={handleAuth} />;
@@ -68,6 +68,9 @@ function App() {
         </Route>
         <Route exact path="/profile">
           <Profile user={user} isUserLoaded={isUserLoaded} />
+        </Route>
+        <Route exact path="/postlisting">
+          <PostListingForm />
         </Route>
       </Switch>
     </div>
