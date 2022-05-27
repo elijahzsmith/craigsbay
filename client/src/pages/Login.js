@@ -30,7 +30,8 @@ function Login({ setUser, setIsAuthenticated }) {
       if (res.ok) {
         res.json().then((user) => {
           setUser(user);
-          setIsAuthenticated(true);
+          setIsAuthenticated(true)
+          setError([])
         });
       } else {
         res.json().then((json) => setError(json.error));
@@ -53,12 +54,13 @@ function Login({ setUser, setIsAuthenticated }) {
           onChange={(e) => setUsernameInput(e.target.value)}
         />
         <input
-          type="text"
+          type="password"
           name="password"
           value={passwordInput}
           onChange={(e) => setPasswordInput(e.target.value)}
         />
         <button type="submit">Login</button>
+        {(error) ? <div className="text-danger "><strong>{error}</strong></div> : null}
         <h2>Don't have an account yet?</h2>
         <button onClick={handleSignup}>Signup</button>
       </form>

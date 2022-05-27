@@ -10,10 +10,8 @@ function App() {
   const [listings, setListings] = useState([]);
   // const [favorites, setFavorites] = useState([]);
 
+
   useEffect(() => {
-    fetch("/listings")
-      .then((res) => res.json())
-      .then(setListings);
     fetch("/authorized_user").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
@@ -22,6 +20,7 @@ function App() {
         });
       }
     });
+
   }, []);
 
   const handleLogout = () => {
@@ -33,6 +32,13 @@ function App() {
     }).then(setIsAuthenticated(false));
   };
 
+  function handleUser(user) {
+    setUser(user)
+  }
+
+  function handleAuth(value) {
+    setIsAuthenticated(value)
+  }
   const handleAddToFavorites = (id) => {
     const newFavorite = {
       user_id: user.id,
@@ -56,7 +62,7 @@ function App() {
   };
 
   if (!isAuthenticated) {
-    return <Login setUser={setUser} setIsAuthenticated={setIsAuthenticated} />;
+    return <Login setUser={handleUser} setIsAuthenticated={handleAuth} />;
   }
 
   return (
@@ -65,7 +71,6 @@ function App() {
       <Switch>
         <Route exact to="/">
           <Home
-            listings={listings}
             handleAddToFavorites={handleAddToFavorites}
           />
         </Route>
