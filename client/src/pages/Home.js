@@ -7,6 +7,7 @@ import ListingItem from "../components/ListingItem";
 function Home({ user, handleCardClick }) {
   const [listings, setListings] = useState([])
   const [homeLoaded, setIsHomeLoaded] = useState(false)
+  const [category, setCategory] = useState("/All")
   const [filtered, setFiltered] = useState(false)
 
   useEffect(() => {
@@ -17,8 +18,6 @@ function Home({ user, handleCardClick }) {
         setIsHomeLoaded(true)
       })
   }, [])
-
-  console.log(listings)
 
   const handleSortAlphabetically = () => {
     if (filtered === false) {
@@ -37,15 +36,15 @@ function Home({ user, handleCardClick }) {
       setFiltered(false)
     }
   }
-  
-  if (!homeLoaded) return <h3>Loading...</h3>
 
-  
+
   const renderListings = listings.map((listing) => {
     return (
       <ListingItem key={listing.id} listing={listing} user={user} handleCardClick={handleCardClick} />
     )
   });
+
+  if (!homeLoaded) return <h3>Loading...</h3>
 
   return (
     <Container fluid>
