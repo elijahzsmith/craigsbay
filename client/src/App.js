@@ -7,12 +7,8 @@ import Home from "./pages/Home";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
-  const [listings, setListings] = useState([]);
 
   useEffect(() => {
-    fetch("/listings")
-      .then((res) => res.json())
-      .then(setListings);
     fetch("/authorized_user").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
@@ -32,7 +28,7 @@ function App() {
       },
     }).then(setIsAuthenticated(false));
   };
-  
+
   function handleUser(user) {
     setUser(user)
   }
@@ -50,7 +46,7 @@ function App() {
       <NavBar handleLogout={handleLogout} />
       <Switch>
         <Route exact to="/">
-          <Home listings={listings} />
+          <Home />
         </Route>
       </Switch>
     </div>
