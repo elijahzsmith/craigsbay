@@ -15,11 +15,23 @@ function Favorites() {
             })
     }, [])
 
+    const handleRemoveFavorite = (id) => {
+        const configObj = {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+
+        fetch(`/favorites/${id}`, configObj)
+            .then(setFavs(favs.filter((fav) => fav.id !== id)))
+    }
+
     if (!favsLoaded) return <h3>Loading...</h3>
 
     return (
         <div>
-            {favs.map((fav) => <FavItem key={fav.id} fav={fav} />)}
+            {favs.map((fav) => <FavItem key={fav.id} fav={fav} handleRemoveFavorite={handleRemoveFavorite} />)}
         </div>
     )
 }

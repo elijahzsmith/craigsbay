@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 
-function FavItem({ fav }) {
+function FavItem({ fav, handleRemoveFavorite }) {
     const id = fav.id
 
     const {
@@ -10,17 +10,6 @@ function FavItem({ fav }) {
         location,
         description
     } = fav.listing
-
-    const handleRemoveFavorite = (id) => {
-        const configObj = {
-            method: 'DELETE',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-
-        fetch(`/favorites/${id}`, configObj)
-    }
 
     return (
         <Card>
