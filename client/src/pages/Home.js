@@ -10,6 +10,7 @@ import ListingItem from "../components/ListingItem";
 function Home({ user, handleCardClick }) {
   const [listings, setListings] = useState([])
   const [homeLoaded, setIsHomeLoaded] = useState(false)
+  const [category, setCategory] = useState("/All")
   const [filtered, setFiltered] = useState(false)
 
   useEffect(() => {
@@ -39,14 +40,13 @@ function Home({ user, handleCardClick }) {
     }
   }
 
-  if (!homeLoaded) return <h3>Loading...</h3>
-
-
   const renderListings = listings.map((listing) => {
     return (
       <ListingItem key={listing.id} listing={listing} user={user} handleCardClick={handleCardClick} />
     )
   });
+
+  if (!homeLoaded) return <h3>Loading...</h3>
 
   return (
     <Container fluid>
@@ -58,9 +58,9 @@ function Home({ user, handleCardClick }) {
         <Dropdown.Toggle split variant="primary" id="dropdown-split-basic" />
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          <Dropdown.Item href="#/action-1">Furniture</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Exercise Equipment</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Landscaping</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
 
