@@ -16,7 +16,7 @@ puts "Seeding Listings...."
 #     Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: Faker::Lorem)
 # end
 
-    l1 = Listing.create(location: Faker::Address.city, image_url: "https://assets.specialized.com/i/specialized/96120-41_ROLL-ELITE-LTD-BLK-CMLNGRN-HLGCP_FDSQ?bg=rgb(241,241,241)&w=2500&h=1406&fmt=auto", what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: "Flex on all your friends")
+    l1 = Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: Faker::Lorem)
     l2 = Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: Faker::Lorem)
     l3 = Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: "Flex on all your friends")
     l4 = Listing.create(location: Faker::Address.city, image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: "Flex on all your friends")
