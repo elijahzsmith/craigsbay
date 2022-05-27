@@ -13,8 +13,12 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isUserLoaded, setIsUserLoaded] = useState(false);
   const [user, setUser] = useState(null);
+  // moved from login/signup
+  const [usernameInput, setUsernameInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [error, setError] = useState([]);
 
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     fetch("/authorized_user").then((res) => {
@@ -49,8 +53,18 @@ function App() {
     history.push(`/details/${id}`, listing);
   };
 
+  // add option to choose login or signup before this is rendered
   if (!isAuthenticated) {
-    return <Login setUser={handleUser} setIsAuthenticated={handleAuth} />;
+    return (
+      <Login
+        setUser={handleUser}
+        setIsAuthenticated={handleAuth}
+        // here because we moved state up from login/signup
+        usernameInput={usernameInput}
+        passwordInput={passwordInput}
+        error={error}
+      />
+    );
   }
 
   return (
