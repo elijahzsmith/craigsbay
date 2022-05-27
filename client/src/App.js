@@ -7,6 +7,7 @@ import Favorites from "./pages/Favorites";
 import ListingDetails from "./pages/ListingDetails";
 import Profile from "./pages/Profile";
 import PostListingForm from "./pages/PostListingForm";
+import "./index.scss";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

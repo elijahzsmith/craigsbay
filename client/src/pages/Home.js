@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/esm/Col";
 import Dropdown from "react-bootstrap/Dropdown"
 import Button from "react-bootstrap/Button"
 import ButtonGroup from "react-bootstrap/ButtonGroup"
@@ -50,19 +51,28 @@ function Home({ user, handleCardClick }) {
 
   return (
     <Container fluid>
-      <Dropdown as={ButtonGroup}>
-        <Button variant="primary" onClick={() => handleSortAlphabetically()}>
-          Sort A-Z
-        </Button>
 
-        <Dropdown.Toggle split variant="primary" id="dropdown-split-basic" />
+      <Row className="d-flex justify-content-end my-2">
+        <Col className="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-5">
+          <Dropdown as={ButtonGroup}>
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => handleSortAlphabetically()}
+            >
+              Sort A-Z
+            </Button>
 
-        <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">Furniture</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Exercise Equipment</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Landscaping</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+            <Dropdown.Toggle split variant="primary" id="dropdown-split-basic" />
+
+            <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">Furniture</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Exercise Equipment</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Landscaping</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+      </Row>
 
       <Row xs={1} sm={2} md={3} lg={4}>
         {renderListings}

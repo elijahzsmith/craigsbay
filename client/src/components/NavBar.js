@@ -8,9 +8,9 @@ import Container from "react-bootstrap/Container";
 function NavBar({ handleLogout, handleSortAlphabetically }) {
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="md" sticky="top">
       <Container>
-        <Navbar.Brand href="/">CraigsBay</Navbar.Brand>
+        <Navbar.Brand href="/" className="fs-2">CraigsBay</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -30,8 +30,8 @@ function NavBar({ handleLogout, handleSortAlphabetically }) {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-      </Container>
-    </Navbar>
+      </Container >
+    </Navbar >
   );
 }
 

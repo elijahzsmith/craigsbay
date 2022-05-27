@@ -22,7 +22,7 @@ function FavItem({ fav, handleRemoveFavorite, handleCardClick }) {
                     <Container className="ms-2">
                         <Row>
                             <Col className="d-flex justify-content-center">
-                                <Button variant="primary" onClick={() => handleRemoveFavorite(id)} > Remove </Button>
+                                <Button variant="warning" onClick={() => handleRemoveFavorite(id)} > Remove </Button>
                             </Col>
                         </Row>
                     </Container>

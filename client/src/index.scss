@@ -1,1 +1,9 @@
+$primary: #6610f2;
+$secondary: #919FDB;
+$warning: #FF7273;
+$success: #05BDFA;
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
 @import "~bootstrap/scss/bootstrap";
