@@ -3,13 +3,13 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Favorites from "./pages/FavoritesPage";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [listings, setListings] = useState([]);
   // const [favorites, setFavorites] = useState([]);
-
 
   useEffect(() => {
     fetch("/authorized_user").then((res) => {
@@ -20,7 +20,6 @@ function App() {
         });
       }
     });
-
   }, []);
 
   const handleLogout = () => {
@@ -33,11 +32,11 @@ function App() {
   };
 
   function handleUser(user) {
-    setUser(user)
+    setUser(user);
   }
 
   function handleAuth(value) {
-    setIsAuthenticated(value)
+    setIsAuthenticated(value);
   }
   const handleAddToFavorites = (id) => {
     const newFavorite = {
@@ -70,9 +69,10 @@ function App() {
       <NavBar handleLogout={handleLogout} />
       <Switch>
         <Route exact to="/">
-          <Home
-            handleAddToFavorites={handleAddToFavorites}
-          />
+          <Home handleAddToFavorites={handleAddToFavorites} />
+        </Route>
+        <Route exact to="/favorites">
+          <Favorites />
         </Route>
       </Switch>
     </div>
