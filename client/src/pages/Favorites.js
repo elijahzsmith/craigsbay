@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import FavItem from '../components/FavItem'
+import Container from 'react-bootstrap/esm/Container'
+import Row from 'react-bootstrap/esm/Row'
 
-function Favorites() {
+function Favorites({ handleCardClick }) {
     const [favs, setFavs] = useState([])
     const [favsLoaded, setFavsLoaded] = useState(false)
 
@@ -27,12 +29,17 @@ function Favorites() {
             .then(setFavs(favs.filter((fav) => fav.id !== id)))
     }
 
+    const renderFavs = favs.map((fav) => <FavItem key={fav.id} fav={fav} handleRemoveFavorite={handleRemoveFavorite} handleCardClick={handleCardClick} />)
+
     if (!favsLoaded) return <h3>Loading...</h3>
 
     return (
-        <div>
-            {favs.map((fav) => <FavItem key={fav.id} fav={fav} handleRemoveFavorite={handleRemoveFavorite} />)}
-        </div>
+        <Container fluid>
+            <Row xs={1} sm={2} md={3} lg={4}>
+                {renderFavs}
+            </Row>
+        </Container>
+
     )
 }
 

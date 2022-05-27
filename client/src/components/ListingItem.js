@@ -32,8 +32,8 @@ function ListingItem({ listing, user, handleCardClick }) {
 
   return (
     <Col>
-      <Card >
-        <Card.Img src={image_url} alt="listing" onClick={() => handleCardClick(id, listing)} role="button" />
+      <Card className="h-100" >
+        <Card.Img src={image_url} alt="listing" onClick={() => handleCardClick(id, listing)} role="button" className="h-75" />
         <Card.Body>
           <Card.Title className="text-center">{what_it_is}</Card.Title>
           <Container className="ms-2">
