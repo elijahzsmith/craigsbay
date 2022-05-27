@@ -4,9 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 
-
 function NavBar({ handleLogout }) {
-
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -16,6 +14,7 @@ function NavBar({ handleLogout }) {
           <Nav className="me-auto">
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/favorites">Favorites</Nav.Link>
+            <Nav.Link href="/profile">Profile</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
