@@ -5,18 +5,6 @@ import ListingItem from "../components/ListingItem";
 
 
 function Home({ user, handleCardClick, listings, isLoaded}) {
-  
-
-
-  // useEffect(() => {
-  //   fetch("/listings")
-  //     .then((res) => res.json())
-  //     .then((listings) => {
-  //       setListings(listings)
-  //       setIsLoaded(true)
-  //     });
-
-  // }, [])
 
   if (!isLoaded) return <h3>Loading...</h3>
 
