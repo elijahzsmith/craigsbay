@@ -63,7 +63,7 @@ function Home({ user, handleCardClick }) {
     <Container fluid>
 
       <Row className="d-flex justify-content-end my-2">
-        <Col className="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-5">
+        <Col className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-5">
           <Dropdown as={ButtonGroup}>
             <Button
               variant="primary"
