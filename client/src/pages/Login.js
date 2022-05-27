@@ -75,7 +75,7 @@ function Login({ setUser, setIsAuthenticated }) {
                 value={passwordInput}
               />
             </Form.Group>
-            <Row className="d-flex justify-content-center">
+            <Row className="d-flex justify-content-center mb-2">
               <Button variant="primary" type="submit" className="w-25">
                 Submit
               </Button>
