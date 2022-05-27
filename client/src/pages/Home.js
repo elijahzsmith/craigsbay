@@ -40,7 +40,6 @@ function Home({ user, handleCardClick }) {
     }
   }
 
-
   const renderListings = listings.map((listing) => {
     return (
       <ListingItem key={listing.id} listing={listing} user={user} handleCardClick={handleCardClick} />
@@ -59,9 +58,9 @@ function Home({ user, handleCardClick }) {
         <Dropdown.Toggle split variant="primary" id="dropdown-split-basic" />
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          <Dropdown.Item href="#/action-1">Furniture</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Exercise Equipment</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Landscaping</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
 
