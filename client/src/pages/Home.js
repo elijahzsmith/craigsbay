@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import ListingItem from "../components/ListingItem";
 
 
-function Home({ user, handleCardClick }) {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [listings, setListings] = useState([])
+function Home({ user, handleCardClick, listings, isLoaded}) {
+  
 
-  useEffect(() => {
-    fetch("/listings")
-      .then((res) => res.json())
-      .then((listings) => {
-        setListings(listings)
-        setIsLoaded(true)
-      });
 
-  }, [])
+  // useEffect(() => {
+  //   fetch("/listings")
+  //     .then((res) => res.json())
+  //     .then((listings) => {
+  //       setListings(listings)
+  //       setIsLoaded(true)
+  //     });
+
+  // }, [])
 
   if (!isLoaded) return <h3>Loading...</h3>
 
   const renderListings = listings.map((listing) => {
     return (
-      <ListingItem listing={listing} user={user} handleCardClick={handleCardClick} />
+      <ListingItem key = {listing.id} listing={listing} user={user} handleCardClick={handleCardClick} />
     )
   });
 
