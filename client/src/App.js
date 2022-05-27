@@ -5,10 +5,13 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import ListingDetails from "./pages/ListingDetails";
+//experiment
+import Profile from "./pages/Profile";
 
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isUserLoaded, setIsUserLoaded] = useState(false);
   const [user, setUser] = useState(null);
   const [listings, setListings] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
@@ -28,6 +31,7 @@ function App() {
         res.json().then((user) => {
           setIsAuthenticated(true);
           setUser(user);
+          setIsUserLoaded(true);
         });
       }
     });
@@ -70,6 +74,9 @@ function App() {
         </Route>
         <Route exact path="/details/:id">
           <ListingDetails />
+        </Route>
+        <Route exact path="/profile">
+          <Profile user={user} isUserLoaded={isUserLoaded} />
         </Route>
       </Switch>
     </div>
