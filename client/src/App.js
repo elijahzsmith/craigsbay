@@ -57,7 +57,7 @@ function App() {
           <Home user={user} handleCardClick={handleCardClick} />
         </Route>
         <Route exact path="/favorites">
-          <Favorites />
+          <Favorites handleCardClick={handleCardClick} />
         </Route>
         <Route exact path="/details/:id">
           <ListingDetails />

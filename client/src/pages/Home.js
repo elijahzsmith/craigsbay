@@ -22,7 +22,7 @@ function Home({ user, handleCardClick }) {
 
   const renderListings = listings.map((listing) => {
     return (
-      <ListingItem listing={listing} user={user} handleCardClick={handleCardClick} />
+      <ListingItem key={listing.id} listing={listing} user={user} handleCardClick={handleCardClick} />
     )
   });
 
