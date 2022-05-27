@@ -4,23 +4,21 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 
-
 function NavBar({ handleLogout, handleSort }) {
-
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="/home">CraigsBay</Navbar.Brand>
+        <Navbar.Brand href="/">CraigsBay</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/favorites">Favorites</Nav.Link>
             <Nav.Link href="/profile">Profile</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item >Sort</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+              <NavDropdown.Item>Sort</NavDropdown.Item>
+              <NavDropdown.Item href="/postlisting">
+                Post a Listing
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
