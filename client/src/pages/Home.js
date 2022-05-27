@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Dropdown from "react-bootstrap/Dropdown"
+import Button from "react-bootstrap/Button"
+import ButtonGroup from "react-bootstrap/ButtonGroup"
 import ListingItem from "../components/ListingItem";
 
 
@@ -17,8 +20,6 @@ function Home({ user, handleCardClick }) {
         setIsHomeLoaded(true)
       })
   }, [])
-
-  console.log(listings)
 
   const handleSortAlphabetically = () => {
     if (filtered === false) {
@@ -49,7 +50,20 @@ function Home({ user, handleCardClick }) {
 
   return (
     <Container fluid>
-      <button onClick={() => handleSortAlphabetically()}>hey</button>
+      <Dropdown as={ButtonGroup}>
+        <Button variant="primary" onClick={() => handleSortAlphabetically()}>
+          Sort A-Z
+        </Button>
+
+        <Dropdown.Toggle split variant="primary" id="dropdown-split-basic" />
+
+        <Dropdown.Menu>
+          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+
       <Row xs={1} sm={2} md={3} lg={4}>
         {renderListings}
       </Row>
