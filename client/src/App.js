@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -8,12 +8,24 @@ import ListingDetails from "./pages/ListingDetails";
 //experiment
 import Profile from "./pages/Profile";
 
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isUserLoaded, setIsUserLoaded] = useState(false);
   const [user, setUser] = useState(null);
+  const [listings, setListings] = useState([])
+  const [isLoaded, setIsLoaded] = useState(false)
+  
+  const history = useHistory()
 
   useEffect(() => {
+    fetch("/listings")
+    .then((res) => res.json())
+    .then((listings) => {
+      setListings(listings)
+      setIsLoaded(true)
+    });
+
     fetch("/authorized_user").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
@@ -42,6 +54,10 @@ function App() {
     setIsAuthenticated(value);
   }
 
+  const handleCardClick = (id, listing) => {
+    history.push(`/details/${id}`, listing)
+  }
+
   if (!isAuthenticated) {
     return <Login setUser={handleUser} setIsAuthenticated={handleAuth} />;
   }
@@ -51,12 +67,12 @@ function App() {
       <NavBar handleLogout={handleLogout} />
       <Switch>
         <Route exact path="/home">
-          <Home user={user} />
+          <Home isLoaded={isLoaded} listings={listings} user={user} handleCardClick={handleCardClick} />
         </Route>
         <Route exact path="/favorites">
-          <Favorites />
+          <Favorites handleCardClick={handleCardClick} />
         </Route>
-        <Route exact path="/details">
+        <Route exact path="/details/:id">
           <ListingDetails />
         </Route>
         <Route exact path="/profile">
