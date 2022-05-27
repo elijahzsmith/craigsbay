@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -44,8 +45,11 @@ function App() {
     <div>
       <NavBar handleLogout={handleLogout} />
       <Switch>
-        <Route exact to="/">
+        <Route exact path="/home">
           <Home user={user} />
+        </Route>
+        <Route path="/favorites">
+          <Favorites user={user} />
         </Route>
       </Switch>
     </div>
