@@ -17,8 +17,6 @@ function Home({ user, handleCardClick }) {
       })
   }, [])
 
-  console.log(listings)
-
   if (!homeLoaded) return <h3>Loading...</h3>
 
   const renderListings = listings.map((listing) => {
