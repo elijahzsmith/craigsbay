@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     end
 
     private
-
+ 
     def find_user
         User.find(params[:id])
     end

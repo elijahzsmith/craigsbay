@@ -4,18 +4,8 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 
-function NavBar({ setIsAuthenticated }) {
-  function handleLogOut() {
-    const configObj = {
-      method: 'DELETE',
-      headers: {
-        "Content-Type": "application/json"
-      }
 
-    }
-    fetch('/logout', configObj)
-      .then(setIsAuthenticated(false))
-  }
+function NavBar({ handleLogout }) {
 
   return (
     <Navbar bg="light" expand="lg">
@@ -33,8 +23,9 @@ function NavBar({ setIsAuthenticated }) {
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={handleLogOut}>
-                Log Out
+
+              <NavDropdown.Item onClick={() => handleLogout()}>
+                Logout
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
