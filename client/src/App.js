@@ -2,23 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import ListingDetails from "./pages/ListingDetails";
 import Profile from "./pages/Profile";
 import PostListingForm from "./pages/PostListingForm";
 import "./index.scss";
+import EditProfileForm from "./pages/EditProfileForm";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isUserLoaded, setIsUserLoaded] = useState(false);
   const [user, setUser] = useState(null);
-  // // moved from login/signup
-  // const [usernameInput, setUsernameInput] = useState("");
-  // const [passwordInput, setPasswordInput] = useState("");
-  // const [error, setError] = useState([]);
 
   const history = useHistory();
+  console.log("history: ", history);
 
   useEffect(() => {
     fetch("/authorized_user").then((res) => {
@@ -39,6 +38,7 @@ function App() {
         "Content-Type": "application/json",
       },
     }).then(setIsAuthenticated(false));
+    history.push("/");
   };
 
   function handleUser(user) {
@@ -53,17 +53,23 @@ function App() {
     history.push(`/details/${id}`, listing);
   };
 
-  // add option to choose login or signup before this is rendered
+  const handleEditProfile = (e) => {
+    e.preventDefault();
+    console.log(e);
+  };
+
   if (!isAuthenticated) {
     return (
-      <Login
-        setUser={handleUser}
-        setIsAuthenticated={handleAuth}
-        // here because we moved state up from login/signup
-        // usernameInput={usernameInput}
-        // passwordInput={passwordInput}
-        // error={error}
-      />
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <Login setUser={handleUser} setIsAuthenticated={handleAuth} />
+          </Route>
+          <Route exact path="/signup">
+            <Signup />
+          </Route>
+        </Switch>
+      </div>
     );
   }
 
@@ -74,6 +80,7 @@ function App() {
         <Route exact path="/">
           <Home user={user} handleCardClick={handleCardClick} />
         </Route>
+
         <Route exact path="/favorites">
           <Favorites handleCardClick={handleCardClick} />
         </Route>
@@ -85,6 +92,9 @@ function App() {
         </Route>
         <Route exact path="/postlisting">
           <PostListingForm />
+        </Route>
+        <Route exact path="/editprofile">
+          <EditProfileForm user={user} handleEditProfile={handleEditProfile} />
         </Route>
       </Switch>
     </div>
