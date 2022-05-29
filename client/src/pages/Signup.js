@@ -42,10 +42,6 @@ function Signup({
     });
   };
 
-  const handleSignup = () => {
-    history.push("/signup");
-  };
-
   return (
     <div>
       <h1>Signup Page</h1>

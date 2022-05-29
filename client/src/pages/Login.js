@@ -5,7 +5,7 @@ import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
-function Login({ setUser, setIsAuthenticated }) {
+function Login({ setUser, setIsAuthenticated, setHasAccount }) {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
 
@@ -33,8 +33,8 @@ function Login({ setUser, setIsAuthenticated }) {
       if (res.ok) {
         res.json().then((user) => {
           setUser(user);
-          setIsAuthenticated(true)
-          setError([])
+          setIsAuthenticated(true);
+          setError([]);
         });
       } else {
         res.json().then((json) => setError(json.error));
@@ -43,13 +43,13 @@ function Login({ setUser, setIsAuthenticated }) {
   };
 
   const handleSignup = () => {
+    // setHasAccount(false);
     history.push("/signup");
   };
 
   return (
     <Container fluid>
-      <Container className='mx-auto mt-5'>
-
+      <Container className="mx-auto mt-5">
         <Row className="text-center">
           <h1>Login</h1>
         </Row>
@@ -81,11 +81,11 @@ function Login({ setUser, setIsAuthenticated }) {
               </Button>
             </Row>
 
-            {(error)
-              ? <Row className="text-danger text-center">
+            {error ? (
+              <Row className="text-danger text-center">
                 <strong>{error}</strong>
               </Row>
-              : null}
+            ) : null}
           </Form>
         </Row>
 
@@ -93,10 +93,11 @@ function Login({ setUser, setIsAuthenticated }) {
           <h2>Don't have an account?</h2>
         </Row>
 
-        <Row >
-          <Button onClick={handleSignup} className="w-25 mx-auto">Sign Up</Button>
+        <Row>
+          <Button onClick={handleSignup} className="w-25 mx-auto">
+            Sign Up
+          </Button>
         </Row>
-
       </Container>
     </Container>
   );
