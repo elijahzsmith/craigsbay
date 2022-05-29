@@ -3,12 +3,12 @@ puts "Seeding Users...."
 # 50.times do
 #     User.create(username: 'xXCharlie420Xx' , password: '123' , age: 19, name: "Charlie")
 # end
-    u1 = User.create(username: 'xXCharlie420Xx' , password: '123' , age: 19, name: "Charlie")
-    u2 = User.create(username: 'jacob98' , password: '123' , age: 19, name: "Jacob")
-    u3 = User.create(username: 'elijahzmith' , password: '123' , age: 22, name: "Elijah")
-    u4 = User.create(username: 'bitz820' , password: '123' , age: 65, name: "Mark")
-    u5 = User.create(username: 'elizabethtreahy' , password: '123' , age: 19, name: "Elizabeth")
-    u6 = User.create(username: 'wowzers' , password: '123' , age: 23, name: "Potato")
+    u1 = User.create(username: 'xXCharlie420Xx' , email: "example0@gmail.com", password: '123' , age: 19, name: "Charlie")
+    u2 = User.create(username: 'jacob98' , email: "example1@gmail.com", password: '123' , age: 19, name: "Jacob")
+    u3 = User.create(username: 'elijahzmith' , email: "example2@gmail.com", password: '123' , age: 22, name: "Elijah")
+    u4 = User.create(username: 'bitz820' , email: "example3@gmail.com", password: '123' , age: 65, name: "Mark")
+    u5 = User.create(username: 'elizabethtreahy' , email: "example4@gmail.com", password: '123' , age: 19, name: "Elizabeth")
+    u6 = User.create(username: 'wowzers' , email: "example5@gmail.com", password: '123' , age: 23, name: "Potato")
 puts "Done Seeding Users!"
 
 puts "Seeding Listings...."
