@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
-function PostListingForm() {
+function PostListingForm({ user }) {
   const [formData, setFormData] = useState({
     location: "",
     image_url: "",
     what_it_is: "",
     category: "",
     description: "",
+    user_id: user.id,
   });
 
   const handleChange = (e) => {
