@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_26_185338) do
+ActiveRecord::Schema.define(version: 2022_05_29_170155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 2022_05_26_185338) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.integer "winner_id"
+    t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,23 +48,5 @@ ActiveRecord::Schema.define(version: 2022_05_26_185338) do
 
   add_foreign_key "favorites", "listings"
   add_foreign_key "favorites", "users"
+  add_foreign_key "listings", "users"
 end
-
-
-# When you post it is yours Under your listings
-
-# When you win an item, it 
-
-
-
-
-# Listings belongs to user
-# Listing has many favorites
-# Listing has many users through favorites
-
-# Favorites belongs to Listing
-# Favorites belongs to User
-
-# User has many favorites
-# User has many listings
-# User has many listings, through favorites
