@@ -51,6 +51,7 @@ function Login({ setUser, setIsAuthenticated, setHasAccount }) {
     <Container fluid>
       <Container className="mx-auto mt-5">
         <Row className="text-center">
+          <h2>Welcome to CraigsBay</h2>
           <h1>Login</h1>
         </Row>
 
@@ -77,7 +78,7 @@ function Login({ setUser, setIsAuthenticated, setHasAccount }) {
             </Form.Group>
             <Row className="d-flex justify-content-center mb-2">
               <Button variant="primary" type="submit" className="w-25">
-                Submit
+                Login
               </Button>
             </Row>
 
@@ -90,7 +91,7 @@ function Login({ setUser, setIsAuthenticated, setHasAccount }) {
         </Row>
 
         <Row className="text-center">
-          <h2>Don't have an account?</h2>
+          <h4>Don't have an account?</h4>
         </Row>
 
         <Row>

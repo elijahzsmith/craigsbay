@@ -33,7 +33,7 @@ class ListingsController < ApplicationController
     end
 
     def listing_params
-        params.permit(:location, :image_url, :what_it_is, :category, :description)
+        params.permit(:location, :image_url, :what_it_is, :category, :description, :user_id)
     end
 
 end

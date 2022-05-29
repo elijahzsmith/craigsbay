@@ -90,7 +90,7 @@ function App() {
           <Profile user={user} isUserLoaded={isUserLoaded} />
         </Route>
         <Route exact path="/postlisting">
-          <PostListingForm />
+          <PostListingForm user={user} />
         </Route>
         <Route exact path="/editprofile">
           <EditProfileForm user={user} handleEditProfile={handleEditProfile} />
