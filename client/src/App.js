@@ -16,7 +16,7 @@ import EditYourListingForm from "./pages/EditYourListingForm";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isUserLoaded, setIsUserLoaded] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState('');
   const [showForm, setShowForm] = useState(false);
   // const [updateUserData, setUpdateUserData] = useState(false);
 
@@ -26,8 +26,8 @@ function App() {
     fetch("/authorized_user").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setIsAuthenticated(true);
           setUser(user);
+          setIsAuthenticated(true);
           setIsUserLoaded(true);
         });
       }
@@ -100,9 +100,9 @@ function App() {
         <Route exact path="/editprofile">
           <EditProfileForm
             user={user}
-            // updateUserData={updateUserData}
-            // setUpdateUserData={setUpdateUserData}
-            // handleEditProfile={handleEditProfile}
+          // updateUserData={updateUserData}
+          // setUpdateUserData={setUpdateUserData}
+          // handleEditProfile={handleEditProfile}
           />
         </Route>
         <Route exact path="/yourlistings">

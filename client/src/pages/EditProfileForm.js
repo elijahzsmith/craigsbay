@@ -6,13 +6,13 @@ import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
 function EditProfileForm({ user }) {
-  console.log(user);
+
   const [formData, setFormData] = useState({
     name: user.name,
     username: user.username,
     age: user.age,
-    password: user.password_digest,
   });
+
   const history = useHistory();
 
   const { name, username, age } = user;

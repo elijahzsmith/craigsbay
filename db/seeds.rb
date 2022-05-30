@@ -1,4 +1,3 @@
-
 puts "Seeding Users...."
 # 50.times do
 #     User.create(username: 'xXCharlie420Xx' , password: '123' , age: 19, name: "Charlie")
@@ -32,3 +31,4 @@ puts "Seeding Favorites....."
     f4 = Favorite.create(user_id: u4.id, listing_id: l1.id)
     f5 = Favorite.create(user_id: u5.id, listing_id: l1.id)
 puts "Done Seeding Favorites!"
+

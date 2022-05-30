@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
 
 function Profile({ user, isUserLoaded }) {
   const history = useHistory();
+  const [isProfileLoaded, setIsProfileLoaded] = useState(false)
 
-  if (!isUserLoaded) {
-    return <h3>Loading...</h3>;
-  }
+  // useEffect(() => {
+  //   setIsProfileLoaded(true)
+  // }, [])
+
+  // if (user === null) {
+  //   return <h3>Loading...</h3>;
+  // }
 
   const { name, age, username } = user;
   return (
