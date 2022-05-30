@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 function ListingItem({ listing, user, handleCardClick }) {
-  console.log(listing);
+  // console.log(listing);
   const { id, image_url, what_it_is } = listing;
 
   const handleAddToFavorites = (id) => {

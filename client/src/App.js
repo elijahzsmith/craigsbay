@@ -15,10 +15,8 @@ import EditYourListingForm from "./pages/EditYourListingForm";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isUserLoaded, setIsUserLoaded] = useState(false);
   const [user, setUser] = useState('');
   const [showForm, setShowForm] = useState(false);
-  // const [updateUserData, setUpdateUserData] = useState(false);
 
   const history = useHistory();
 
@@ -28,7 +26,6 @@ function App() {
         res.json().then((user) => {
           setUser(user);
           setIsAuthenticated(true);
-          setIsUserLoaded(true);
         });
       }
     });
@@ -92,18 +89,13 @@ function App() {
           <ListingDetails />
         </Route>
         <Route exact path="/profile">
-          <Profile user={user} isUserLoaded={isUserLoaded} />
+          <Profile user={user} />
         </Route>
         <Route exact path="/postlisting">
-          <PostListingForm user={user} isUserLoaded={isUserLoaded} />
+          <PostListingForm user={user} />
         </Route>
         <Route exact path="/editprofile">
-          <EditProfileForm
-            user={user}
-          // updateUserData={updateUserData}
-          // setUpdateUserData={setUpdateUserData}
-          // handleEditProfile={handleEditProfile}
-          />
+          <EditProfileForm user={user} />
         </Route>
         <Route exact path="/yourlistings">
           <YourListings
@@ -117,7 +109,6 @@ function App() {
           <EditYourListingForm
             showForm={showForm}
             setShowForm={setShowForm}
-            isUserLoaded={isUserLoaded}
           />
         </Route>
       </Switch>

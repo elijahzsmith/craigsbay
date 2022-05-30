@@ -3,9 +3,6 @@ import YourListingCard from "../components/YourListingCard";
 import EditYourListingForm from "./EditYourListingForm";
 
 function YourListings({ user, showForm, setShowForm, handleEditListing }) {
-  if (!user) {
-    return null;
-  }
 
   const renderYourListings = user.listings.map((listing) => {
     return showForm ? (
