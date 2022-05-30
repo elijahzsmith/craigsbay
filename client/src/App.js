@@ -18,9 +18,9 @@ function App() {
   const [isUserLoaded, setIsUserLoaded] = useState(false);
   const [user, setUser] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  // const [updateUserData, setUpdateUserData] = useState(false);
 
   const history = useHistory();
-  // console.log("history: ", history);
 
   useEffect(() => {
     fetch("/authorized_user").then((res) => {
@@ -54,11 +54,6 @@ function App() {
 
   const handleCardClick = (id, listing) => {
     history.push(`/details/${id}`, listing);
-  };
-
-  const handleEditProfile = (e) => {
-    e.preventDefault();
-    console.log(e);
   };
 
   const handleEditListing = (listing) => {
@@ -103,7 +98,12 @@ function App() {
           <PostListingForm user={user} isUserLoaded={isUserLoaded} />
         </Route>
         <Route exact path="/editprofile">
-          <EditProfileForm user={user} handleEditProfile={handleEditProfile} />
+          <EditProfileForm
+            user={user}
+            // updateUserData={updateUserData}
+            // setUpdateUserData={setUpdateUserData}
+            // handleEditProfile={handleEditProfile}
+          />
         </Route>
         <Route exact path="/yourlistings">
           <YourListings
