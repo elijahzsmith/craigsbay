@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function YourListingCard({ listing, handleYourCardClick }) {
+function YourListingCard({ listing, handleYourCardClick, handleDelete }) {
   const { id, image_url, what_it_is } = listing;
 
   return (
@@ -32,7 +32,10 @@ function YourListingCard({ listing, handleYourCardClick }) {
                 </Button>
               </Col>
               <Col className="d-flex justify-content-center">
-                <Button variant="warning"> Delete Listing </Button>
+                <Button
+                  variant="warning"
+                  onClick={() => handleDelete(id)}
+                > Delete Listing </Button>
               </Col>
             </Row>
           </Container>
