@@ -37,10 +37,18 @@ function ListingItem({ listing, user, handleCardClick }) {
     fetch(`/favorites`, configObjPOST)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setButtonClass('disabled')
       });
   };
+
+  function renderButtonName() {
+    if (buttonClass === 'disabled') {
+      return "Favorited"
+    } else {
+      return "Favorite"
+    }
+  }
 
 
   return (
@@ -63,8 +71,7 @@ function ListingItem({ listing, user, handleCardClick }) {
                   onClick={() => handleAddToFavorites(id)}
                   className={buttonClass}
                 >
-                  {" "}
-                  Favorite{" "}
+                  {renderButtonName()}
                 </Button>
               </Col>
             </Row>
