@@ -10,7 +10,7 @@ import ListingItem from "../components/ListingItem";
 function Home({ user, handleCardClick }) {
   const [listings, setListings] = useState([]);
   const [homeLoaded, setIsHomeLoaded] = useState(false);
-  const [category, setCategory] = useState("/All");
+  const [category, setCategory] = useState("");
   const [filtered, setFiltered] = useState(false);
 
   useEffect(() => {
@@ -45,7 +45,6 @@ function Home({ user, handleCardClick }) {
       setFiltered(false);
     }
   };
-
   const renderListings = listings.map((listing) => {
     return (
       <ListingItem
@@ -56,6 +55,15 @@ function Home({ user, handleCardClick }) {
       />
     );
   });
+
+  const filterResult = (selectedCategory) => {
+    fetch("/listings")
+      .then((r) => r.json())
+      .then((data) => {
+        let selection = data.filter(datum => datum.category === selectedCategory)
+        setListings(selection)})}
+
+
 
   if (!homeLoaded) return <h3>Loading...</h3>;
 
@@ -76,9 +84,12 @@ function Home({ user, handleCardClick }) {
             <Dropdown.Toggle split variant="primary" id="dropdown-split-basic" />
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Furniture</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Exercise Equipment</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Landscaping</Dropdown.Item>
+              <Dropdown.Item onClick={() => filterResult("Bags")}>Bags</Dropdown.Item>
+              <Dropdown.Item onClick={() => filterResult("Bikes")}>Bikes</Dropdown.Item>
+              <Dropdown.Item onClick={() => filterResult("Exercise Equipment")}>Exercise Equipment</Dropdown.Item>
+              <Dropdown.Item onClick={() => filterResult("Furniture")}>Furniture</Dropdown.Item>
+              <Dropdown.Item onClick={() => filterResult("Games")}>Games</Dropdown.Item>
+              <Dropdown.Item onClick={() => filterResult("Landscaping")}>Landscaping</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Col>
