@@ -38,6 +38,7 @@ function YourListings({
   const renderYourListings = listings.map((listing) => {
     return (
       <YourListingCard
+        key={listing.id}
         user={user}
         listing={listing}
         showForm={showForm}
