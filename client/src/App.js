@@ -100,7 +100,7 @@ function App() {
           <Profile user={user} isUserLoaded={isUserLoaded} />
         </Route>
         <Route exact path="/postlisting">
-          <PostListingForm user={user} />
+          <PostListingForm user={user} isUserLoaded={isUserLoaded} />
         </Route>
         <Route exact path="/editprofile">
           <EditProfileForm user={user} handleEditProfile={handleEditProfile} />
@@ -114,7 +114,11 @@ function App() {
           />
         </Route>
         <Route exact path="/editlisting">
-          <EditYourListingForm showForm={showForm} setShowForm={setShowForm} />
+          <EditYourListingForm
+            showForm={showForm}
+            setShowForm={setShowForm}
+            isUserLoaded={isUserLoaded}
+          />
         </Route>
       </Switch>
     </div>

@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
     has_many :favorites
     has_many :listings
-    has_many :listings, through: :favorites
+    # has_many :listings, through: :favorites
 
     # Validations: username
     validates :username, presence: true
