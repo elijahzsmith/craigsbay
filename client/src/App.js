@@ -10,14 +10,17 @@ import Profile from "./pages/Profile";
 import PostListingForm from "./pages/PostListingForm";
 import "./index.scss";
 import EditProfileForm from "./pages/EditProfileForm";
+import YourListings from "./pages/YourListings";
+import EditYourListingForm from "./pages/EditYourListingForm";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isUserLoaded, setIsUserLoaded] = useState(false);
   const [user, setUser] = useState(null);
+  const [showForm, setShowForm] = useState(false);
 
   const history = useHistory();
-  console.log("history: ", history);
+  // console.log("history: ", history);
 
   useEffect(() => {
     fetch("/authorized_user").then((res) => {
@@ -58,6 +61,13 @@ function App() {
     console.log(e);
   };
 
+  const handleEditListing = (listing) => {
+    console.log(listing);
+    setShowForm((showForm) => !showForm);
+    // history.push("/editlisting");
+    <EditYourListingForm listing={listing} />;
+  };
+
   if (!isAuthenticated) {
     return (
       <div>
@@ -94,6 +104,17 @@ function App() {
         </Route>
         <Route exact path="/editprofile">
           <EditProfileForm user={user} handleEditProfile={handleEditProfile} />
+        </Route>
+        <Route exact path="/yourlistings">
+          <YourListings
+            user={user}
+            showForm={showForm}
+            setShowForm={setShowForm}
+            handleEditListing={handleEditListing}
+          />
+        </Route>
+        <Route exact path="/editlisting">
+          <EditYourListingForm showForm={showForm} setShowForm={setShowForm} />
         </Route>
       </Switch>
     </div>
