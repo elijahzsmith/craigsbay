@@ -4,20 +4,21 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ListingDetails from "../pages/ListingDetails";
 
 function ListingItem({ listing, user, handleCardClick }) {
-  const [buttonClass, setButtonClass] = useState(null)
+  const [buttonClass, setButtonClass] = useState(null);
 
   const { id, image_url, what_it_is } = listing;
 
   useEffect(() => {
     if (listing.user_id === user.id) {
-      setButtonClass('disabled')
-    } else if (user.favorites.filter(fav => fav.listing_id === listing.id).length > 0) {
-      setButtonClass('disabled')
+      setButtonClass("disabled");
+    } else if (
+      user.favorites.filter((fav) => fav.listing_id === listing.id).length > 0
+    ) {
+      setButtonClass("disabled");
     }
-  }, [listing.id, listing.user_id, user.favorites, user.id])
+  }, [listing.id, listing.user_id, user.favorites, user.id]);
 
   const handleAddToFavorites = (id) => {
     const newFavorite = {
@@ -36,23 +37,20 @@ function ListingItem({ listing, user, handleCardClick }) {
 
     fetch(`/favorites`, configObjPOST)
       .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setButtonClass('disabled')
+      .then(() => {
+        setButtonClass("disabled");
       });
   };
 
-
   function renderButtonName() {
     if (listing.user_id === user.id) {
-      return "Your Listing"
-    } else if (buttonClass === 'disabled') {
-      return "Favorited"
+      return "Your Listing";
+    } else if (buttonClass === "disabled") {
+      return "Favorited";
     } else {
-      return "Favorite"
+      return "Favorite";
     }
   }
-
 
   return (
     <Col>

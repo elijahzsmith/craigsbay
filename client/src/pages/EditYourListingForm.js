@@ -80,7 +80,7 @@ function EditYourListingForm() {
                   type="text"
                   placeholder={`${image_url}...`}
                   onChange={(e) => handleChange(e)}
-                  value={editFormData.name}
+                  value={editFormData.image_url}
                   name="image_url"
                 />
               </Form.Group>
@@ -91,7 +91,7 @@ function EditYourListingForm() {
                   type="text"
                   placeholder={`${what_it_is}...`}
                   onChange={(e) => handleChange(e)}
-                  value={editFormData.username}
+                  value={editFormData.what_it_is}
                   name="what_it_is"
                 />
               </Form.Group>
