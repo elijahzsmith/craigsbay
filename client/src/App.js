@@ -68,7 +68,7 @@ function App() {
             <Login setUser={handleUser} setIsAuthenticated={handleAuth} />
           </Route>
           <Route exact path="/signup">
-            <Signup />
+            <Signup setUser={setUser} setIsAuthenticated={setIsAuthenticated} />
           </Route>
         </Switch>
       </div>

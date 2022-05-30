@@ -94,7 +94,10 @@ function Login({ setUser, setIsAuthenticated, setHasAccount }) {
         </Row>
 
         <Row>
-          <Button onClick={handleSignup} className="w-25 mx-auto">
+          <Button
+            onClick={() => history.push("/signup")}
+            className="w-25 mx-auto"
+          >
             Sign Up
           </Button>
         </Row>
