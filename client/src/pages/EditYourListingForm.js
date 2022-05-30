@@ -8,18 +8,17 @@ import Form from "react-bootstrap/esm/Form";
 function EditYourListingForm() {
   const history = useHistory();
   let locate = useLocation();
+  const { id, location, image_url, what_it_is, category, description } =
+    locate.state;
   const [editFormData, setEditFormData] = useState({
-    location: "",
-    image_url: "",
-    what_it_is: "",
-    category: "",
-    description: "",
+    location,
+    image_url,
+    what_it_is,
+    category,
+    description,
   });
 
   console.log("locate: ", locate.state);
-
-  const { id, location, image_url, what_it_is, category, description } =
-    locate.state;
 
   const configObjPATCH = {
     method: "PATCH",
@@ -104,6 +103,7 @@ function EditYourListingForm() {
                   placeholder={`${category}...`}
                   onChange={(e) => handleChange(e)}
                   value={editFormData.category}
+                  name="category"
                 />
               </Form.Group>
 
