@@ -7,18 +7,21 @@ import Form from "react-bootstrap/esm/Form";
 
 function EditYourListingForm() {
   const history = useHistory();
+
   let locate = useLocation();
+
   const { id, location, image_url, what_it_is, category, description } =
     locate.state;
+
   const [editFormData, setEditFormData] = useState({
-    location,
-    image_url,
-    what_it_is,
-    category,
-    description,
+    location: "",
+    image_url: "",
+    what_it_is: "",
+    category: "",
+    description: "",
   });
 
-  console.log("locate: ", locate.state);
+  // console.log("locate: ", locate.state);
 
   const configObjPATCH = {
     method: "PATCH",
@@ -31,7 +34,7 @@ function EditYourListingForm() {
 
   const handleChange = (e) => {
     setEditFormData({ ...editFormData, [e.target.name]: e.target.value });
-    console.log(e.target.value);
+    console.log(e.target.name);
   };
 
   const handleSaveChanges = (e) => {
@@ -39,8 +42,8 @@ function EditYourListingForm() {
     e.preventDefault();
     fetch(`/listings/${id}`, configObjPATCH)
       .then((res) => res.json())
-      .then((data) => {
-        console.log("fetch response: ", data);
+      .then(() => {
+        // console.log("fetch response: ", data);
         setEditFormData({
           location,
           image_url,
