@@ -43,7 +43,9 @@ function ListingItem({ listing, user, handleCardClick }) {
   };
 
   function renderButtonName() {
-    if (buttonClass === 'disabled') {
+    if (listing.user_id === user.id) {
+      return "Your Listing"
+    } else if (buttonClass === 'disabled') {
       return "Favorited"
     } else {
       return "Favorite"
