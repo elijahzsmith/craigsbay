@@ -8,7 +8,7 @@ function Profile({ user, isUserLoaded }) {
     return <h3>Loading...</h3>;
   }
 
-  console.log(user.favorites);
+  // console.log(user.favorites);
   const { name, age, username } = user;
   return (
     <div>
@@ -18,6 +18,9 @@ function Profile({ user, isUserLoaded }) {
         <h3>Username: {username}</h3>
         <button onClick={() => history.push("/favorites")}>
           Your Favorites
+        </button>
+        <button onClick={() => history.push("/yourlistings")}>
+          Your Listings
         </button>
         <button onClick={() => history.push("/editprofile")}>
           Edit Profile
