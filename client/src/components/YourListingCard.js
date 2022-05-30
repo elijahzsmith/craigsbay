@@ -1,17 +1,13 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import Form from "react-bootstrap/esm/Form";
-
-function YourListingCard({ listing, showForm, setShowForm }) {
-  console.log("Listing: ", listing);
-
-  const { id, location, image_url, what_it_is, category, description } =
-    listing;
+function YourListingCard({ listing, handleYourCardClick }) {
+  const { id, image_url, what_it_is } = listing;
 
   return (
     <Col>
@@ -29,7 +25,7 @@ function YourListingCard({ listing, showForm, setShowForm }) {
               <Col className="d-flex justify-content-center">
                 <Button
                   variant="primary"
-                  onClick={() => setShowForm((showForm) => !showForm)}
+                  onClick={() => handleYourCardClick(id, listing)}
                 >
                   {" "}
                   Edit Listing{" "}

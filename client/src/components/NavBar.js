@@ -21,6 +21,9 @@ function NavBar({ handleLogout }) {
               <NavDropdown.Item href="/postlisting">
                 Post a listing
               </NavDropdown.Item>
+              <NavDropdown.Item href="/yourlistings">
+                Your Listings
+              </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={() => handleLogout()}>
                 Logout

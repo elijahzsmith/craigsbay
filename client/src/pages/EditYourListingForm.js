@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
-function EditYourListingForm({ showForm, setShowForm, listing }) {
+function EditYourListingForm() {
+  const history = useHistory();
+  let locate = useLocation();
   const [editFormData, setEditFormData] = useState({
     location: "",
     image_url: "",
@@ -14,7 +16,10 @@ function EditYourListingForm({ showForm, setShowForm, listing }) {
     description: "",
   });
 
-  const { id, location, image_url, what_it_is, category, description } = listing;
+  console.log("locate: ", locate.state);
+
+  const { id, location, image_url, what_it_is, category, description } =
+    locate.state;
 
   const configObjPATCH = {
     method: "PATCH",
@@ -30,19 +35,21 @@ function EditYourListingForm({ showForm, setShowForm, listing }) {
     console.log(e.target.value);
   };
 
-  const handleSaveChanges = (e, id) => {
+  const handleSaveChanges = (e) => {
+    console.log(e, id);
     e.preventDefault();
     fetch(`/listings/${id}`, configObjPATCH)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log("fetch response: ", data);
         setEditFormData({
-          location: "",
-          image_url: "",
-          what_it_is: "",
-          category: "",
-          description: "",
+          location,
+          image_url,
+          what_it_is,
+          category,
+          description,
         });
+        history.push("/yourlistings");
       });
   };
 
@@ -56,7 +63,7 @@ function EditYourListingForm({ showForm, setShowForm, listing }) {
           </Row>
 
           <Row className="mb-5">
-            <Form>
+            <Form onSubmit={(e) => handleSaveChanges(e)}>
               <Form.Group className="mb-3">
                 <Form.Label>Location</Form.Label>
                 <Form.Control
@@ -64,6 +71,7 @@ function EditYourListingForm({ showForm, setShowForm, listing }) {
                   placeholder={`${location}...`}
                   onChange={(e) => handleChange(e)}
                   value={editFormData.location}
+                  name="location"
                 />
               </Form.Group>
 
@@ -74,6 +82,7 @@ function EditYourListingForm({ showForm, setShowForm, listing }) {
                   placeholder={`${image_url}...`}
                   onChange={(e) => handleChange(e)}
                   value={editFormData.name}
+                  name="image_url"
                 />
               </Form.Group>
 
@@ -84,13 +93,14 @@ function EditYourListingForm({ showForm, setShowForm, listing }) {
                   placeholder={`${what_it_is}...`}
                   onChange={(e) => handleChange(e)}
                   value={editFormData.username}
+                  name="what_it_is"
                 />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Category</Form.Label>
                 <Form.Control
-                  type="password"
+                  type="text"
                   placeholder={`${category}...`}
                   onChange={(e) => handleChange(e)}
                   value={editFormData.category}
@@ -100,20 +110,16 @@ function EditYourListingForm({ showForm, setShowForm, listing }) {
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Description</Form.Label>
                 <Form.Control
-                  type="password"
+                  type="text"
                   placeholder={`${description}...`}
                   onChange={(e) => handleChange(e)}
                   value={editFormData.description}
+                  name="description"
                 />
               </Form.Group>
 
               <Row className="d-flex justify-content-center mb-2">
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="w-25"
-                  onClick={(e) => handleSaveChanges(e, id)}
-                >
+                <Button variant="primary" type="submit" className="w-25">
                   Save Changes
                 </Button>
               </Row>
@@ -124,7 +130,7 @@ function EditYourListingForm({ showForm, setShowForm, listing }) {
             <Button
               className="w-25 mx-auto"
               variant="warning"
-              onClick={() => setShowForm((showForm) => !showForm)}
+              onClick={() => history.push("/yourlistings")}
             >
               Exit Edit Form
             </Button>

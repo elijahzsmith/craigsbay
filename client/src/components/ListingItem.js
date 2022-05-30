@@ -32,7 +32,7 @@ function ListingItem({ listing, user, handleCardClick }) {
   };
 
   function handleButtonClass() {
-    return listing.user_id === user.id ? "disabled" : null
+    return listing.user_id === user.id ? "disabled" : null;
   }
 
   return (
@@ -55,8 +55,7 @@ function ListingItem({ listing, user, handleCardClick }) {
                   onClick={() => handleAddToFavorites(id)}
                   className={handleButtonClass()}
                 >
-                  {" "}
-                  Favorite{" "}
+                  {user.id === listing.user_id ? "Your Listing" : "Favorite"}
                 </Button>
               </Col>
             </Row>

@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import YourListingCard from "../components/YourListingCard";
-import EditYourListingForm from "./EditYourListingForm";
 
-function YourListings({ user, showForm, setShowForm, handleEditListing }) {
+function YourListings({
+  user,
+  showForm,
+  setShowForm,
+  handleEditListing,
+  handleYourCardClick,
+}) {
+  const [listings, setListings] = useState([]);
 
-  const renderYourListings = user.listings.map((listing) => {
-    return showForm ? (
-      <EditYourListingForm
-        showForm={showForm}
-        listing={listing}
-        setShowForm={setShowForm}
-      />
-    ) : (
+  useEffect(() => {
+    fetch(`/users/${user.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setListings(data.listings);
+      });
+  }, []);
+
+  const renderYourListings = listings.map((listing) => {
+    return (
       <YourListingCard
         user={user}
         listing={listing}
         showForm={showForm}
         setShowForm={setShowForm}
         handleEditListing={handleEditListing}
+        handleYourCardClick={handleYourCardClick}
       />
     );
   });
