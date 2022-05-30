@@ -43,7 +43,6 @@ function PostListingForm({ user, isUserLoaded }) {
           description: "",
           user_id: user.id,
         });
-        alert("Post Successful!");
       });
   };
 
