@@ -5,12 +5,7 @@ import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
-function EditProfileForm({
-  user,
-  // updateUserData,
-  // setUpdateUserData,
-  // handleEditProfile
-}) {
+function EditProfileForm({ user }) {
   console.log(user);
   const [formData, setFormData] = useState({
     name: user.name,
@@ -46,7 +41,6 @@ function EditProfileForm({
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        // setUpdateUserData(true);
       });
   };
 
@@ -91,17 +85,6 @@ function EditProfileForm({
                 name="age"
               />
             </Form.Group>
-
-            {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                onChange={handleChange}
-                value={formData.password}
-                name="password"
-              />
-            </Form.Group> */}
 
             <Row className="d-flex justify-content-center mb-2">
               <Button variant="primary" type="submit" className="w-25">
