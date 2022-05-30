@@ -6,6 +6,7 @@ function Profile({ user }) {
   const history = useHistory();
 
   const { name, age, username } = user;
+
   return (
     <div>
       <div>

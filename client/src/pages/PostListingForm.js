@@ -4,8 +4,8 @@ import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
-function PostListingForm({ user, isUserLoaded }) {
-  console.log(user);
+function PostListingForm({ user }) {
+  // console.log(user);
 
   const [formData, setFormData] = useState({
     location: "",

@@ -6,7 +6,6 @@ import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
 function EditYourListingForm({ showForm, setShowForm, listing }) {
-  console.log(listing);
   const [editFormData, setEditFormData] = useState({
     location: "",
     image_url: "",
@@ -14,11 +13,9 @@ function EditYourListingForm({ showForm, setShowForm, listing }) {
     category: "",
     description: "",
   });
-  // if (!listing) {
-  //   return null;
-  // }
-  const { id, location, image_url, what_it_is, category, description } =
-    listing;
+
+  const { id, location, image_url, what_it_is, category, description } = listing;
+
   const configObjPATCH = {
     method: "PATCH",
     headers: {
@@ -48,6 +45,7 @@ function EditYourListingForm({ showForm, setShowForm, listing }) {
         });
       });
   };
+
   return (
     <div>
       <h1>Edit Your Listing Form</h1>

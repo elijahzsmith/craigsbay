@@ -5,7 +5,9 @@ import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
-function EditProfileForm({ user }) {
+
+function EditProfileForm({ user, setUser }) {
+
   const [formData, setFormData] = useState({
     name: user.name,
     username: user.username,
@@ -22,7 +24,6 @@ function EditProfileForm({ user }) {
       ...formData,
       [key]: e.target.value,
     });
-    console.log(formData);
   };
 
   const configObjPATCH = {
@@ -37,10 +38,11 @@ function EditProfileForm({ user }) {
   const handleEditProfile = (e) => {
     e.preventDefault();
     fetch(`/users/${user.id}`, configObjPATCH)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
+      .then(res => res.json())
+      .then(data => {
+        setUser(data)
+        history.push('/profile')
+      })
   };
 
   return (
