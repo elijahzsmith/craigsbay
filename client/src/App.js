@@ -95,7 +95,7 @@ function App() {
           <PostListingForm user={user} />
         </Route>
         <Route exact path="/editprofile">
-          <EditProfileForm user={user} />
+          <EditProfileForm user={user} setUser={setUser} />
         </Route>
         <Route exact path="/yourlistings">
           <YourListings
