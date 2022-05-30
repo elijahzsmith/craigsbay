@@ -13,7 +13,7 @@ function PostListingForm({ user }) {
     what_it_is: "",
     category: "",
     description: "",
-    user_id: user,
+    user_id: user.id,
   });
 
   const handleChange = (e) => {
