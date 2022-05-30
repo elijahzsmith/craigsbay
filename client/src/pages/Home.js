@@ -45,6 +45,7 @@ function Home({ user, handleCardClick }) {
       setFiltered(false);
     }
   };
+
   const renderListings = listings.map((listing) => {
     return (
       <ListingItem
@@ -61,7 +62,9 @@ function Home({ user, handleCardClick }) {
       .then((r) => r.json())
       .then((data) => {
         let selection = data.filter(datum => datum.category === selectedCategory)
-        setListings(selection)})}
+        setListings(selection)
+      })
+  }
 
 
 
