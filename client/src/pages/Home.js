@@ -18,17 +18,18 @@ function Home({ user, handleCardClick }) {
       .then((res) => res.json())
       .then((listings) => {
         setListings(listings);
+        filterCategories(listings)
         setIsHomeLoaded(true);
-        filterCategories()
-      });
+      })
 
-    function filterCategories() {
-      const catArr = listings.map(listing => listing.category);
-      const filteredCatArr = [...new Set(catArr)];
-
-      setCategories(filteredCatArr)
-    }
   }, []);
+
+  function filterCategories(listings) {
+    const catArr = listings.map(listing => listing.category);
+    const filteredCatArr = [...new Set(catArr)];
+
+    setCategories(filteredCatArr)
+  }
 
   const handleSortAlphabetically = () => {
     if (filtered === false) {
