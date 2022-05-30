@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
 function PostListingForm({ user }) {
-  // console.log(user);
+  const history = useHistory();
 
   const [formData, setFormData] = useState({
     location: "",
@@ -44,6 +45,7 @@ function PostListingForm({ user }) {
           user_id: user.id,
         });
         alert("Post Successful");
+        history.push("/yourlistings");
       });
   };
 

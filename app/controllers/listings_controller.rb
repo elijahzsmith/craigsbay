@@ -29,11 +29,11 @@ class ListingsController < ApplicationController
     private
  
     def find_listing
-        listing.find(params[:id])
+        Listing.find(params[:id])
     end
 
     def listing_params
-        params.permit(:location, :image_url, :what_it_is, :category, :description, :user_id)
+        params.permit(:id, :location, :image_url, :what_it_is, :category, :description, :user_id)
     end
 
 end

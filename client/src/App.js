@@ -15,7 +15,7 @@ import EditYourListingForm from "./pages/EditYourListingForm";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState("");
   const [showForm, setShowForm] = useState(false);
 
   const history = useHistory();
@@ -53,10 +53,13 @@ function App() {
     history.push(`/details/${id}`, listing);
   };
 
+  const handleYourCardClick = (id, listing) => {
+    history.push(`/editlisting/${id}`, listing);
+  };
+
   const handleEditListing = (listing) => {
     console.log(listing);
     setShowForm((showForm) => !showForm);
-    // history.push("/editlisting");
     <EditYourListingForm listing={listing} />;
   };
 
@@ -103,13 +106,11 @@ function App() {
             showForm={showForm}
             setShowForm={setShowForm}
             handleEditListing={handleEditListing}
+            handleYourCardClick={handleYourCardClick}
           />
         </Route>
-        <Route exact path="/editlisting">
-          <EditYourListingForm
-            showForm={showForm}
-            setShowForm={setShowForm}
-          />
+        <Route exact path="/editlisting/:id">
+          <EditYourListingForm />
         </Route>
       </Switch>
     </div>

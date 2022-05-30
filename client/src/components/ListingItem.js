@@ -42,6 +42,7 @@ function ListingItem({ listing, user, handleCardClick }) {
       });
   };
 
+
   function renderButtonName() {
     if (listing.user_id === user.id) {
       return "Your Listing"
