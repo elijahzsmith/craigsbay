@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
 
 function Profile({ user, isUserLoaded }) {
@@ -8,23 +9,27 @@ function Profile({ user, isUserLoaded }) {
     return <h3>Loading...</h3>;
   }
 
-  // console.log(user.favorites);
   const { name, age, username } = user;
   return (
     <div>
       <div>
         <h1>Profile Page</h1>
+        <hr></hr>
         <h2>Name: {name}</h2>
         <h3>Username: {username}</h3>
-        <button onClick={() => history.push("/favorites")}>
+        <h6>Age: {age}</h6>
+        <Button onClick={() => history.push("/favorites")}>
           Your Favorites
-        </button>
-        <button onClick={() => history.push("/yourlistings")}>
+        </Button>
+        <Button onClick={() => history.push("/yourlistings")}>
           Your Listings
-        </button>
-        <button onClick={() => history.push("/editprofile")}>
+        </Button>
+        <Button onClick={() => history.push("/postlisting")}>
+          Post A Listing
+        </Button>
+        <Button onClick={() => history.push("/editprofile")}>
           Edit Profile
-        </button>
+        </Button>
       </div>
     </div>
   );
