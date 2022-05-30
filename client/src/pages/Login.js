@@ -42,10 +42,6 @@ function Login({ setUser, setIsAuthenticated, setHasAccount }) {
     });
   };
 
-  const handleSignup = () => {
-    history.push("/signup");
-  };
-
   return (
     <Container fluid>
       <Container className="mx-auto mt-5">

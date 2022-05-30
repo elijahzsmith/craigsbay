@@ -16,7 +16,7 @@ function YourListings({
       .then((data) => {
         setListings(data.listings);
       });
-  }, []);
+  }, [user.id]);
 
   function handleDelete(id) {
     const configObjDELETE = {
