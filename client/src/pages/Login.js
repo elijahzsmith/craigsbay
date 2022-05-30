@@ -43,7 +43,6 @@ function Login({ setUser, setIsAuthenticated, setHasAccount }) {
   };
 
   const handleSignup = () => {
-    // setHasAccount(false);
     history.push("/signup");
   };
 
