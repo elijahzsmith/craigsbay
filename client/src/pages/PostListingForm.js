@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 
-function PostListingForm({ user }) {
+function PostListingForm({ user, isUserLoaded }) {
+  console.log(user);
+
   const [formData, setFormData] = useState({
     location: "",
     image_url: "",
     what_it_is: "",
     category: "",
     description: "",
-    user_id: user.id,
+    user_id: user,
   });
 
   const handleChange = (e) => {
@@ -35,6 +37,7 @@ function PostListingForm({ user }) {
           what_it_is: "",
           category: "",
           description: "",
+          user_id: user.id,
         });
         alert("Post Successful!");
       });
