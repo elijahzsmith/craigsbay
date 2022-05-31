@@ -22,7 +22,7 @@ function PostListingForm({ user }) {
     user_id: user.id,
   });
 
-  const [timerID, setTimerID] = useState(null)
+  const [timerID, setTimerID] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -50,8 +50,7 @@ function PostListingForm({ user }) {
     fetch("/listings", configObjPOST)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
-        setTimerID(data.id)
+        setTimerID(data.id);
         setFormData({
           location: "",
           image_url: "",
@@ -63,8 +62,7 @@ function PostListingForm({ user }) {
         });
         alert("Post Successful");
         history.push("/yourlistings");
-      })
-
+      });
   };
 
   useEffect(() => {
@@ -72,17 +70,18 @@ function PostListingForm({ user }) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
       },
       body: JSON.stringify({
+
         listing_id: timerID
       })
     }
 
     fetch("/timers", configObjTimer)
       .then((res) => res.json())
-      .then((data) => console.log(data))
-  }, [timerID])
+      .then((data) => console.log(data));
+  }, [timerID]);
 
   function renderMonths() {
 
