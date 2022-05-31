@@ -58,6 +58,23 @@ function Home({ user, handleCardClick }) {
     }
   };
 
+  function handleDelete(id) {
+    const configObjDELETE = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
+    }
+
+    fetch(`/listings/${id}`, configObjDELETE)
+      .then(() => {
+        const filteredListings = listings.filter(listing => listing.id !== id)
+
+        setListings(filteredListings)
+      })
+  }
+
   const afterSearch = listings.filter((item) => {
     if (currentSearch === "") {
       return item;
@@ -78,6 +95,7 @@ function Home({ user, handleCardClick }) {
         listing={listing}
         user={user}
         handleCardClick={handleCardClick}
+        handleDelete={handleDelete}
       />
     );
   });
