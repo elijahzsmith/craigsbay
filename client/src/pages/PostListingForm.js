@@ -53,8 +53,6 @@ function PostListingForm({ user }) {
         history.push("/yourlistings");
       })
 
-
-
   };
 
   useEffect(() => {

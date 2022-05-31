@@ -5,11 +5,7 @@ class Timer < ApplicationRecord
 
     def countdown
         end_time = self.parse_time(self.listing.end_time)
-
-        # until Time.now == end_time do
-        #   sleep 1
-        # end
-
+        
         sleep(end_time - Time.now) 
         
         self.pick_winner
