@@ -10,13 +10,13 @@ function Profile({ user }) {
   return (
     <div>
       <div>
-        <h1>Profile Page</h1>
+        <h1>Account Details</h1>
         <hr></hr>
         <h2>Name: {name}</h2>
         <h3>Username: {username}</h3>
         <h6>Age: {age}</h6>
-        <Button onClick={() => history.push("/favorites")}>
-          Your Favorites
+        <Button onClick={() => history.push("/ongoingraffles")}>
+          Ongoing Raffles
         </Button>
         <Button onClick={() => history.push("/yourlistings")}>
           Your Listings
