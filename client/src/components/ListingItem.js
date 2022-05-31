@@ -19,12 +19,10 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
       setButtonState("Entered");
     }
 
-    fetch('/favorites')
-      .then(res => res.json())
-      .then(favs => setFavorites(favs))
+    setFavorites(user.favorites)
+
   }, [listing.id, listing.user_id, user.favorites, user.id]);
 
-  console.log(favorites)
   const handleAddToFavorites = (id) => {
     const newFavorite = {
       user_id: user.id,
@@ -48,13 +46,8 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
       });
   };
 
-  // console.log(user)
-
   function handleRemoveFavorite() {
-    // const fav = user.favorites.find((fav) => fav.listing_id === id);
     const rmFav = favorites.find(fav => fav.listing_id === id)
-
-    console.log(rmFav)
 
     const configObjDELETE = {
       method: "DELETE",
