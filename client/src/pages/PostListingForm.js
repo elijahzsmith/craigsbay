@@ -73,15 +73,10 @@ function PostListingForm({ user }) {
         Accept: "application/json",
       },
       body: JSON.stringify({
-<<<<<<< HEAD
-        listing_id: timerID,
-      }),
-    };
-=======
+
         listing_id: timerID
       })
     }
->>>>>>> b77763acb7705b0929ef3e7535effc9cecc6eedc
 
     fetch("/timers", configObjTimer)
       .then((res) => res.json())
