@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom"
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -8,6 +9,8 @@ import Col from "react-bootstrap/Col";
 function YourListingCard({ listing, handleYourCardClick, handleDelete }) {
   const { id, image_url, what_it_is } = listing;
 
+  const history = useHistory()
+
   return (
     <Col>
       <Card className="h-100">
@@ -16,6 +19,7 @@ function YourListingCard({ listing, handleYourCardClick, handleDelete }) {
           alt="listing"
           role="button"
           className="h-75"
+          onClick={(() => history.push(`/details/${id}`, listing))}
         />
         <Card.Body>
           <Card.Title className="text-center">{what_it_is}</Card.Title>
