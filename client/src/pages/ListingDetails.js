@@ -1,4 +1,5 @@
 import React from "react";
+import Clock from "../components/Clock";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,8 +7,8 @@ import { useLocation } from "react-router-dom";
 
 function ListingDetails() {
   let locate = useLocation();
-  // console.log(locate.state);
-  const { what_it_is, image_url, location, description } = locate.state;
+
+  const { what_it_is, image_url, location, description, end_time } = locate.state;
 
   return (
     <Container>
@@ -30,6 +31,10 @@ function ListingDetails() {
 
       <Row>
         <p>{description}</p>
+      </Row>
+      <Row>
+        <h2>Time Left:</h2>
+        <Clock end_time={end_time}></Clock>
       </Row>
     </Container>
   );

@@ -40,7 +40,7 @@ function PostListingForm({ user }) {
       what_it_is: formData.what_it_is,
       category: formData.category,
       description: formData.description,
-      end_time: `${formData.month}/${formData.day}/${formData.year} ${formData.time}`,
+      end_time: `${formData.year}-${formData.month}-${formData.day}T${formData.time}:00`,
       user_id: user.id,
     }),
   };
