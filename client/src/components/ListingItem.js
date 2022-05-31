@@ -5,18 +5,18 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function ListingItem({ listing, user, handleCardClick }) {
-  const [buttonClass, setButtonClass] = useState(null);
+function ListingItem({ listing, user, handleCardClick, handleDelete }) {
+  const [buttonState, setButtonState] = useState(null);
 
   const { id, image_url, what_it_is } = listing;
 
   useEffect(() => {
     if (listing.user_id === user.id) {
-      setButtonClass("disabled");
+      setButtonState('Owner');
     } else if (
       user.favorites.filter((fav) => fav.listing_id === listing.id).length > 0
     ) {
-      setButtonClass("disabled");
+      setButtonState('Favorited')
     }
   }, [listing.id, listing.user_id, user.favorites, user.id]);
 
@@ -38,17 +38,58 @@ function ListingItem({ listing, user, handleCardClick }) {
     fetch(`/favorites`, configObjPOST)
       .then((res) => res.json())
       .then(() => {
-        setButtonClass("disabled");
+        setButtonState("Favorited")
       });
   };
 
-  function renderButtonName() {
-    if (listing.user_id === user.id) {
-      return "Your Listing";
-    } else if (buttonClass === "disabled") {
-      return "Favorited";
-    } else {
-      return "Favorite";
+  function handleRemoveFavorite(id) {
+    const favId = user.favorites.filter(fav => fav.listing_id === id)
+
+    const configObjDELETE = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
+    }
+
+    fetch(`/favorites/${favId}`, configObjDELETE)
+      .then(setButtonState(null))
+  }
+
+  function renderButton() {
+    switch (buttonState) {
+      case "Owner":
+        return (
+          <Button
+            variant="warning"
+            onClick={() => handleDelete(id)}
+          >
+            Delete
+          </Button>
+        )
+
+      case "Favorited": {
+        return (
+          <Button
+            variant="secondary text-white"
+            onClick={() => handleRemoveFavorite(id)}
+          >
+            Favorited
+          </Button>
+        )
+      }
+
+      default: {
+        return (
+          <Button
+            variant="primary"
+            onClick={() => handleAddToFavorites(id)}
+          >
+            Favorite
+          </Button>
+        )
+      }
     }
   }
 
@@ -67,13 +108,7 @@ function ListingItem({ listing, user, handleCardClick }) {
           <Container className="ms-2">
             <Row>
               <Col className="d-flex justify-content-center">
-                <Button
-                  variant="primary"
-                  onClick={() => handleAddToFavorites(id)}
-                  className={buttonClass}
-                >
-                  {renderButtonName()}
-                </Button>
+                {renderButton()}
               </Col>
             </Row>
           </Container>
@@ -82,5 +117,7 @@ function ListingItem({ listing, user, handleCardClick }) {
     </Col>
   );
 }
+
+
 
 export default ListingItem;
