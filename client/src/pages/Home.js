@@ -10,7 +10,6 @@ import ListingItem from "../components/ListingItem";
 function Home({ user, handleCardClick }) {
   const [listings, setListings] = useState([]);
   const [homeLoaded, setIsHomeLoaded] = useState(false);
-  const [category, setCategory] = useState("");
   const [filtered, setFiltered] = useState(false);
 
   useEffect(() => {

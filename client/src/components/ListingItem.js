@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Clock from "./Clock";
 
 function ListingItem({ listing, user, handleCardClick }) {
   const { id, image_url, what_it_is } = listing;
