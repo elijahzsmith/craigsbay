@@ -72,9 +72,9 @@ function Home({ user, handleCardClick }) {
     fetch(`/listings/${id}`, configObjDELETE)
       .then(() => {
 
-        const filteredListings = listings.filter((listing) => listing.id !== id);
+        const newListings = listings.filter((listing) => listing.id !== id);
 
-        setListings(filteredListings);
+        setFilteredListings(newListings);
       });
   }
 
