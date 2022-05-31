@@ -12,8 +12,8 @@ import FormControl from "react-bootstrap/FormControl";
 
 function Home({ user, handleCardClick }) {
   const [listings, setListings] = useState([]);
-  const [categories, setCategories] = useState([])
-  const [filteredListings, setFilteredListings] = useState([])
+  const [categories, setCategories] = useState([]);
+  const [filteredListings, setFilteredListings] = useState([]);
   const [homeLoaded, setIsHomeLoaded] = useState(false);
   const [filtered, setFiltered] = useState(false);
   const [currentSearch, setCurrentSearch] = useState("");
@@ -24,7 +24,7 @@ function Home({ user, handleCardClick }) {
       .then((listings) => {
         setListings(listings);
         filterCategories(listings);
-        setFilteredListings(listings)
+        setFilteredListings(listings);
         setIsHomeLoaded(true);
       });
   }, []);
@@ -89,7 +89,7 @@ function Home({ user, handleCardClick }) {
   });
 
   const filterResult = (selectedCategory) => {
-    setFilteredListings(listings)
+    setFilteredListings(listings);
 
     let selection = listings.filter(
       (listing) => listing.category === selectedCategory
@@ -114,7 +114,10 @@ function Home({ user, handleCardClick }) {
   const renderCategories = categories.map((category, index) => {
     if (category === "All") {
       return (
-        <Dropdown.Item key={index} onClick={() => setFilteredListings(listings)}>
+        <Dropdown.Item
+          key={index}
+          onClick={() => setFilteredListings(listings)}
+        >
           {category}
         </Dropdown.Item>
       );
