@@ -46,7 +46,8 @@ function Login({ setUser, setIsAuthenticated, setHasAccount }) {
     <Container fluid>
       <Container className="mx-auto mt-5">
         <Row className="text-center">
-          <h2>Welcome to CraigsBay</h2>
+          <h2>Welcome Back</h2>
+          <h4>CraigsBay</h4>
           <h1>Login</h1>
         </Row>
 
