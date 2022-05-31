@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 function ListingDetails() {
   let locate = useLocation();
-  console.log(locate.state);
+  // console.log(locate.state);
   const { what_it_is, image_url, location, description } = locate.state;
 
   return (
