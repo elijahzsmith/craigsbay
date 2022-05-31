@@ -12,6 +12,7 @@ import FormControl from "react-bootstrap/FormControl";
 
 function Home({ user, handleCardClick }) {
   const [listings, setListings] = useState([]);
+  const [categories, setCategories] = useState([])
   const [filteredListings, setFilteredListings] = useState([])
   const [homeLoaded, setIsHomeLoaded] = useState(false);
   const [filtered, setFiltered] = useState(false);
