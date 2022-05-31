@@ -21,8 +21,6 @@ function EditYourListingForm() {
     description: "",
   });
 
-  // console.log("locate: ", locate.state);
-
   const configObjPATCH = {
     method: "PATCH",
     headers: {
@@ -43,7 +41,6 @@ function EditYourListingForm() {
     fetch(`/listings/${id}`, configObjPATCH)
       .then((res) => res.json())
       .then(() => {
-        // console.log("fetch response: ", data);
         setEditFormData({
           location,
           image_url,
