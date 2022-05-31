@@ -2,24 +2,38 @@ import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/esm/Col";
-import Dropdown from "react-bootstrap/Dropdown"
-import Button from "react-bootstrap/Button"
-import ButtonGroup from "react-bootstrap/ButtonGroup"
+import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ListingItem from "../components/ListingItem";
+
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
 
 function Home({ user, handleCardClick }) {
   const [listings, setListings] = useState([]);
+  const [filteredListings, setFilteredListings] = useState([])
   const [homeLoaded, setIsHomeLoaded] = useState(false);
   const [filtered, setFiltered] = useState(false);
+  const [currentSearch, setCurrentSearch] = useState("");
 
   useEffect(() => {
     fetch("/listings")
       .then((res) => res.json())
       .then((listings) => {
         setListings(listings);
+        filterCategories(listings);
+        setFilteredListings(listings)
         setIsHomeLoaded(true);
       });
   }, []);
+
+  function filterCategories(listings) {
+    const catArr = listings.map((listing) => listing.category);
+    const filteredCatArr = ["All", ...new Set(catArr)];
+
+    setCategories(filteredCatArr);
+  }
 
   const handleSortAlphabetically = () => {
     if (filtered === false) {
@@ -44,60 +58,116 @@ function Home({ user, handleCardClick }) {
       setFiltered(false);
     }
   };
-  const renderListings = listings.map((listing) => {
+
+  function handleDelete(id) {
+    const configObjDELETE = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    };
+
+    fetch(`/listings/${id}`, configObjDELETE).then(() => {
+      const filteredListings = listings.filter((listing) => listing.id !== id);
+
+      setListings(filteredListings);
+    });
+  }
+
+  const afterSearch = filteredListings.filter((item) => {
+    if (currentSearch === "") {
+      return item;
+    } else if (
+      item.what_it_is.toLowerCase().includes(currentSearch.toLowerCase())
+    ) {
+      return item;
+    } else {
+      return null;
+    }
+  });
+
+  const filterResult = (selectedCategory) => {
+    setFilteredListings(listings)
+
+    let selection = listings.filter(
+      (listing) => listing.category === selectedCategory
+    );
+
+    setFilteredListings(selection);
+  };
+
+  // changed to afterSearch from listings
+  const renderListings = afterSearch.map((listing) => {
     return (
       <ListingItem
         key={listing.id}
         listing={listing}
         user={user}
         handleCardClick={handleCardClick}
+        handleDelete={handleDelete}
       />
     );
   });
 
-  const filterResult = (selectedCategory) => {
-    fetch("/listings")
-      .then((r) => r.json())
-      .then((data) => {
-        let selection = data.filter(datum => datum.category === selectedCategory)
-        setListings(selection)})}
-
-
+  const renderCategories = categories.map((category, index) => {
+    if (category === "All") {
+      return (
+        <Dropdown.Item key={index} onClick={() => setFilteredListings(listings)}>
+          {category}
+        </Dropdown.Item>
+      );
+    } else {
+      return (
+        <Dropdown.Item key={index} onClick={() => filterResult(category)}>
+          {category}
+        </Dropdown.Item>
+      );
+    }
+  });
 
   if (!homeLoaded) return <h3>Loading...</h3>;
 
   return (
-    <Container fluid>
+    <div>
+      <Container fluid>
+        <Row className="d-flex justify-content-end my-2">
+          <Col className="mx-auto h-100 my-2">
+            <InputGroup>
+              <FormControl
+                placeholder="Search Listings..."
+                aria-label="Search"
+                aria-describedby="basic-addon2"
+                name="search"
+                value={currentSearch}
+                onChange={(e) => setCurrentSearch(e.target.value)}
+              />
+              <Dropdown as={ButtonGroup}>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => handleSortAlphabetically()}
+                >
+                  Sort A-Z
+                </Button>
 
-      <Row className="d-flex justify-content-end my-2">
-        <Col className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-5">
-          <Dropdown as={ButtonGroup}>
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => handleSortAlphabetically()}
-            >
-              Sort A-Z
-            </Button>
+                <Dropdown.Toggle
+                  split
+                  variant="primary"
+                  id="dropdown-split-basic"
+                />
 
-            <Dropdown.Toggle split variant="primary" id="dropdown-split-basic" />
+                <Dropdown.Menu>{renderCategories}</Dropdown.Menu>
+              </Dropdown>
+            </InputGroup>
+          </Col>
+        </Row>
 
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={() => filterResult("Bags")}>Bags</Dropdown.Item>
-              <Dropdown.Item onClick={() => filterResult("Bikes")}>Bikes</Dropdown.Item>
-              <Dropdown.Item onClick={() => filterResult("Exercise Equipment")}>Exercise Equipment</Dropdown.Item>
-              <Dropdown.Item onClick={() => filterResult("Furniture")}>Furniture</Dropdown.Item>
-              <Dropdown.Item onClick={() => filterResult("Games")}>Games</Dropdown.Item>
-              <Dropdown.Item onClick={() => filterResult("Landscaping")}>Landscaping</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Col>
-      </Row>
-
-      <Row xs={1} sm={2} md={3} lg={4}>
-        {renderListings}
-      </Row>
-    </Container>
+        <Row xs={1} sm={2} md={3} lg={4}>
+          {renderListings}
+        </Row>
+      </Container>
+    </div>
   );
 }
 

@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 
-function NavBar({ handleLogout, handleSortAlphabetically }) {
+function NavBar({ handleLogout }) {
   return (
     <Navbar bg="dark" variant="dark" expand="md" sticky="top">
       <Container>
@@ -17,14 +17,13 @@ function NavBar({ handleLogout, handleSortAlphabetically }) {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/favorites">Favorites</Nav.Link>
             <Nav.Link href="/profile">Profile</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item onClick={() => handleSortAlphabetically()}>
-                Sort
-              </NavDropdown.Item>
+            <NavDropdown title="More" id="basic-nav-dropdown">
               <NavDropdown.Item href="/postlisting">
                 Post a listing
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item href="/yourlistings">
+                Your Listings
+              </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={() => handleLogout()}>
                 Logout

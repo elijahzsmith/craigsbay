@@ -15,20 +15,17 @@ import EditYourListingForm from "./pages/EditYourListingForm";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isUserLoaded, setIsUserLoaded] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
   const [showForm, setShowForm] = useState(false);
 
   const history = useHistory();
-  // console.log("history: ", history);
 
   useEffect(() => {
     fetch("/authorized_user").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setIsAuthenticated(true);
           setUser(user);
-          setIsUserLoaded(true);
+          setIsAuthenticated(true);
         });
       }
     });
@@ -56,15 +53,13 @@ function App() {
     history.push(`/details/${id}`, listing);
   };
 
-  const handleEditProfile = (e) => {
-    e.preventDefault();
-    console.log(e);
+  const handleYourCardClick = (id, listing) => {
+    history.push(`/editlisting/${id}`, listing);
   };
 
   const handleEditListing = (listing) => {
     console.log(listing);
     setShowForm((showForm) => !showForm);
-    // history.push("/editlisting");
     <EditYourListingForm listing={listing} />;
   };
 
@@ -76,7 +71,7 @@ function App() {
             <Login setUser={handleUser} setIsAuthenticated={handleAuth} />
           </Route>
           <Route exact path="/signup">
-            <Signup />
+            <Signup setUser={setUser} setIsAuthenticated={setIsAuthenticated} />
           </Route>
         </Switch>
       </div>
@@ -97,13 +92,13 @@ function App() {
           <ListingDetails />
         </Route>
         <Route exact path="/profile">
-          <Profile user={user} isUserLoaded={isUserLoaded} />
+          <Profile user={user} />
         </Route>
         <Route exact path="/postlisting">
-          <PostListingForm user={user} isUserLoaded={isUserLoaded} />
+          <PostListingForm user={user} />
         </Route>
         <Route exact path="/editprofile">
-          <EditProfileForm user={user} handleEditProfile={handleEditProfile} />
+          <EditProfileForm user={user} setUser={setUser} />
         </Route>
         <Route exact path="/yourlistings">
           <YourListings
@@ -111,14 +106,11 @@ function App() {
             showForm={showForm}
             setShowForm={setShowForm}
             handleEditListing={handleEditListing}
+            handleYourCardClick={handleYourCardClick}
           />
         </Route>
-        <Route exact path="/editlisting">
-          <EditYourListingForm
-            showForm={showForm}
-            setShowForm={setShowForm}
-            isUserLoaded={isUserLoaded}
-          />
+        <Route exact path="/editlisting/:id">
+          <EditYourListingForm />
         </Route>
       </Switch>
     </div>

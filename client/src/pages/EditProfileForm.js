@@ -5,19 +5,44 @@ import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
-function EditProfileForm({ user, handleEditProfile }) {
+
+function EditProfileForm({ user, setUser }) {
+
   const [formData, setFormData] = useState({
-    name: "",
-    username: "",
-    age: "",
-    password: "",
+    name: user.name,
+    username: user.username,
+    age: user.age,
   });
+
   const history = useHistory();
 
   const { name, username, age } = user;
 
   const handleChange = (e) => {
-    console.log(e.target.value);
+    const key = e.target.name;
+    setFormData({
+      ...formData,
+      [key]: e.target.value,
+    });
+  };
+
+  const configObjPATCH = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(formData),
+  };
+
+  const handleEditProfile = (e) => {
+    e.preventDefault();
+    fetch(`/users/${user.id}`, configObjPATCH)
+      .then(res => res.json())
+      .then(data => {
+        setUser(data)
+        history.push('/profile')
+      })
   };
 
   return (
@@ -34,8 +59,9 @@ function EditProfileForm({ user, handleEditProfile }) {
               <Form.Control
                 type="text"
                 placeholder={name}
-                onChange={(e) => handleChange(e.target.value)}
+                onChange={handleChange}
                 value={formData.name}
+                name="name"
               />
             </Form.Group>
 
@@ -44,28 +70,20 @@ function EditProfileForm({ user, handleEditProfile }) {
               <Form.Control
                 type="text"
                 placeholder={username}
-                onChange={(e) => handleChange(e.target.value)}
+                onChange={handleChange}
                 value={formData.username}
+                name="username"
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Age</Form.Label>
               <Form.Control
-                type="password"
+                type="number"
                 placeholder={age}
-                // onChange={(e) => setPasswordInput(e.target.value)}
-                // value={passwordInput}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                onChange={(e) => handleChange(e)}
-                value={formData.password}
+                onChange={handleChange}
+                value={formData.age}
+                name="age"
               />
             </Form.Group>
 
@@ -92,18 +110,3 @@ function EditProfileForm({ user, handleEditProfile }) {
 }
 
 export default EditProfileForm;
-
-{
-  /* <div>
-  <h1>Edit Profile</h1>
-  <form onSubmit={(e) => saveChanges(e)}></form>
-  <label>Name</label>
-  <input type="text" placeholder={name}></input>
-  <label>Username</label>
-  <input type="text" placeholder={name}></input>
-  <label>Password</label>
-  <input type="text" placeholder={name}></input>
-  <button type="submit">Save Changes</button>
-  <button onClick={handleClick}>Exit Edit Form</button>
-</div>; */
-}
