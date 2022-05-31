@@ -12,6 +12,7 @@ import FormControl from "react-bootstrap/FormControl";
 
 function Home({ user, handleCardClick }) {
   const [listings, setListings] = useState([]);
+  const [filteredListings, setFilteredListings] = useState([])
   const [homeLoaded, setIsHomeLoaded] = useState(false);
   const [categories, setCategories] = useState([]);
   const [filtered, setFiltered] = useState(false);
@@ -23,13 +24,14 @@ function Home({ user, handleCardClick }) {
       .then((listings) => {
         setListings(listings);
         filterCategories(listings);
+        setFilteredListings(listings)
         setIsHomeLoaded(true);
       });
   }, []);
 
   function filterCategories(listings) {
     const catArr = listings.map((listing) => listing.category);
-    const filteredCatArr = [...new Set(catArr)];
+    const filteredCatArr = ["All", ...new Set(catArr)];
 
     setCategories(filteredCatArr);
   }
@@ -74,7 +76,7 @@ function Home({ user, handleCardClick }) {
     });
   }
 
-  const afterSearch = listings.filter((item) => {
+  const afterSearch = filteredListings.filter((item) => {
     if (currentSearch === "") {
       return item;
     } else if (
@@ -85,6 +87,16 @@ function Home({ user, handleCardClick }) {
       return null;
     }
   });
+
+  const filterResult = (selectedCategory) => {
+    setFilteredListings(listings)
+
+    let selection = listings.filter(
+      (listing) => listing.category === selectedCategory
+    );
+
+    setFilteredListings(selection);
+  };
 
   // changed to afterSearch from listings
   const renderListings = afterSearch.map((listing) => {
@@ -99,23 +111,20 @@ function Home({ user, handleCardClick }) {
     );
   });
 
-  const filterResult = (selectedCategory) => {
-    fetch("/listings")
-      .then((res) => res.json())
-      .then((data) => {
-        let selection = data.filter(
-          (datum) => datum.category === selectedCategory
-        );
-        setListings(selection);
-      });
-  };
-
   const renderCategories = categories.map((category, index) => {
-    return (
-      <Dropdown.Item key={index} onClick={() => filterResult(category)}>
-        {category}
-      </Dropdown.Item>
-    );
+    if (category === "All") {
+      return (
+        <Dropdown.Item key={index} onClick={() => setFilteredListings(listings)}>
+          {category}
+        </Dropdown.Item>
+      );
+    } else {
+      return (
+        <Dropdown.Item key={index} onClick={() => filterResult(category)}>
+          {category}
+        </Dropdown.Item>
+      );
+    }
   });
 
   if (!homeLoaded) return <h3>Loading...</h3>;
@@ -124,44 +133,34 @@ function Home({ user, handleCardClick }) {
     <div>
       <Container fluid>
         <Row className="d-flex justify-content-end my-2">
-          <Col className="col-xl-10 col-lg-10 col-md-9 col-sm-8 col-7 my-0 h-100">
-            <InputGroup className="h-100 py-2 my-0">
+          <Col className="mx-auto h-100 my-2">
+            <InputGroup>
               <FormControl
                 placeholder="Search Listings..."
                 aria-label="Search"
                 aria-describedby="basic-addon2"
-                className="h-100 py-2 my-0"
                 name="search"
                 value={currentSearch}
                 onChange={(e) => setCurrentSearch(e.target.value)}
               />
-              <Button
-                variant="outline-secondary"
-                id="button-addon2"
-                className="h-100 py-2"
-              >
-                Search
-              </Button>
+              <Dropdown as={ButtonGroup}>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => handleSortAlphabetically()}
+                >
+                  Sort A-Z
+                </Button>
+
+                <Dropdown.Toggle
+                  split
+                  variant="primary"
+                  id="dropdown-split-basic"
+                />
+
+                <Dropdown.Menu>{renderCategories}</Dropdown.Menu>
+              </Dropdown>
             </InputGroup>
-          </Col>
-          <Col className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-5">
-            <Dropdown as={ButtonGroup}>
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={() => handleSortAlphabetically()}
-              >
-                Sort A-Z
-              </Button>
-
-              <Dropdown.Toggle
-                split
-                variant="primary"
-                id="dropdown-split-basic"
-              />
-
-              <Dropdown.Menu>{renderCategories}</Dropdown.Menu>
-            </Dropdown>
           </Col>
         </Row>
 
