@@ -43,7 +43,8 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
   };
 
   function handleRemoveFavorite(id) {
-    const favId = user.favorites.filter(fav => fav.listing_id === id)
+    const fav = user.favorites.find(fav => fav.listing_id === id)
+    console.log(fav.id)
 
     const configObjDELETE = {
       method: "DELETE",
@@ -53,7 +54,7 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
       }
     }
 
-    fetch(`/favorites/${favId}`, configObjDELETE)
+    fetch(`/favorites/${fav.id}`, configObjDELETE)
       .then(setButtonState(null))
   }
 
