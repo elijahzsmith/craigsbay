@@ -5,7 +5,7 @@ function Clock({ end_time }) {
 
     const countdown = new Date(end_time).getTime();
 
-    setInterval(function () {
+    let clockFunction = setInterval(function () {
         let now = new Date().getTime();
         let timeLeft = countdown - now
 
@@ -16,6 +16,11 @@ function Clock({ end_time }) {
 
         setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`)
     }, 1000)
+
+    if (timeLeft.charAt(0) === "-") {
+        clearInterval(clockFunction)
+        setTimeLeft("Raffle Ended")
+    }
 
     return (
         <>{timeLeft}</>
