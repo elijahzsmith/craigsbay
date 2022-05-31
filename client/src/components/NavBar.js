@@ -17,12 +17,10 @@ function NavBar({ handleLogout }) {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/ongoingraffles">Ongoing Raffles</Nav.Link>
             <Nav.Link href="/postlisting">Post a listing</Nav.Link>
+            <Nav.Link href="/yourlistings">Your Listings</Nav.Link>
             <NavDropdown title="More" id="basic-nav-dropdown">
               <NavDropdown.Item href="/profile">
                 Account Details
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/yourlistings">
-                Your Listings
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={() => handleLogout()}>
