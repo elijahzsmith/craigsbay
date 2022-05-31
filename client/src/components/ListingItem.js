@@ -13,11 +13,11 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
 
   useEffect(() => {
     if (listing.user_id === user.id) {
-      setButtonState('Owner');
+      setButtonState("Owner");
     } else if (
       user.favorites.filter((fav) => fav.listing_id === listing.id).length > 0
     ) {
-      setButtonState('Favorited')
+      setButtonState("Entered");
     }
   }, [listing.id, listing.user_id, user.favorites, user.id]);
 
@@ -39,57 +39,50 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
     fetch(`/favorites`, configObjPOST)
       .then((res) => res.json())
       .then(() => {
-        setButtonState("Favorited")
+        setButtonState("Entered");
       });
   };
 
   function handleRemoveFavorite(id) {
-    const fav = user.favorites.find(fav => fav.listing_id === id)
+    const fav = user.favorites.find((fav) => fav.listing_id === id);
 
     const configObjDELETE = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    }
+        Accept: "application/json",
+      },
+    };
 
-    fetch(`/favorites/${fav.id}`, configObjDELETE)
-      .then(setButtonState(null))
+    fetch(`/favorites/${fav.id}`, configObjDELETE).then(setButtonState(null));
   }
 
   function renderButton() {
     switch (buttonState) {
       case "Owner":
         return (
-          <Button
-            variant="warning"
-            onClick={() => handleDelete(id)}
-          >
+          <Button variant="warning" onClick={() => handleDelete(id)}>
             Delete
           </Button>
-        )
+        );
 
-      case "Favorited": {
+      case "Entered": {
         return (
           <Button
             variant="secondary text-white"
             onClick={() => handleRemoveFavorite(id)}
           >
-            Favorited
+            Entered
           </Button>
-        )
+        );
       }
 
       default: {
         return (
-          <Button
-            variant="primary"
-            onClick={() => handleAddToFavorites(id)}
-          >
-            Favorite
+          <Button variant="primary" onClick={() => handleAddToFavorites(id)}>
+            Enter Raffle
           </Button>
-        )
+        );
       }
     }
   }
@@ -118,7 +111,5 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
     </Col>
   );
 }
-
-
 
 export default ListingItem;

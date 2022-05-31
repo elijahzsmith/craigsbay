@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/esm/Container";
 import { useHistory } from "react-router-dom";
 
 function Profile({ user }) {
@@ -8,27 +9,27 @@ function Profile({ user }) {
   const { name, age, username } = user;
 
   return (
-    <div>
-      <div>
-        <h1>Profile Page</h1>
+    <Container fluid>
+      <Container className="mx-auto mt-5">
+        <h1>Account Details</h1>
         <hr></hr>
         <h2>Name: {name}</h2>
         <h3>Username: {username}</h3>
         <h6>Age: {age}</h6>
-        <Button onClick={() => history.push("/favorites")}>
-          Your Favorites
-        </Button>
-        <Button onClick={() => history.push("/yourlistings")}>
-          Your Listings
+        <Button onClick={() => history.push("/editprofile")}>
+          Edit Profile
         </Button>
         <Button onClick={() => history.push("/postlisting")}>
           Post A Listing
         </Button>
-        <Button onClick={() => history.push("/editprofile")}>
-          Edit Profile
+        <Button onClick={() => history.push("/yourlistings")}>
+          Your Listings
         </Button>
-      </div>
-    </div>
+        <Button onClick={() => history.push("/ongoingraffles")}>
+          Ongoing Raffles
+        </Button>
+      </Container>
+    </Container>
   );
 }
 
