@@ -15,11 +15,11 @@ function NavBar({ handleLogout }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/favorites">Favorites</Nav.Link>
-            <Nav.Link href="/profile">Profile</Nav.Link>
+            <Nav.Link href="/ongoingraffles">Ongoing Raffles</Nav.Link>
+            <Nav.Link href="/postlisting">Post a listing</Nav.Link>
             <NavDropdown title="More" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/postlisting">
-                Post a listing
+              <NavDropdown.Item href="/profile">
+                Account Details
               </NavDropdown.Item>
               <NavDropdown.Item href="/yourlistings">
                 Your Listings

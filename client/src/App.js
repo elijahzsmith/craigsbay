@@ -85,7 +85,7 @@ function App() {
         <Route exact path="/">
           <Home user={user} handleCardClick={handleCardClick} />
         </Route>
-        <Route exact path="/favorites">
+        <Route exact path="/ongoingraffles">
           <Favorites handleCardClick={handleCardClick} />
         </Route>
         <Route exact path="/details/:id">
