@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
@@ -14,8 +14,11 @@ function PostListingForm({ user }) {
     what_it_is: "",
     category: "",
     description: "",
+    end_time: "",
     user_id: user.id,
   });
+
+  const [timerID, setTimerID] = useState(null)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,18 +39,40 @@ function PostListingForm({ user }) {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        setTimerID(data.id)
         setFormData({
           location: "",
           image_url: "",
           what_it_is: "",
           category: "",
           description: "",
+          end_time: "",
           user_id: user.id,
         });
         alert("Post Successful");
         history.push("/yourlistings");
-      });
+      })
+
   };
+
+  useEffect(() => {
+    const configObjTimer = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        listing_id: timerID
+      })
+    }
+
+    console.log(timerID)
+
+    fetch("/timers", configObjTimer)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+  }, [timerID])
 
   return (
     <Container fluid>
@@ -109,6 +134,17 @@ function PostListingForm({ user }) {
                 name="description"
                 placeholder="Description..."
                 value={formData.description}
+                onChange={(e) => handleChange(e)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>End Date</Form.Label>
+              <Form.Control
+                type="text"
+                name="end_time"
+                placeholder="End date..."
+                value={formData.end_time}
                 onChange={(e) => handleChange(e)}
               />
             </Form.Group>
