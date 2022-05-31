@@ -54,7 +54,8 @@ function Signup({ setUser, setIsAuthenticated, usernameInput }) {
     <Container fluid>
       <Container className="mx-auto mt-5">
         <Row className="text-center">
-          <h2>Welcome to CraigsBay</h2>
+          <h2>Welcome to CraigsBay!</h2>
+          <h4>A Donation Based Raffle Platform</h4>
           <h1>Sign Up</h1>
         </Row>
 
