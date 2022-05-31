@@ -32,10 +32,10 @@ function YourListingCard({ listing, handleYourCardClick, handleDelete }) {
                 </Button>
               </Col>
               <Col className="d-flex justify-content-center">
-                <Button
-                  variant="warning"
-                  onClick={() => handleDelete(id)}
-                > Delete Listing </Button>
+                <Button variant="warning" onClick={() => handleDelete(id)}>
+                  {" "}
+                  Delete Listing{" "}
+                </Button>
               </Col>
             </Row>
           </Container>

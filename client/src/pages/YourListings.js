@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Row from "react-bootstrap/Row";
 import YourListingCard from "../components/YourListingCard";
 
 function YourListings({
@@ -23,16 +24,15 @@ function YourListings({
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    }
+        Accept: "application/json",
+      },
+    };
 
-    fetch(`/listings/${id}`, configObjDELETE)
-      .then(() => {
-        const filteredListings = listings.filter(listing => listing.id !== id)
+    fetch(`/listings/${id}`, configObjDELETE).then(() => {
+      const filteredListings = listings.filter((listing) => listing.id !== id);
 
-        setListings(filteredListings)
-      })
+      setListings(filteredListings);
+    });
   }
 
   const renderYourListings = listings.map((listing) => {
@@ -53,7 +53,9 @@ function YourListings({
   return (
     <div>
       <h1>Your Listings</h1>
-      {renderYourListings}
+      <Row xs={1} sm={2} md={3} lg={4}>
+        {renderYourListings}
+      </Row>
     </div>
   );
 }
