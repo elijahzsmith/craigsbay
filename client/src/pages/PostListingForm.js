@@ -25,11 +25,8 @@ function PostListingForm({ user }) {
   const [timerID, setTimerID] = useState(null)
 
   const handleChange = (e) => {
-    console.log(e.target)
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  // console.log(formData)
 
   const configObjPOST = {
     method: "POST",
@@ -53,7 +50,7 @@ function PostListingForm({ user }) {
     fetch("/listings", configObjPOST)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setTimerID(data.id)
         setFormData({
           location: "",
@@ -82,8 +79,6 @@ function PostListingForm({ user }) {
       })
     }
 
-    // console.log(timerID)
-
     fetch("/timers", configObjTimer)
       .then((res) => res.json())
       .then((data) => console.log(data))
@@ -109,8 +104,6 @@ function PostListingForm({ user }) {
     const monthOptions = upcomingMonths.map(month => {
       return <option>{month}</option>
     })
-
-    console.log(monthOptions[0])
 
     return monthOptions
   }

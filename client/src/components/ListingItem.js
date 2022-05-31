@@ -4,11 +4,10 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Clock from "./Clock";
 
 function ListingItem({ listing, user, handleCardClick, handleDelete }) {
   const [buttonState, setButtonState] = useState(null);
-
+  const [favorites, setFavorites] = useState([])
   const { id, image_url, what_it_is } = listing;
 
   useEffect(() => {
@@ -19,8 +18,13 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
     ) {
       setButtonState("Entered");
     }
+
+    fetch('/favorites')
+      .then(res => res.json())
+      .then(favs => setFavorites(favs))
   }, [listing.id, listing.user_id, user.favorites, user.id]);
 
+  console.log(favorites)
   const handleAddToFavorites = (id) => {
     const newFavorite = {
       user_id: user.id,
@@ -38,13 +42,19 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
 
     fetch(`/favorites`, configObjPOST)
       .then((res) => res.json())
-      .then(() => {
+      .then((newFav) => {
+        setFavorites([...favorites, newFav])
         setButtonState("Entered");
       });
   };
 
-  function handleRemoveFavorite(id) {
-    const fav = user.favorites.find((fav) => fav.listing_id === id);
+  // console.log(user)
+
+  function handleRemoveFavorite() {
+    // const fav = user.favorites.find((fav) => fav.listing_id === id);
+    const rmFav = favorites.find(fav => fav.listing_id === id)
+
+    console.log(rmFav)
 
     const configObjDELETE = {
       method: "DELETE",
@@ -54,7 +64,12 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
       },
     };
 
-    fetch(`/favorites/${fav.id}`, configObjDELETE).then(setButtonState(null));
+    fetch(`/favorites/${rmFav.id}`, configObjDELETE)
+      .then(() => {
+        const newFavs = favorites.filter(fav => fav.id !== rmFav.id)
+        setFavorites(newFavs)
+        setButtonState(null)
+      });
   }
 
   function renderButton() {
@@ -70,7 +85,7 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
         return (
           <Button
             variant="secondary text-white"
-            onClick={() => handleRemoveFavorite(id)}
+            onClick={() => handleRemoveFavorite()}
           >
             Entered
           </Button>

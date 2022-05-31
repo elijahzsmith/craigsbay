@@ -4,4 +4,6 @@ class Listing < ApplicationRecord
     has_many :users, through: :favorites
     has_one :timer, dependent: :destroy
 
+    
+
 end
