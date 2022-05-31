@@ -44,7 +44,6 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
 
   function handleRemoveFavorite(id) {
     const fav = user.favorites.find(fav => fav.listing_id === id)
-    console.log(fav.id)
 
     const configObjDELETE = {
       method: "DELETE",

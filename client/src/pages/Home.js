@@ -125,27 +125,36 @@ function Home({ user, handleCardClick }) {
     <div>
       <Container fluid>
         <Row className="d-flex justify-content-end my-2">
-          <Col className="col-xl-10 col-lg-10 col-md-9 col-sm-8 col-7 my-0 h-100">
-            <InputGroup className="h-100 py-2 my-0">
+          <Col className="mx-auto h-100 my-2">
+            <InputGroup>
               <FormControl
                 placeholder="Search Listings..."
                 aria-label="Search"
                 aria-describedby="basic-addon2"
-                className="h-100 py-2 my-0"
                 name="search"
                 value={currentSearch}
                 onChange={(e) => setCurrentSearch(e.target.value)}
               />
-              <Button
-                variant="outline-secondary"
-                id="button-addon2"
-                className="h-100 py-2"
-              >
-                Search
-              </Button>
+              <Dropdown as={ButtonGroup}>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => handleSortAlphabetically()}
+                >
+                  Sort A-Z
+                </Button>
+
+                <Dropdown.Toggle
+                  split
+                  variant="primary"
+                  id="dropdown-split-basic"
+                />
+
+                <Dropdown.Menu>{renderCategories}</Dropdown.Menu>
+              </Dropdown>
             </InputGroup>
           </Col>
-          <Col className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-5">
+          {/* <Col className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-5">
             <Dropdown as={ButtonGroup}>
               <Button
                 variant="primary"
@@ -163,7 +172,7 @@ function Home({ user, handleCardClick }) {
 
               <Dropdown.Menu>{renderCategories}</Dropdown.Menu>
             </Dropdown>
-          </Col>
+          </Col> */}
         </Row>
 
         <Row xs={1} sm={2} md={3} lg={4}>
