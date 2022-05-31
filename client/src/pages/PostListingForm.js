@@ -38,7 +38,7 @@ function PostListingForm({ user }) {
     fetch("/listings", configObjPOST)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setTimerID(data.id)
         setFormData({
           location: "",
@@ -67,7 +67,7 @@ function PostListingForm({ user }) {
       })
     }
 
-    console.log(timerID)
+    // console.log(timerID)
 
     fetch("/timers", configObjTimer)
       .then((res) => res.json())
