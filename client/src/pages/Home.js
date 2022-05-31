@@ -69,11 +69,13 @@ function Home({ user, handleCardClick }) {
       },
     };
 
-    fetch(`/listings/${id}`, configObjDELETE).then(() => {
-      const filteredListings = listings.filter((listing) => listing.id !== id);
+    fetch(`/listings/${id}`, configObjDELETE)
+      .then(() => {
 
-      setListings(filteredListings);
-    });
+        const filteredListings = listings.filter((listing) => listing.id !== id);
+
+        setListings(filteredListings);
+      });
   }
 
   const afterSearch = filteredListings.filter((item) => {
