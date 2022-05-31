@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/esm/Container";
 import YourListingCard from "../components/YourListingCard";
 
 function YourListings({
@@ -51,12 +52,16 @@ function YourListings({
   });
 
   return (
-    <div>
-      <h1>Your Listings</h1>
-      <Row xs={1} sm={2} md={3} lg={4}>
-        {renderYourListings}
+    <Container fluid>
+      <Row>
+        <h1>Your Listings</h1>
       </Row>
-    </div>
+      <Container className="mx-auto mt-5">
+        <Row xs={1} sm={2} md={3} lg={4}>
+          {renderYourListings}
+        </Row>
+      </Container>
+    </Container>
   );
 }
 
