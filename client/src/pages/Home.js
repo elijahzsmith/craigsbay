@@ -98,7 +98,6 @@ function Home({ user, handleCardClick }) {
     setFilteredListings(selection);
   };
 
-  // changed to afterSearch from listings
   const renderListings = afterSearch.map((listing) => {
     return (
       <ListingItem
