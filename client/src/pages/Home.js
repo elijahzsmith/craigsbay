@@ -65,16 +65,15 @@ function Home({ user, handleCardClick }) {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    }
+        Accept: "application/json",
+      },
+    };
 
-    fetch(`/listings/${id}`, configObjDELETE)
-      .then(() => {
-        const filteredListings = listings.filter(listing => listing.id !== id)
+    fetch(`/listings/${id}`, configObjDELETE).then(() => {
+      const filteredListings = listings.filter((listing) => listing.id !== id);
 
-        setListings(filteredListings)
-      })
+      setListings(filteredListings);
+    });
   }
 
   const afterSearch = filteredListings.filter((item) => {
@@ -111,7 +110,6 @@ function Home({ user, handleCardClick }) {
       />
     );
   });
-
 
   const renderCategories = categories.map((category, index) => {
     if (category === "All") {
