@@ -93,18 +93,6 @@ function Home({ user, handleCardClick }) {
       });
   };
 
-  // const afterSearch = listings.filter((item) => {
-  //   if (currentSearch === "") {
-  //     return item;
-  //   } else if (
-  //     item.what_it_is.toLowerCase().includes(currentSearch.toLowerCase())
-  //   ) {
-  //     return item;
-  //   } else {
-  //     return null;
-  //   }
-  // });
-
   const renderCategories = categories.map((category, index) => {
     return (
       <Dropdown.Item key={index} onClick={() => filterResult(category)}>
