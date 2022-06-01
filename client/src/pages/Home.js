@@ -40,6 +40,7 @@ function Home({ user, handleCardClick, timerListingID, setTimerListingID }) {
     setCategories(filteredCatArr);
   }
 
+  // listing.filter.sort.map
   const handleSortAlphabetically = () => {
     if (filtered === false) {
       const sortedListings = listings.sort(function (a, b) {
@@ -79,7 +80,7 @@ function Home({ user, handleCardClick, timerListingID, setTimerListingID }) {
       setFilteredListings(newListings);
     });
   }
-
+  console.log("filtered listings", filteredListings);
   const afterSearch = filteredListings.filter((item) => {
     if (currentSearch === "") {
       return item;
@@ -106,7 +107,28 @@ function Home({ user, handleCardClick, timerListingID, setTimerListingID }) {
   // ( or )
   // timer.listing.id === afterSearch.filter.id
   // matches
-  const renderListings1 = afterSearch.map((listing) => {
+  // const renderListings1 = afterSearch.map((listing) => {
+  //   return (
+  //     <ListingItem
+  //       key={listing.id}
+  //       listing={listing}
+  //       user={user}
+  //       handleCardClick={handleCardClick}
+  //       handleDelete={handleDelete}
+  //     />
+  //   );
+  // });
+
+  useEffect(() => {
+    console.log("afterSearch: ", afterSearch);
+    const finalRenderVariable = afterSearch.filter((listing) => {
+      return listing.id !== timerListingID;
+    });
+    setFilteredListings(finalRenderVariable);
+    console.log("finalRenderVariable: ", finalRenderVariable);
+  }, [timerListingID]);
+
+  const renderListings = afterSearch.map((listing) => {
     return (
       <ListingItem
         key={listing.id}
@@ -116,10 +138,6 @@ function Home({ user, handleCardClick, timerListingID, setTimerListingID }) {
         handleDelete={handleDelete}
       />
     );
-  });
-
-  const renderListings = renderListings1.filter((listing) => {
-    return listing.id !== timerListingID ? listing : null;
   });
 
   const renderCategories = categories.map((category, index) => {
