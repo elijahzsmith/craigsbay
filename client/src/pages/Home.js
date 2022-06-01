@@ -10,17 +10,13 @@ import ListingItem from "../components/ListingItem";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
-function Home({ user, handleCardClick, timerListingID, setTimerListingID }) {
+function Home({ user, handleCardClick }) {
   const [listings, setListings] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
   const [homeLoaded, setIsHomeLoaded] = useState(false);
   const [filtered, setFiltered] = useState(false);
   const [currentSearch, setCurrentSearch] = useState("");
-
-  // // expirement // if null doesnt work try 0 || 1
-  // const [timerListingID, setTimerListingID] = useState(null);
-  // // end
 
   useEffect(() => {
     fetch("/listings")
@@ -33,6 +29,12 @@ function Home({ user, handleCardClick, timerListingID, setTimerListingID }) {
       });
   }, []);
 
+  useEffect(() => {
+    filterCategories(listings);
+    setFilteredListings(listings);
+    setIsHomeLoaded(true);
+  }, [listings])
+
   function filterCategories(listings) {
     const catArr = listings.map((listing) => listing.category);
     const filteredCatArr = ["All", ...new Set(catArr)];
@@ -40,7 +42,6 @@ function Home({ user, handleCardClick, timerListingID, setTimerListingID }) {
     setCategories(filteredCatArr);
   }
 
-  // listing.filter.sort.map
   const handleSortAlphabetically = () => {
     if (filtered === false) {
       const sortedListings = listings.sort(function (a, b) {
@@ -54,13 +55,13 @@ function Home({ user, handleCardClick, timerListingID, setTimerListingID }) {
         }
         return 0;
       });
-      setListings(sortedListings);
+      setFilteredListings(sortedListings);
       setFiltered(true);
     } else {
       const originalArray = listings.sort(function (a, b) {
         return a.id - b.id;
       });
-      setListings(originalArray);
+      setFilteredListings(originalArray);
       setFiltered(false);
     }
   };
@@ -80,7 +81,7 @@ function Home({ user, handleCardClick, timerListingID, setTimerListingID }) {
       setFilteredListings(newListings);
     });
   }
-  console.log("filtered listings", filteredListings);
+
   const afterSearch = filteredListings.filter((item) => {
     if (currentSearch === "") {
       return item;
@@ -102,31 +103,6 @@ function Home({ user, handleCardClick, timerListingID, setTimerListingID }) {
 
     setFilteredListings(selection);
   };
-
-  // Dont render listing if timer.listing.id === listing.id
-  // ( or )
-  // timer.listing.id === afterSearch.filter.id
-  // matches
-  // const renderListings1 = afterSearch.map((listing) => {
-  //   return (
-  //     <ListingItem
-  //       key={listing.id}
-  //       listing={listing}
-  //       user={user}
-  //       handleCardClick={handleCardClick}
-  //       handleDelete={handleDelete}
-  //     />
-  //   );
-  // });
-
-  useEffect(() => {
-    console.log("afterSearch: ", afterSearch);
-    const finalRenderVariable = afterSearch.filter((listing) => {
-      return listing.id !== timerListingID;
-    });
-    setFilteredListings(finalRenderVariable);
-    console.log("finalRenderVariable: ", finalRenderVariable);
-  }, [timerListingID]);
 
   const renderListings = afterSearch.map((listing) => {
     return (

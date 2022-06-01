@@ -17,9 +17,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState("");
   const [showForm, setShowForm] = useState(false);
-  // expirement // if null doesnt work try 0 || 1
-  const [timerListingID, setTimerListingID] = useState(0);
-  // end
+
 
   const history = useHistory();
 
@@ -32,6 +30,7 @@ function App() {
         });
       }
     });
+
   }, []);
 
   const handleLogout = () => {
@@ -89,8 +88,6 @@ function App() {
           <Home
             user={user}
             handleCardClick={handleCardClick}
-            timerListingID={timerListingID}
-            setTimerListingID={setTimerListingID}
           />
         </Route>
         <Route exact path="/ongoingraffles">
@@ -105,8 +102,6 @@ function App() {
         <Route exact path="/postlisting">
           <PostListingForm
             user={user}
-            setTimerListingID={setTimerListingID}
-            timerListingID={timerListingID}
           />
         </Route>
         <Route exact path="/editprofile">
