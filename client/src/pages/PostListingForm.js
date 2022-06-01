@@ -6,7 +6,7 @@ import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
-function PostListingForm({ user }) {
+function PostListingForm({ user, timerListingID, setTimerListingID }) {
   const history = useHistory();
 
   const [formData, setFormData] = useState({
@@ -61,6 +61,8 @@ function PostListingForm({ user }) {
           end_time: "",
           user_id: user.id,
         });
+        // response is listing object (has id, user_id, winner_id)
+        console.log(data);
         alert("Post Successful");
         history.push("/yourlistings");
       });
@@ -78,9 +80,15 @@ function PostListingForm({ user }) {
       }),
     };
 
-    fetch("/timers", configObjTimer)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    if (timerID !== null) {
+      fetch("/timers", configObjTimer)
+        .then((res) => res.json())
+        // response is timer object ( has, full listing, full winner )
+        .then((data) => {
+          console.log("timer: ", data.listing);
+          setTimerListingID(data.listing.id);
+        });
+    }
   }, [timerID]);
 
   function renderMonths() {

@@ -10,13 +10,17 @@ import ListingItem from "../components/ListingItem";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
-function Home({ user, handleCardClick }) {
+function Home({ user, handleCardClick, timerListingID, setTimerListingID }) {
   const [listings, setListings] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
   const [homeLoaded, setIsHomeLoaded] = useState(false);
   const [filtered, setFiltered] = useState(false);
   const [currentSearch, setCurrentSearch] = useState("");
+
+  // // expirement // if null doesnt work try 0 || 1
+  // const [timerListingID, setTimerListingID] = useState(null);
+  // // end
 
   useEffect(() => {
     fetch("/listings")
@@ -98,7 +102,11 @@ function Home({ user, handleCardClick }) {
     setFilteredListings(selection);
   };
 
-  const renderListings = afterSearch.map((listing) => {
+  // Dont render listing if timer.listing.id === listing.id
+  // ( or )
+  // timer.listing.id === afterSearch.filter.id
+  // matches
+  const renderListings1 = afterSearch.map((listing) => {
     return (
       <ListingItem
         key={listing.id}
@@ -108,6 +116,10 @@ function Home({ user, handleCardClick }) {
         handleDelete={handleDelete}
       />
     );
+  });
+
+  const renderListings = renderListings1.filter((listing) => {
+    return listing.id !== timerListingID ? listing : null;
   });
 
   const renderCategories = categories.map((category, index) => {
