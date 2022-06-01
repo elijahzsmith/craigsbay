@@ -32,7 +32,7 @@ function ListingDetails() {
       <Row className="text-center mt-4">
         <p>{description}</p>
       </Row>
-      <Row className="d-flex align-items-around mx-auto ">
+      <Row className="d-flex align-items-around mx-auto mb-3">
         <Col className="my-auto text-center">
           <h2 className="my-auto">Time Left:</h2>
         </Col>
