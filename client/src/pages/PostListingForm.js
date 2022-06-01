@@ -80,12 +80,14 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
       }),
     };
 
+    console.log(timerID);
+
     if (timerID !== null) {
       fetch("/timers", configObjTimer)
         .then((res) => res.json())
         // response is timer object ( has, full listing, full winner )
         .then((data) => {
-          console.log("timer: ", data.listing);
+          console.log("timer: ", data.listing.id);
           setTimerListingID(data.listing.id);
         });
     }
