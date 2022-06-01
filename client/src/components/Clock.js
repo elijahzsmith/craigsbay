@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function Clock({ end_time }) {
     const [timeLeft, setTimeLeft] = useState("")
 
-    const countdown = new Date(end_time).getTime();
+    const countdown = new Date(end_time);
 
     let clockFunction = setInterval(function () {
         let now = new Date().getTime();

@@ -36,7 +36,7 @@ class Timer < ApplicationRecord
         hour = split_time.first
         minute = split_time.second
 
-        parsed_time = Time.new(year, month, day,hour, minute)
+        parsed_time = Time.new(year, month, day, hour, minute)
 
         return parsed_time
     end

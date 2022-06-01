@@ -50,6 +50,7 @@ function PostListingForm({ user }) {
     fetch("/listings", configObjPOST)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setTimerID(data.id);
         setFormData({
           location: "",
@@ -89,11 +90,19 @@ function PostListingForm({ user }) {
     let upcomingMonths = [];
 
     for (let i = currMonth + 1; i < 13; i++) {
-      upcomingMonths.push(i);
+      if (i < 10) {
+        upcomingMonths.push(`0${i}`)
+      } else {
+        upcomingMonths.push(i);
+      }
     }
 
     for (let i = 1; i < currMonth + 1; i++) {
-      upcomingMonths.push(i);
+      if (i < 10) {
+        upcomingMonths.push(`0${i}`)
+      } else {
+        upcomingMonths.push(i);
+      }
     }
 
     upcomingMonths.unshift("Select Month");
@@ -112,11 +121,19 @@ function PostListingForm({ user }) {
     let upcomingDays = [];
 
     for (let i = currDay; i < 32; i++) {
-      upcomingDays.push(i);
+      if (i < 10) {
+        upcomingDays.push(`0${i}`)
+      } else {
+        upcomingDays.push(i);
+      }
     }
 
     for (let i = 1; i < currDay; i++) {
-      upcomingDays.push(i);
+      if (i < 10) {
+        upcomingDays.push(`0${i}`)
+      } else {
+        upcomingDays.push(i);
+      }
     }
 
     upcomingDays.unshift("Select Day");
