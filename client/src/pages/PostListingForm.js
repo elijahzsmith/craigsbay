@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
@@ -7,7 +7,6 @@ import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
 function PostListingForm({ user }) {
-  const [timerID, setTimerID] = useState(null);
 
   const history = useHistory();
 
@@ -23,8 +22,6 @@ function PostListingForm({ user }) {
     time: "",
     user_id: user.id,
   });
-
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -52,7 +49,6 @@ function PostListingForm({ user }) {
     fetch("/listings", configObjPOST)
       .then((res) => res.json())
       .then((data) => {
-        setTimerID(data.id);
         setFormData({
           location: "",
           image_url: "",
@@ -67,31 +63,6 @@ function PostListingForm({ user }) {
         history.push("/yourlistings");
       });
   };
-
-  // useEffect(() => {
-  //   const configObjTimer = {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       listing_id: timerID,
-  //     }),
-  //   };
-
-  //   if (timerID !== null) {
-  //     fetch("/timers", configObjTimer)
-  //       .then((res) => res.json())
-  //       // response is timer object ( has, full listing, full winner )
-  //       .then((data) => {
-  //         console.log("timer: ", data);
-  //         // handleHideListing(data.listing.id)
-  //       });
-  //   }
-  // }, [timerID]);
-
-
 
   function renderMonths() {
     const currDate = new Date();

@@ -18,7 +18,6 @@ function App() {
   const [user, setUser] = useState("");
   const [showForm, setShowForm] = useState(false);
 
-
   const history = useHistory();
 
   useEffect(() => {

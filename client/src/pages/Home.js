@@ -33,6 +33,7 @@ function Home({ user, handleCardClick }) {
     filterCategories(listings);
     setFilteredListings(listings);
     setIsHomeLoaded(true);
+
   }, [listings])
 
   function filterCategories(listings) {
@@ -105,15 +106,22 @@ function Home({ user, handleCardClick }) {
   };
 
   const renderListings = afterSearch.map((listing) => {
-    return (
-      <ListingItem
-        key={listing.id}
-        listing={listing}
-        user={user}
-        handleCardClick={handleCardClick}
-        handleDelete={handleDelete}
-      />
-    );
+    const endTime = new Date(listing.end_time).getTime()
+    const now = new Date().getTime()
+
+    if (endTime <= now) {
+      return null
+    } else {
+      return (
+        <ListingItem
+          key={listing.id}
+          listing={listing}
+          user={user}
+          handleCardClick={handleCardClick}
+          handleDelete={handleDelete}
+        />
+      );
+    }
   });
 
   const renderCategories = categories.map((category, index) => {
