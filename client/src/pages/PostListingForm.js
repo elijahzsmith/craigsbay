@@ -73,10 +73,9 @@ function PostListingForm({ user }) {
         Accept: "application/json",
       },
       body: JSON.stringify({
-
-        listing_id: timerID
-      })
-    }
+        listing_id: timerID,
+      }),
+    };
 
     fetch("/timers", configObjTimer)
       .then((res) => res.json())
@@ -84,102 +83,101 @@ function PostListingForm({ user }) {
   }, [timerID]);
 
   function renderMonths() {
+    const currDate = new Date();
+    const currMonth = currDate.getMonth();
 
-    const currDate = new Date()
-    const currMonth = currDate.getMonth()
-
-    let upcomingMonths = []
+    let upcomingMonths = [];
 
     for (let i = currMonth + 1; i < 13; i++) {
-      upcomingMonths.push(i)
+      upcomingMonths.push(i);
     }
 
     for (let i = 1; i < currMonth + 1; i++) {
-      upcomingMonths.push(i)
+      upcomingMonths.push(i);
     }
 
-    upcomingMonths.unshift('Select Month')
+    upcomingMonths.unshift("Select Month");
 
-    const monthOptions = upcomingMonths.map(month => {
-      return <option>{month}</option>
-    })
+    const monthOptions = upcomingMonths.map((month) => {
+      return <option>{month}</option>;
+    });
 
-    return monthOptions
+    return monthOptions;
   }
 
   function renderDays() {
-    const currDate = new Date()
-    const currDay = currDate.getDate()
+    const currDate = new Date();
+    const currDay = currDate.getDate();
 
-    let upcomingDays = []
+    let upcomingDays = [];
 
     for (let i = currDay; i < 32; i++) {
-      upcomingDays.push(i)
+      upcomingDays.push(i);
     }
 
     for (let i = 1; i < currDay; i++) {
-      upcomingDays.push(i)
+      upcomingDays.push(i);
     }
 
-    upcomingDays.unshift('Select Day')
+    upcomingDays.unshift("Select Day");
 
-    const dayOptions = upcomingDays.map(day => {
-      return <option>{day}</option>
-    })
+    const dayOptions = upcomingDays.map((day) => {
+      return <option>{day}</option>;
+    });
 
-    return dayOptions
+    return dayOptions;
   }
 
   function renderYears() {
-    const currDate = new Date()
-    const currYear = currDate.getFullYear()
+    const currDate = new Date();
+    const currYear = currDate.getFullYear();
 
-    let upcomingYears = []
+    let upcomingYears = [];
 
-    for (let i = currYear; i < (currYear + 5); i++) {
-      upcomingYears.push(i)
+    for (let i = currYear; i < currYear + 5; i++) {
+      upcomingYears.push(i);
     }
 
-    upcomingYears.unshift('Select Year')
+    upcomingYears.unshift("Select Year");
 
-    const yearOptions = upcomingYears.map(year => {
-      return <option>{year}</option>
-    })
+    const yearOptions = upcomingYears.map((year) => {
+      return <option>{year}</option>;
+    });
 
-    return yearOptions
+    return yearOptions;
   }
 
   function renderTimes() {
-    const currDate = new Date()
-    const currHour = currDate.getHours()
+    const currDate = new Date();
+    const currHour = currDate.getHours();
 
-    let upcomingTimes = []
+    let upcomingTimes = [];
 
     for (let i = currHour; i < 24; i++) {
       for (let j = 0; j < 60; j++)
         if (j < 10) {
-          upcomingTimes.push(`${i}:0${j}`)
+          upcomingTimes.push(`${i}:0${j}`);
         } else {
-          upcomingTimes.push(`${i}:${j}`)
+          upcomingTimes.push(`${i}:${j}`);
         }
     }
 
     for (let i = 0; i < currHour; i++) {
       for (let j = 0; j < 60; j++)
         if (j < 10) {
-          upcomingTimes.push(`${i}:0${j}`)
+          upcomingTimes.push(`${i}:0${j}`);
         } else {
-          upcomingTimes.push(`${i}:${j}`)
+          upcomingTimes.push(`${i}:${j}`);
         }
     }
 
-    upcomingTimes.unshift('Select Time')
+    upcomingTimes.unshift("Select Time");
 
-    const timeOptions = upcomingTimes.map(time => {
-      return <option>{time}</option>
-    })
+    const timeOptions = upcomingTimes.map((time) => {
+      return <option>{time}</option>;
+    });
 
-    return timeOptions
+    return timeOptions;
   }
 
   return (
@@ -247,7 +245,6 @@ function PostListingForm({ user }) {
             </Form.Group>
 
             <Row>
-
               <Col>
                 <Form.Group className="mb-3">
                   <Form.Label>Month</Form.Label>
@@ -299,7 +296,6 @@ function PostListingForm({ user }) {
                   </Form.Select>
                 </Form.Group>
               </Col>
-
             </Row>
 
             <Row className="d-flex justify-content-center mb-2">
