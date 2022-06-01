@@ -1,32 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 
-class Clock extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            time: new Date().toLocaleString()
-        };
+function Clock({ end_time }) {
+    const [timeLeft, setTimeLeft] = useState("")
+
+    const countdown = new Date(end_time).getTime();
+
+    let clockFunction = setInterval(function () {
+        let now = new Date().getTime();
+        let timeLeft = countdown - now
+
+        let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`)
+    }, 1000)
+
+    if (timeLeft.charAt(0) === "-") {
+        clearInterval(clockFunction)
+        setTimeLeft("Raffle Ended")
     }
-    componentDidMount() {
-        this.intervalID = setInterval(
-            () => this.tick(),
-            1000
-        );
-    }
-    componentWillUnmount() {
-        clearInterval(this.intervalID);
-    }
-    tick() {
-        this.setState({
-            time: new Date().toLocaleString()
-        });
-    }
-    render() {
-        return (
-            <p className="App-clock">
-                The time is {this.state.time}.
-            </p>
-        );
-    }
+
+    return (
+        <>
+            {timeLeft}
+        </>
+    )
 }
+
 export default Clock;

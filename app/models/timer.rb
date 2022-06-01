@@ -25,12 +25,12 @@ class Timer < ApplicationRecord
     end
 
     def parse_time(end_time)
-        split_date_time = end_time.split
+        split_date_time = end_time.split('T')
 
-        split_date = split_date_time.first.split('/')
-        year = split_date.last
-        month = split_date.first
-        day = split_date.second
+        split_date = split_date_time.first.split('-')
+        year = split_date.first
+        month = split_date.second
+        day = split_date.last
 
         split_time = split_date_time.last.split(':')
         hour = split_time.first
