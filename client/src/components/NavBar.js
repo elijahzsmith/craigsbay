@@ -16,7 +16,7 @@ function NavBar({ handleLogout }) {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/ongoingraffles">Ongoing Raffles</Nav.Link>
-            <Nav.Link href="/postlisting">Post a listing</Nav.Link>
+            <Nav.Link href="/postlisting">Post a Listing</Nav.Link>
             <Nav.Link href="/yourlistings">Your Listings</Nav.Link>
             <NavDropdown title="More" id="basic-nav-dropdown">
               <NavDropdown.Item href="/profile">
