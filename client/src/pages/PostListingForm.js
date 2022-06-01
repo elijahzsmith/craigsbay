@@ -50,7 +50,7 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
     fetch("/listings", configObjPOST)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         setTimerID(data.id);
         setFormData({
           location: "",
@@ -89,7 +89,7 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
           setTimerListingID(data.listing.id);
         });
     }
-  }, [timerID]);
+  }, [timerID, setTimerListingID]);
 
   function renderMonths() {
     const currDate = new Date();
@@ -99,7 +99,7 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
 
     for (let i = currMonth + 1; i < 13; i++) {
       if (i < 10) {
-        upcomingMonths.push(`0${i}`)
+        upcomingMonths.push(`0${i}`);
       } else {
         upcomingMonths.push(i);
       }
@@ -107,7 +107,7 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
 
     for (let i = 1; i < currMonth + 1; i++) {
       if (i < 10) {
-        upcomingMonths.push(`0${i}`)
+        upcomingMonths.push(`0${i}`);
       } else {
         upcomingMonths.push(i);
       }
@@ -130,7 +130,7 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
 
     for (let i = currDay; i < 32; i++) {
       if (i < 10) {
-        upcomingDays.push(`0${i}`)
+        upcomingDays.push(`0${i}`);
       } else {
         upcomingDays.push(i);
       }
@@ -138,7 +138,7 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
 
     for (let i = 1; i < currDay; i++) {
       if (i < 10) {
-        upcomingDays.push(`0${i}`)
+        upcomingDays.push(`0${i}`);
       } else {
         upcomingDays.push(i);
       }
