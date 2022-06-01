@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :favorites
   resources :listings
-  resources :timers, only: [:create]
+  resources :timers, only: [:index, :create]
 
   get '/authorized_user', to: 'users#show'
   

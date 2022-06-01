@@ -6,7 +6,9 @@ import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
-function PostListingForm({ user, timerListingID, setTimerListingID }) {
+function PostListingForm({ user }) {
+  const [timerID, setTimerID] = useState(null);
+
   const history = useHistory();
 
   const [formData, setFormData] = useState({
@@ -22,7 +24,7 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
     user_id: user.id,
   });
 
-  const [timerID, setTimerID] = useState(null);
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -50,7 +52,6 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
     fetch("/listings", configObjPOST)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setTimerID(data.id);
         setFormData({
           location: "",
@@ -61,37 +62,34 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
           end_time: "",
           user_id: user.id,
         });
-        // response is listing object (has id, user_id, winner_id)
-        console.log(data);
+
         alert("Post Successful");
         history.push("/yourlistings");
       });
   };
 
-  useEffect(() => {
-    const configObjTimer = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        listing_id: timerID,
-      }),
-    };
+  // useEffect(() => {
+  //   const configObjTimer = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       listing_id: timerID,
+  //     }),
+  //   };
 
-    console.log(timerID);
-
-    if (timerID !== null) {
-      fetch("/timers", configObjTimer)
-        .then((res) => res.json())
-        // response is timer object ( has, full listing, full winner )
-        .then((data) => {
-          console.log("timer: ", data.listing.id);
-          setTimerListingID(data.listing.id);
-        });
-    }
-  }, [timerID, setTimerListingID]);
+  //   if (timerID !== null) {
+  //     fetch("/timers", configObjTimer)
+  //       .then((res) => res.json())
+  //       // response is timer object ( has, full listing, full winner )
+  //       .then((data) => {
+  //         console.log("timer: ", data);
+  //         // handleHideListing(data.listing.id)
+  //       });
+  //   }
+  // }, [timerID]);
 
   function renderMonths() {
     const currDate = new Date();
@@ -117,8 +115,8 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
 
     upcomingMonths.unshift("Select Month");
 
-    const monthOptions = upcomingMonths.map((month) => {
-      return <option>{month}</option>;
+    const monthOptions = upcomingMonths.map((month, i) => {
+      return <option key={i}>{month}</option>;
     });
 
     return monthOptions;
@@ -148,8 +146,8 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
 
     upcomingDays.unshift("Select Day");
 
-    const dayOptions = upcomingDays.map((day) => {
-      return <option>{day}</option>;
+    const dayOptions = upcomingDays.map((day, i) => {
+      return <option key={i}>{day}</option>;
     });
 
     return dayOptions;
@@ -167,8 +165,8 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
 
     upcomingYears.unshift("Select Year");
 
-    const yearOptions = upcomingYears.map((year) => {
-      return <option>{year}</option>;
+    const yearOptions = upcomingYears.map((year, i) => {
+      return <option key={i}>{year}</option>;
     });
 
     return yearOptions;
@@ -200,8 +198,8 @@ function PostListingForm({ user, timerListingID, setTimerListingID }) {
 
     upcomingTimes.unshift("Select Time");
 
-    const timeOptions = upcomingTimes.map((time) => {
-      return <option>{time}</option>;
+    const timeOptions = upcomingTimes.map((time, i) => {
+      return <option key={i}>{time}</option>;
     });
 
     return timeOptions;
