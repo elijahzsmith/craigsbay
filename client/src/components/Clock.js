@@ -23,7 +23,9 @@ function Clock({ end_time }) {
     }
 
     return (
-        <>{timeLeft}</>
+        <>
+            {timeLeft}
+        </>
     )
 }
 
