@@ -91,8 +91,6 @@ function PostListingForm({ user }) {
   //   }
   // }, [timerID]);
 
-
-
   function renderMonths() {
     const currDate = new Date();
     const currMonth = currDate.getMonth();
