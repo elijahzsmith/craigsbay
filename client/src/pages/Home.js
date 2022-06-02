@@ -10,7 +10,7 @@ import ListingItem from "../components/ListingItem";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
-function Home({ user, handleCardClick, reRenderListings }) {
+function Home({ user, handleCardClick, isAuthenticated }) {
   const [listings, setListings] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
@@ -27,15 +27,15 @@ function Home({ user, handleCardClick, reRenderListings }) {
       });
   }, []);
 
-  if (reRenderListings) {
-    fetch("/listings")
-      .then((res) => res.json())
-      .then((listings) => {
-        setListings(listings);
-        filterCategories(listings);
-        setFilteredListings(listings);
-      });
-  }
+  // if (reRenderListings) {
+  //   fetch("/listings")
+  //     .then((res) => res.json())
+  //     .then((listings) => {
+  //       setListings(listings);
+  //       filterCategories(listings);
+  //       setFilteredListings(listings);
+  //     });
+  // }
 
   function filterCategories(listings) {
     const catArr = listings.map((listing) => listing.category);
@@ -118,6 +118,7 @@ function Home({ user, handleCardClick, reRenderListings }) {
           user={user}
           handleCardClick={handleCardClick}
           handleDelete={handleDelete}
+          isAuthenticated={isAuthenticated}
         />
       );
     }

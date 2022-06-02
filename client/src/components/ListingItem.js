@@ -5,13 +5,16 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function ListingItem({ listing, user, handleCardClick, handleDelete }) {
+function ListingItem({ listing, user, handleCardClick, handleDelete, isAuthenticated }) {
   const [buttonState, setButtonState] = useState(null);
   const [favorites, setFavorites] = useState([])
   const { id, image_url, what_it_is } = listing;
 
   useEffect(() => {
-    if (listing.user_id === user.id) {
+    if (!isAuthenticated) {
+      setButtonState("UnAuth")
+    }
+    else if (listing.user_id === user.id) {
       setButtonState("Owner");
     } else if (
       user.favorites.filter((fav) => fav.listing_id === listing.id).length > 0
@@ -19,9 +22,11 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
       setButtonState("Entered");
     }
 
-    setFavorites(user.favorites)
+    if (isAuthenticated) {
+      setFavorites(user.favorites)
+    }
 
-  }, [listing.id, listing.user_id, user.favorites, user.id]);
+  }, [listing.id, listing.user_id, user.favorites, user.id, isAuthenticated]);
 
   const handleAddToFavorites = (id) => {
     const newFavorite = {
@@ -65,8 +70,20 @@ function ListingItem({ listing, user, handleCardClick, handleDelete }) {
       });
   }
 
+  function handleUnAuth() {
+    alert("Must be logged in to enter raffle")
+
+  }
+
   function renderButton() {
     switch (buttonState) {
+      case "UnAuth":
+        return (
+          <Button variant="primary" onClick={() => handleUnAuth()}>
+            Enter Raffle
+          </Button>
+        );
+
       case "Owner":
         return (
           <Button variant="warning" onClick={() => handleDelete(id)}>

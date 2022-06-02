@@ -35,6 +35,7 @@ function Login({ setUser, setIsAuthenticated, setHasAccount }) {
           setUser(user);
           setIsAuthenticated(true);
           setError([]);
+          history.push('/')
         });
       } else {
         res.json().then((json) => setError(json.error));

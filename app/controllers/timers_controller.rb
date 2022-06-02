@@ -15,7 +15,7 @@ class TimersController < ApplicationController
         timer.countdown
         render json: timer
     end
-
+    
     private 
 
     def timer_params

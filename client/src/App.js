@@ -17,8 +17,8 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const [timers, setTimers] = useState([])
-  const [reRenderListings, setReRenderListings] = useState(false)
+  // const [timers, setTimers] = useState([])
+  // const [reRenderListings, setReRenderListings] = useState(false)
 
   const history = useHistory();
 
@@ -32,11 +32,11 @@ function App() {
       }
     });
 
-    fetch("/timers")
-      .then(res => res.json())
-      .then(timers => {
-        setTimers(timers)
-      })
+    // fetch("/timers")
+    //   .then(res => res.json())
+    //   .then(timers => {
+    //     setTimers(timers)
+    //   })
 
   }, []);
 
@@ -72,68 +72,70 @@ function App() {
     <EditYourListingForm listing={listing} />;
   };
 
-  function handleCreateTimer(listing_id) {
-    const configObjPOST = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({ listing_id })
-    }
+  // function handleCreateTimer(listing_id) {
+  //   const configObjPOST = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json"
+  //     },
+  //     body: JSON.stringify({ listing_id })
+  //   }
 
-    fetch('/timers', configObjPOST)
-      .then(res => res.json())
-      .then(timer => {
-        setTimers(...timers, timer)
-      })
-  }
+  //   fetch('/timers', configObjPOST)
+  //     .then(res => res.json())
+  //     .then(timer => {
+  //       setTimers(...timers, timer)
+  //     })
+  // }
 
-  useEffect(() => {
-    if (timers.length > 0) {
+  // useEffect(() => {
+  //   if (timers.length > 0) {
 
-      const timer = timers.at(-1)
+  //     const timer = timers.at(-1)
 
-      fetch(`countdown/${timer.id}`)
-        .then(res => res.json())
-        .then(winner => {
-          setReRenderListings(true)
-        })
-    }
-  }, [timers])
+  //     fetch(`/countdown/${timer.id}`)
+  //       .then(res => res.json())
+  //       .then(winner => {
+  //         setReRenderListings(true)
+  //       })
+  //   }
+  // }, [timers])
 
 
-  useEffect(() => {
-    if (reRenderListings) {
-      setReRenderListings(false)
-    }
-  }, [reRenderListings])
+  // useEffect(() => {
+  //   if (reRenderListings) {
+  //     setReRenderListings(false)
+  //   }
+  // }, [reRenderListings])
 
-  if (!isAuthenticated) {
-    return (
-      <div>
-        <Switch>
-          <Route exact path="/">
-            <Login setUser={handleUser} setIsAuthenticated={handleAuth} />
-          </Route>
-          <Route exact path="/signup">
-            <Signup setUser={setUser} setIsAuthenticated={setIsAuthenticated} />
-          </Route>
-        </Switch>
-      </div>
-    );
-  }
+  // if (!isAuthenticated) {
+  //   return (
+  //     <div>
+  //       <Switch>
+
+  //       </Switch>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
-      <NavBar handleLogout={handleLogout} />
+      <NavBar handleLogout={handleLogout} isAuthenticated={isAuthenticated} />
       <Switch>
         <Route exact path="/">
           <Home
             user={user}
             handleCardClick={handleCardClick}
-            reRenderListings={reRenderListings}
+            isAuthenticated={isAuthenticated}
+          // reRenderListings={reRenderListings}
           />
+        </Route>
+        <Route exact path="/login">
+          <Login setUser={handleUser} setIsAuthenticated={handleAuth} />
+        </Route>
+        <Route exact path="/signup">
+          <Signup setUser={setUser} setIsAuthenticated={setIsAuthenticated} />
         </Route>
         <Route exact path="/ongoingraffles">
           <Favorites handleCardClick={handleCardClick} />
@@ -147,7 +149,7 @@ function App() {
         <Route exact path="/postlisting">
           <PostListingForm
             user={user}
-            handleCreateTimer={handleCreateTimer}
+          // handleCreateTimer={handleCreateTimer}
           />
         </Route>
         <Route exact path="/editprofile">
