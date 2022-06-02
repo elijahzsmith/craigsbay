@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :timers, only: [:index, :create]
 
   get '/authorized_user', to: 'users#show'
+
+  get '/countdown/:id', to: 'timers#start_countdown'
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

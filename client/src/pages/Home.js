@@ -10,12 +10,11 @@ import ListingItem from "../components/ListingItem";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
-function Home({ user, handleCardClick }) {
+function Home({ user, handleCardClick, reRenderListings }) {
   const [listings, setListings] = useState([]);
   const [timers, setTimers] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
-  const [homeLoaded, setIsHomeLoaded] = useState(false);
   const [filtered, setFiltered] = useState(false);
   const [currentSearch, setCurrentSearch] = useState("");
 
@@ -26,19 +25,20 @@ function Home({ user, handleCardClick }) {
         setListings(listings);
         filterCategories(listings);
         setFilteredListings(listings);
-        setIsHomeLoaded(true);
       });
     // expirement
     // }, [timers]);
   }, []);
-  // expirement
-  useEffect(() => {
-    fetch("/timers")
+
+  if (reRenderListings) {
+    fetch("/listings")
       .then((res) => res.json())
-      .then((timers) => {
-        setTimers(timers);
+      .then((listings) => {
+        setListings(listings);
+        filterCategories(listings);
+        setFilteredListings(listings);
       });
-  }, []);
+  }
 
   function filterCategories(listings) {
     const catArr = listings.map((listing) => listing.category);
@@ -109,32 +109,10 @@ function Home({ user, handleCardClick }) {
     setFilteredListings(selection);
   };
 
-  // const expirement = filteredListings.filter((listing) => {
-  //   const endTime = new Date(listing.end_time).getTime();
-  //   const now = new Date().getTime();
-
-  //   return !(endTime <= now);
-  // });
-
-  // console.log(expirement);
-  // const renderListings = expirement.map((listing) => {
-  //   return (
-  //     <ListingItem
-  //       key={listing.id}
-  //       listing={listing}
-  //       user={user}
-  //       handleCardClick={handleCardClick}
-  //       handleDelete={handleDelete}
-  //     />
-  //   );
-  // });
-
   const renderListings = afterSearch.map((listing) => {
-    const endTime = new Date(listing.end_time).getTime();
-    const now = new Date().getTime();
+    if (listing.winner_id) {
+      return null
 
-    if (endTime <= now) {
-      return null;
     } else {
       return (
         <ListingItem
@@ -146,7 +124,8 @@ function Home({ user, handleCardClick }) {
         />
       );
     }
-  });
+  }
+  );
 
   const renderCategories = categories.map((category, index) => {
     if (category === "All") {
@@ -166,8 +145,6 @@ function Home({ user, handleCardClick }) {
       );
     }
   });
-
-  if (!homeLoaded) return <h3>Loading...</h3>;
 
   return (
     <div>
