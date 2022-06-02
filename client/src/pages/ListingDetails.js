@@ -12,7 +12,7 @@ function ListingDetails() {
 
   return (
     <Container className="">
-      <Row className="mt-3 mb-1 d-flex align-items-around mx-auto" style={{ maxWidth: 1000 }}>
+      <Row className="mt-5 mb-1 d-flex align-items-around mx-auto" style={{ maxWidth: 1000 }}>
         <Col className="col-md-8 text-md-start col-12 text-center my-auto ">
           <h1>{what_it_is}</h1>
         </Col>

@@ -19,13 +19,13 @@ function Profile({ user }) {
         <Button className="me-2" onClick={() => history.push("/editprofile")}>
           Edit Profile
         </Button>
-        <Button className="me-2" onClick={() => history.push("/postlisting")}>
+        <Button className="me-2" onClick={() => history.push("/postdonation")}>
           Post A Donation
         </Button>
-        <Button className="me-2" onClick={() => history.push("/yourlistings")}>
+        <Button className="me-2" onClick={() => history.push("/yourdonations")}>
           Your Donations
         </Button>
-        <Button className="me-2" onClick={() => history.push("/ongoingraffles")}>
+        <Button className="me-2" onClick={() => history.push("/enteredraffles")}>
           Entered Raffles
         </Button>
       </Container>

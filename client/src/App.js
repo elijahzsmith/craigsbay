@@ -106,7 +106,7 @@ function App() {
         <Route exact path="/signup">
           <Signup setUser={setUser} setIsAuthenticated={setIsAuthenticated} />
         </Route>
-        <Route exact path="/ongoingraffles">
+        <Route exact path="/enteredraffles">
           <Favorites handleCardClick={handleCardClick} user={user} />
         </Route>
         <Route exact path="/details/:id">
@@ -115,13 +115,13 @@ function App() {
         <Route exact path="/profile">
           <Profile user={user} />
         </Route>
-        <Route exact path="/postlisting">
+        <Route exact path="/postdonation">
           <PostListingForm user={user} handleCreateTimer={handleCreateTimer} />
         </Route>
         <Route exact path="/editprofile">
           <EditProfileForm user={user} setUser={setUser} />
         </Route>
-        <Route exact path="/yourlistings">
+        <Route exact path="/yourdonations">
           <YourListings
             user={user}
             showForm={showForm}

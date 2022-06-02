@@ -13,9 +13,9 @@ function NavBar({ handleLogout, isAuthenticated }) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/ongoingraffles">Entered Raffles</Nav.Link>
-              <Nav.Link href="/postlisting">Post a Donation</Nav.Link>
-              <Nav.Link href="/yourlistings">Your Donations</Nav.Link>
+              <Nav.Link href="/enteredraffles">Entered Raffles</Nav.Link>
+              <Nav.Link href="/postdonation">Post a Donation</Nav.Link>
+              <Nav.Link href="/yourdonations">Your Donations</Nav.Link>
               <NavDropdown title="More" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/profile">
                   Account Details

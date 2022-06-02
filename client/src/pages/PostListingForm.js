@@ -65,7 +65,7 @@ function PostListingForm({ user, handleCreateTimer }) {
             });
             handleCreateTimer(newListing.id)
             alert("Post Successful");
-            history.push("/yourlistings");
+            history.push("/yourdonations");
           })
         } else {
           res.json().then((err) => setErrors(err.errors))
