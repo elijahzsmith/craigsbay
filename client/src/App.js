@@ -17,7 +17,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState("");
   const [showForm, setShowForm] = useState(false);
-  // const [timers, setTimers] = useState([])
+  const [timers, setTimers] = useState([])
   // const [reRenderListings, setReRenderListings] = useState(false)
 
   const history = useHistory();
@@ -32,11 +32,11 @@ function App() {
       }
     });
 
-    // fetch("/timers")
-    //   .then(res => res.json())
-    //   .then(timers => {
-    //     setTimers(timers)
-    //   })
+    fetch("/timers")
+      .then(res => res.json())
+      .then(timers => {
+        setTimers(timers)
+      })
 
   }, []);
 
@@ -73,6 +73,7 @@ function App() {
   };
 
   function handleCreateTimer(listing_id) {
+    console.log({ listing_id })
     const configObjPOST = {
       method: "POST",
       headers: {
@@ -85,18 +86,14 @@ function App() {
     fetch('/timers', configObjPOST)
   }
 
-  // useEffect(() => {
-  //   if (timers.length > 0) {
+  useEffect(() => {
+    if (timers.length > 0) {
 
-  //     const timer = timers.at(-1)
+      const timer = timers.at(-1)
 
-  //     fetch(`/countdown/${timer.id}`)
-  //       .then(res => res.json())
-  //       .then(winner => {
-  //         setReRenderListings(true)
-  //       })
-  //   }
-  // }, [timers])
+      fetch(`/countdown/${timer.id}`)
+    }
+  }, [timers])
 
 
   // useEffect(() => {

@@ -10,11 +10,11 @@ class TimersController < ApplicationController
         render json: timer, status: :created, adapter: nil
     end 
 
-    # def start_countdown
-    #     timer = Timer.find(params[:id])
-    #     timer.countdown
-    #     render json: timer
-    # end
+    def start_countdown
+        timer = Timer.find(params[:id])
+        timer.countdown
+        render json: timer
+    end
     
     private 
 

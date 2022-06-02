@@ -1,6 +1,5 @@
 class Timer < ApplicationRecord
   belongs_to :listing
-  after_create :countdown
 
     def countdown
         end_time = self.parse_time(self.listing.end_time)
@@ -35,7 +34,7 @@ class Timer < ApplicationRecord
         hour = split_time.first
         minute = split_time.second
 
-        parsed_time = Time.new(year, month, day, hour, minute)
+        parsed_time = Time.local(year, month, day, hour, minute)
 
         return parsed_time
     end

@@ -4,7 +4,7 @@ class Listing < ApplicationRecord
     has_many :users, through: :favorites
     has_one :timer, dependent: :destroy
 
-    validate :end_time_cannot_be_in_the_past
+    validate :end_time_cannot_be_in_the_past, on: :create
 
     def end_time_cannot_be_in_the_past
         if end_time.present? && self.parse_time(end_time) < Time.now
@@ -25,7 +25,7 @@ class Listing < ApplicationRecord
         hour = split_time.first
         minute = split_time.second
 
-        parsed_time = Time.new(year, month, day, hour, minute, 0, "-05:00")
+        parsed_time = Time.local(year, month, day, hour, minute)
 
         return parsed_time
     end
