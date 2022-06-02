@@ -57,7 +57,7 @@ function ListingItem({
       });
   };
 
-  function handleRemoveFavorite(e) {
+  function handleRemoveFavorite() {
     const rmFav = favorites.find((fav) => fav.listing_id === id);
     const configObjDELETE = {
       method: "DELETE",
@@ -96,10 +96,7 @@ function ListingItem({
 
       case "Entered": {
         return (
-          <Button
-            variant="secondary text-white"
-            onClick={(e) => handleRemoveFavorite(e)}
-          >
+          <Button variant="secondary text-white" onClick={handleRemoveFavorite}>
             Entered
           </Button>
         );
