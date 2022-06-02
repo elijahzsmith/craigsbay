@@ -11,7 +11,7 @@ import Button from "react-bootstrap/esm/Button";
 
 function Favorites({ handleCardClick, user }) {
   const [favs, setFavs] = useState([]);
-  const [favsLoaded, setFavsLoaded] = useState(false);
+  const [allFavs, setAllFavs] = useState([])
   const [currSearch, setCurrSearch] = useState("")
   const [filtered, setFiltered] = useState(false)
 
@@ -19,9 +19,8 @@ function Favorites({ handleCardClick, user }) {
     fetch("/favorites")
       .then((res) => res.json())
       .then((favs) => {
-        console.log(favs)
         setFavs(favs);
-        setFavsLoaded(true);
+        setAllFavs(favs);
       });
   }, []);
 
@@ -97,23 +96,35 @@ function Favorites({ handleCardClick, user }) {
   const filterResult = (selectedCategory) => {
     const now = new Date().getTime()
 
-    if (selectedCategory === "Ongoing") {
-      let selection = favs.filter(
-        (fav) => new Date(fav.listing.end_time).getTime() > now
-      );
-      setFavs(selection);
-    } else if (selectedCategory === "Won") {
-      let selection = favs.filter(
-        (fav) => fav.listing.winner_id === user.id
-      );
-      setFavs(selection);
-    } else if (selectedCategory === "Lost") {
-      let selection = favs.filter(
-        (fav) => fav.listing.winner_id !== user.id
-      );
-      setFavs(selection);
-    }
+    switch (selectedCategory) {
+      case "Ongoing":
+        let ongoing = favs.filter(
+          (fav) => new Date(fav.listing.end_time).getTime() > now
+        );
+        setFavs(ongoing);
+        break;
 
+      case "Won":
+        let won = favs.filter(
+          (fav) => fav.listing.winner_id === user.id
+        );
+        setFavs(won);
+        break;
+
+      case "Lost":
+        let lost = favs.filter(
+          (fav) => fav.listing.winner_id !== user.id
+        );
+        setFavs(lost);
+        break;
+
+      case "All":
+        setFavs(allFavs);
+        break;
+
+      default:
+        return null
+    }
   };
 
   return (

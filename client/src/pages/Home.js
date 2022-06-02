@@ -11,8 +11,8 @@ import FormControl from "react-bootstrap/FormControl";
 
 function Home({ user, handleCardClick, isAuthenticated }) {
   const [listings, setListings] = useState([]);
+  const [allListings, setAllListings] = useState([])
   const [categories, setCategories] = useState([]);
-  const [filteredListings, setFilteredListings] = useState([]);
   const [filtered, setFiltered] = useState(false);
   const [currentSearch, setCurrentSearch] = useState("");
 
@@ -21,8 +21,8 @@ function Home({ user, handleCardClick, isAuthenticated }) {
       .then((res) => res.json())
       .then((listings) => {
         setListings(listings);
+        setAllListings(listings)
         filterCategories(listings);
-        setFilteredListings(listings);
       });
   }, []);
 
@@ -46,13 +46,13 @@ function Home({ user, handleCardClick, isAuthenticated }) {
         }
         return 0;
       });
-      setFilteredListings(sortedListings);
+      setListings(sortedListings);
       setFiltered(true);
     } else {
       const originalArray = listings.sort(function (a, b) {
         return a.id - b.id;
       });
-      setFilteredListings(originalArray);
+      setListings(originalArray);
       setFiltered(false);
     }
   };
@@ -70,11 +70,11 @@ function Home({ user, handleCardClick, isAuthenticated }) {
     fetch(`/listings/${id}`, configObjDELETE).then(() => {
       const newListings = listings.filter((listing) => listing.id !== id);
 
-      setFilteredListings(newListings);
+      setListings(newListings);
     });
   }
 
-  const afterSearch = filteredListings.filter((item) => {
+  const afterSearch = listings.filter((item) => {
     if (currentSearch === "") {
       return item;
     } else if (
@@ -87,13 +87,13 @@ function Home({ user, handleCardClick, isAuthenticated }) {
   });
 
   const filterResult = (selectedCategory) => {
-    setFilteredListings(listings);
+    setListings(listings);
 
     let selection = listings.filter(
       (listing) => listing.category === selectedCategory
     );
 
-    setFilteredListings(selection);
+    setListings(selection);
   };
 
   const renderListings = afterSearch.map((listing) => {
@@ -118,7 +118,7 @@ function Home({ user, handleCardClick, isAuthenticated }) {
       return (
         <Dropdown.Item
           key={index}
-          onClick={() => setFilteredListings(listings)}
+          onClick={() => setListings(allListings)}
         >
           {category}
         </Dropdown.Item>
