@@ -17,7 +17,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState("");
   const [showForm, setShowForm] = useState(false);
-  // const [timers, setTimers] = useState([])
+  const [timers, setTimers] = useState([])
   // const [reRenderListings, setReRenderListings] = useState(false)
 
   const history = useHistory();
@@ -32,11 +32,14 @@ function App() {
       }
     });
 
-    // fetch("/timers")
-    //   .then(res => res.json())
-    //   .then(timers => {
-    //     setTimers(timers)
-    //   })
+    fetch("/timers")
+      .then(res => res.json())
+      .then(timers => {
+        setTimers(timers)
+        // timers.forEach((timer) => {
+        //   fetch(`/countdown/${timer.id}`)
+        // })
+      })
 
   }, []);
 
@@ -72,35 +75,30 @@ function App() {
     <EditYourListingForm listing={listing} />;
   };
 
-  // function handleCreateTimer(listing_id) {
-  //   const configObjPOST = {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json"
-  //     },
-  //     body: JSON.stringify({ listing_id })
-  //   }
+  function handleCreateTimer(listing_id) {
+    console.log({ listing_id })
+    const configObjPOST = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ listing_id })
+    }
 
-  //   fetch('/timers', configObjPOST)
-  //     .then(res => res.json())
-  //     .then(timer => {
-  //       setTimers(...timers, timer)
-  //     })
-  // }
+    fetch('/timers', configObjPOST)
+      .then(res => res.json())
+      .then(timer => setTimers([...timers, timer]))
+  }
 
-  // useEffect(() => {
-  //   if (timers.length > 0) {
+  useEffect(() => {
+    if (timers.length > 0) {
 
-  //     const timer = timers.at(-1)
+      const timer = timers.at(-1)
 
-  //     fetch(`/countdown/${timer.id}`)
-  //       .then(res => res.json())
-  //       .then(winner => {
-  //         setReRenderListings(true)
-  //       })
-  //   }
-  // }, [timers])
+      fetch(`/countdown/${timer.id}`)
+    }
+  }, [timers])
 
 
   // useEffect(() => {
@@ -149,7 +147,7 @@ function App() {
         <Route exact path="/postlisting">
           <PostListingForm
             user={user}
-          // handleCreateTimer={handleCreateTimer}
+            handleCreateTimer={handleCreateTimer}
           />
         </Route>
         <Route exact path="/editprofile">
