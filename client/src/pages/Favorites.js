@@ -11,7 +11,7 @@ function Favorites({ handleCardClick }) {
     fetch("/favorites")
       .then((res) => res.json())
       .then((favs) => {
-        console.log(favs);
+        // console.log(favs);
         setFavs(favs);
         setFavsLoaded(true);
       });

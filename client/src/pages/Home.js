@@ -117,7 +117,7 @@ function Home({ user, handleCardClick }) {
     const now = new Date().getTime()
 
     if (endTime > now) {
-      startCountdown(listing)
+      // startCountdown(listing)
       return (
         <ListingItem
           key={listing.id}
