@@ -29,13 +29,6 @@ function Home({ user, handleCardClick }) {
       });
   }, []);
 
-  useEffect(() => {
-    filterCategories(listings);
-    setFilteredListings(listings);
-    setIsHomeLoaded(true);
-
-  }, [listings])
-
   function filterCategories(listings) {
     const catArr = listings.map((listing) => listing.category);
     const filteredCatArr = ["All", ...new Set(catArr)];
@@ -105,13 +98,26 @@ function Home({ user, handleCardClick }) {
     setFilteredListings(selection);
   };
 
+  function startCountdown(listing) {
+    const endTime = new Date(listing.end_time).getTime()
+    const now = new Date().getTime()
+    const countdown = endTime - now
+
+    const removeListing = listings.filter((ongoingListing) => {
+      return ongoingListing.id !== listing.id
+    })
+
+    setTimeout(() => {
+      setFilteredListings(removeListing)
+    }, countdown)
+  }
+
   const renderListings = afterSearch.map((listing) => {
     const endTime = new Date(listing.end_time).getTime()
     const now = new Date().getTime()
 
-    if (endTime <= now) {
-      return null
-    } else {
+    if (endTime > now) {
+      startCountdown(listing)
       return (
         <ListingItem
           key={listing.id}
@@ -121,8 +127,11 @@ function Home({ user, handleCardClick }) {
           handleDelete={handleDelete}
         />
       );
+    } else {
+      return null
     }
-  });
+  }
+  );
 
   const renderCategories = categories.map((category, index) => {
     if (category === "All") {
