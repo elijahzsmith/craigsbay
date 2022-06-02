@@ -72,22 +72,18 @@ function App() {
     <EditYourListingForm listing={listing} />;
   };
 
-  // function handleCreateTimer(listing_id) {
-  //   const configObjPOST = {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json"
-  //     },
-  //     body: JSON.stringify({ listing_id })
-  //   }
+  function handleCreateTimer(listing_id) {
+    const configObjPOST = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ listing_id })
+    }
 
-  //   fetch('/timers', configObjPOST)
-  //     .then(res => res.json())
-  //     .then(timer => {
-  //       setTimers(...timers, timer)
-  //     })
-  // }
+    fetch('/timers', configObjPOST)
+  }
 
   // useEffect(() => {
   //   if (timers.length > 0) {
@@ -149,7 +145,7 @@ function App() {
         <Route exact path="/postlisting">
           <PostListingForm
             user={user}
-          // handleCreateTimer={handleCreateTimer}
+            handleCreateTimer={handleCreateTimer}
           />
         </Route>
         <Route exact path="/editprofile">

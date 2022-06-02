@@ -1,5 +1,6 @@
 class Timer < ApplicationRecord
   belongs_to :listing
+  after_create :countdown
 
     def countdown
         end_time = self.parse_time(self.listing.end_time)

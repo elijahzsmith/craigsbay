@@ -8,6 +8,7 @@ import Form from "react-bootstrap/esm/Form";
 
 function PostListingForm({ user, handleCreateTimer }) {
   const [selectedMonth, setSelectedMonth] = useState(null)
+  const [errors, setErrors] = useState([])
 
   const history = useHistory();
 
@@ -48,21 +49,26 @@ function PostListingForm({ user, handleCreateTimer }) {
   const handleAddListing = (e) => {
     e.preventDefault();
     fetch("/listings", configObjPOST)
-      .then((res) => res.json())
-      .then((data) => {
-        setFormData({
-          location: "",
-          image_url: "",
-          what_it_is: "",
-          category: "",
-          description: "",
-          end_time: "",
-          user_id: user.id,
-        });
-        handleCreateTimer(data.id)
-        alert("Post Successful");
-        history.push("/yourlistings");
-      });
+      .then((res) => {
+        if (res.ok) {
+          res.json().then((newListing) => {
+            setFormData({
+              location: "",
+              image_url: "",
+              what_it_is: "",
+              category: "",
+              description: "",
+              end_time: "",
+              user_id: user.id,
+            });
+            handleCreateTimer(newListing.id)
+            alert("Post Successful");
+            history.push("/yourlistings");
+          })
+        } else {
+          res.json().then((err) => setErrors(err.errors))
+        }
+      })
   };
 
   function renderMonths() {
@@ -97,9 +103,9 @@ function PostListingForm({ user, handleCreateTimer }) {
   }
 
   function renderDays() {
-    const currDate = new Date();
+    // const currDate = new Date();
     // const currDay = currDate.getDate();
-    const currMonth = currDate.getMonth();
+    // const currMonth = currDate.getMonth();
 
     let upcomingDays = [];
 
@@ -322,6 +328,12 @@ function PostListingForm({ user, handleCreateTimer }) {
                 </Form.Group>
               </Col>
             </Row>
+
+            {errors ? (
+              <Row className="text-danger text-center mb-2">
+                {errors.map((err, i) => <strong key={i}>{err}</strong>)}
+              </Row>
+            ) : null}
 
             <Row className="d-flex justify-content-center mb-2">
               <Button variant="primary" type="submit" className="w-25">
