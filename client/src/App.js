@@ -133,7 +133,7 @@ function App() {
           <Signup setUser={setUser} setIsAuthenticated={setIsAuthenticated} />
         </Route>
         <Route exact path="/ongoingraffles">
-          <Favorites handleCardClick={handleCardClick} />
+          <Favorites handleCardClick={handleCardClick} user={user} />
         </Route>
         <Route exact path="/details/:id">
           <ListingDetails />
