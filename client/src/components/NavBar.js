@@ -5,7 +5,6 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 
 function NavBar({ handleLogout, isAuthenticated }) {
-
   function handleAccountStatus() {
     if (isAuthenticated) {
       return (
@@ -29,20 +28,18 @@ function NavBar({ handleLogout, isAuthenticated }) {
             </Nav>
           </Navbar.Collapse>
         </>
-      )
+      );
     } else {
       return (
         <>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/login">
-                Login/Sign Up
-              </Nav.Link>
+              <Nav.Link href="/login">Login/Sign Up</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </>
-      )
+      );
     }
   }
   return (
