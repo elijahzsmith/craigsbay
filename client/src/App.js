@@ -36,9 +36,6 @@ function App() {
       .then(res => res.json())
       .then(timers => {
         setTimers(timers)
-        // timers.forEach((timer) => {
-        //   fetch(`/countdown/${timer.id}`)
-        // })
       })
 
   }, []);
