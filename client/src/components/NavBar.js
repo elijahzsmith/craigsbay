@@ -22,7 +22,7 @@ function NavBar({ handleLogout, isAuthenticated }) {
                   Account Details
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={() => handleLogout()}>
+                <NavDropdown.Item onClick={handleLogout}>
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>

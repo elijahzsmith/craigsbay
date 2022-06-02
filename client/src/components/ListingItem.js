@@ -12,14 +12,15 @@ function ListingItem({ listing, user, handleCardClick, handleDelete, isAuthentic
 
   useEffect(() => {
     if (!isAuthenticated) {
-      setButtonState("UnAuth")
-    }
-    else if (listing.user_id === user.id) {
+      setButtonState("UnAuth");
+    } else if (listing.user_id === user.id) {
       setButtonState("Owner");
     } else if (
       user.favorites.filter((fav) => fav.listing_id === listing.id).length > 0
     ) {
       setButtonState("Entered");
+    } else {
+      setButtonState(null)
     }
 
     if (isAuthenticated) {
@@ -28,7 +29,7 @@ function ListingItem({ listing, user, handleCardClick, handleDelete, isAuthentic
 
   }, [listing.id, listing.user_id, user.favorites, user.id, isAuthenticated]);
 
-  const handleAddToFavorites = (id) => {
+  const handleAddToFavorites = () => {
     const newFavorite = {
       user_id: user.id,
       listing_id: id,
@@ -72,21 +73,20 @@ function ListingItem({ listing, user, handleCardClick, handleDelete, isAuthentic
 
   function handleUnAuth() {
     alert("Must be logged in to enter raffle")
-
   }
 
   function renderButton() {
     switch (buttonState) {
       case "UnAuth":
         return (
-          <Button variant="primary" onClick={() => handleUnAuth()}>
+          <Button variant="primary" onClick={handleUnAuth}>
             Enter Raffle
           </Button>
         );
 
       case "Owner":
         return (
-          <Button variant="warning" onClick={() => handleDelete(id)}>
+          <Button variant="warning" onClick={handleDelete}>
             Delete
           </Button>
         );
@@ -95,7 +95,7 @@ function ListingItem({ listing, user, handleCardClick, handleDelete, isAuthentic
         return (
           <Button
             variant="secondary text-white"
-            onClick={() => handleRemoveFavorite()}
+            onClick={handleRemoveFavorite}
           >
             Entered
           </Button>
@@ -104,7 +104,7 @@ function ListingItem({ listing, user, handleCardClick, handleDelete, isAuthentic
 
       default: {
         return (
-          <Button variant="primary" onClick={() => handleAddToFavorites(id)}>
+          <Button variant="primary" onClick={handleAddToFavorites}>
             Enter Raffle
           </Button>
         );

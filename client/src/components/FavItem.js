@@ -21,7 +21,7 @@ function FavItem({ fav, handleRemoveFavorite, handleCardClick, user }) {
       setIconState("Ongoing")
     } else if (endTime < now && winner_id === user.id) {
       setIconState("Winner")
-    } else if (endTime < now && winner_id === user.id) {
+    } else if (endTime < now && winner_id !== user.id) {
       setIconState("Lost")
     }
   }, [end_time, user.id, winner_id])

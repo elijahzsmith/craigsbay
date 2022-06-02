@@ -32,13 +32,15 @@ function App() {
       }
     });
 
-    fetch("/timers")
-      .then(res => res.json())
-      .then(timers => {
-        setTimers(timers)
-      })
+    // fetch("/timers")
+    //   .then(res => res.json())
+    //   .then(timers => {
+    //     setTimers(timers)
+    //   })
 
   }, []);
+
+  // console.log(isAuthenticated)
 
   const handleLogout = () => {
     fetch("/logout", {
