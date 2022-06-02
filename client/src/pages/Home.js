@@ -12,7 +12,6 @@ import FormControl from "react-bootstrap/FormControl";
 
 function Home({ user, handleCardClick, isAuthenticated }) {
   const [listings, setListings] = useState([]);
-  const [timers, setTimers] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
   const [filtered, setFiltered] = useState(false);
@@ -26,19 +25,7 @@ function Home({ user, handleCardClick, isAuthenticated }) {
         filterCategories(listings);
         setFilteredListings(listings);
       });
-    // expirement
-    // }, [timers]);
   }, []);
-
-  // if (reRenderListings) {
-  //   fetch("/listings")
-  //     .then((res) => res.json())
-  //     .then((listings) => {
-  //       setListings(listings);
-  //       filterCategories(listings);
-  //       setFilteredListings(listings);
-  //     });
-  // }
 
   function filterCategories(listings) {
     const catArr = listings.map((listing) => listing.category);

@@ -105,10 +105,6 @@ function PostListingForm({ user, handleCreateTimer }) {
   }
 
   function renderDays() {
-    // const currDate = new Date();
-    // const currDay = currDate.getDate();
-    // const currMonth = currDate.getMonth();
-
     let upcomingDays = [];
 
     if (selectedMonth === "02") {
@@ -141,14 +137,6 @@ function PostListingForm({ user, handleCreateTimer }) {
         }
       }
     }
-
-    // for (let i = 1; i < currDay; i++) {
-    //   if (i < 10) {
-    //     upcomingDays.push(`0${i}`);
-    //   } else {
-    //     upcomingDays.push(i);
-    //   }
-    // }
 
     upcomingDays.unshift("Select Day");
 

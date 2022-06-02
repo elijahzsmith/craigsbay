@@ -18,7 +18,6 @@ function App() {
   const [user, setUser] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [timers, setTimers] = useState([]);
-  // const [reRenderListings, setReRenderListings] = useState(false)
 
   const history = useHistory();
 
@@ -31,16 +30,7 @@ function App() {
         });
       }
     });
-
-    // fetch("/timers")
-    //   .then(res => res.json())
-    //   .then(timers => {
-    //     setTimers(timers)
-    //   })
-
   }, []);
-
-  // console.log(isAuthenticated)
 
   const handleLogout = () => {
     fetch("/logout", {
@@ -97,22 +87,6 @@ function App() {
       fetch(`/countdown/${timer.id}`);
     }
   }, [timers]);
-
-  // useEffect(() => {
-  //   if (reRenderListings) {
-  //     setReRenderListings(false)
-  //   }
-  // }, [reRenderListings])
-
-  // if (!isAuthenticated) {
-  //   return (
-  //     <div>
-  //       <Switch>
-
-  //       </Switch>
-  //     </div>
-  //   );
-  // }
 
   return (
     <div>

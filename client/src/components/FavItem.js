@@ -84,7 +84,8 @@ function FavItem({ fav, handleRemoveFavorite, handleCardClick, user }) {
         />
         {renderIcon()}
         <Card.Body>
-          <Card.Title className="text-center">          {what_it_is}
+          <Card.Title className="text-center">
+            {what_it_is}
           </Card.Title>
           <Container className="ms-2">
             <Row>
