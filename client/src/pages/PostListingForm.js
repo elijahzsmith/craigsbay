@@ -7,6 +7,7 @@ import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
 function PostListingForm({ user, handleCreateTimer }) {
+  const [selectedMonth, setSelectedMonth] = useState(null)
 
   const history = useHistory();
 
@@ -97,25 +98,48 @@ function PostListingForm({ user, handleCreateTimer }) {
 
   function renderDays() {
     const currDate = new Date();
-    const currDay = currDate.getDate();
+    // const currDay = currDate.getDate();
+    const currMonth = currDate.getMonth();
 
     let upcomingDays = [];
 
-    for (let i = currDay; i < 32; i++) {
-      if (i < 10) {
-        upcomingDays.push(`0${i}`);
-      } else {
-        upcomingDays.push(i);
+    if (selectedMonth === "02") {
+      for (let i = 1; i < 29; i++) {
+        if (i < 10) {
+          upcomingDays.push(`0${i}`);
+        } else {
+          upcomingDays.push(i);
+        }
+      }
+    } else if (selectedMonth === "04"
+      || selectedMonth === "06"
+      || selectedMonth === "09"
+      || selectedMonth === "11"
+    ) {
+      for (let i = 1; i < 31; i++) {
+        if (i < 10) {
+          upcomingDays.push(`0${i}`);
+        } else {
+          upcomingDays.push(i);
+        }
+      }
+    } else {
+      for (let i = 1; i < 32; i++) {
+        if (i < 10) {
+          upcomingDays.push(`0${i}`);
+        } else {
+          upcomingDays.push(i);
+        }
       }
     }
 
-    for (let i = 1; i < currDay; i++) {
-      if (i < 10) {
-        upcomingDays.push(`0${i}`);
-      } else {
-        upcomingDays.push(i);
-      }
-    }
+    // for (let i = 1; i < currDay; i++) {
+    //   if (i < 10) {
+    //     upcomingDays.push(`0${i}`);
+    //   } else {
+    //     upcomingDays.push(i);
+    //   }
+    // }
 
     upcomingDays.unshift("Select Day");
 
@@ -249,7 +273,10 @@ function PostListingForm({ user, handleCreateTimer }) {
                   <Form.Select
                     name="month"
                     value={formData.month}
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => {
+                      setSelectedMonth(e.target.value)
+                      handleChange(e)
+                    }}
                   >
                     {renderMonths()}
                   </Form.Select>
