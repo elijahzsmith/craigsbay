@@ -15,6 +15,7 @@ puts "Seeding Listings...."
 #     Listing.create(location: "Compton", image_url: Faker::LoremFlickr.image, what_it_is: Faker::Commerce.product_name, category: Faker::Commerce.department, description: Faker::Lorem)
 # end
 
+
     l1 = Listing.create(location: "Compton", image_url: "https://images.craigslist.org/00C0C_gHxNjOcVrrOz_0t20CI_600x450.jpg", what_it_is: "Wooden Cabinet", category: "Furniture", description: "Vintage wooden cabinet. Well-built and sturdy. Doors open and close easily. The finish needs TLC. Missing one knob.", user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
     l2 = Listing.create(location: "Compton", image_url: "https://images.craigslist.org/00B0B_cqaxgOGLl9Kz_09G07g_600x450.jpg", what_it_is: "Free Glass Corner Desk w/ Chair", category: "Furniture", description: "Free desk, as shown in photo. I've already disassembled it. You just need to take it away. You can also have the office chair. Located in South Loop near Clark St.", user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
     l3 = Listing.create(location: "Compton", image_url: "https://images.craigslist.org/00909_1vzqKGtEOkpz_0t20CI_600x450.jpg", what_it_is: "Zen 3-D puzzle", category: "Games", description: "I'm selling a fancy, high-end zen puzzle with a 3-D feel to the pieces. The box itself and packaging is very nice, and this would make a great gift. The pieces themselves are very interesting shapes, with pieces the shapes of animals/other unique objects instead of the cookie-cutter jigsaw pieces.", user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
@@ -29,6 +30,7 @@ puts "Seeding Listings...."
     l11 = Listing.create(location: "JKL", image_url: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/lodge-cast-iron-round-skillet-10.25-inch-currently-priced-at-ps34.31-4ad0b4f.jpg?quality=90&fit=700,466", what_it_is: "Grandmas cast iron", category: "Kitchen", description: "Already older than you'll ever be", user_id: u5.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
     l12 = Listing.create(location: "MNO", image_url: "https://image.invaluable.com/housePhotos/linkauctiongalleries/24/698324/H18786-L249787047.JPG", what_it_is: "Assorted item", category: "Misc", description: "Re-clutter your home!", user_id: u6.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
     l13 = Listing.create(location: "PQR", image_url: "https://static01.nyt.com/images/2020/11/26/fashion/18PIG-COUCH/18PIG-COUCH-mobileMasterAt3x-v3.jpg", what_it_is: "Wilbert", category: "Home", description: "Relax in style", user_id: u5.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
+
 puts "Done Seeding Listings!"
 
 puts "Seeding Favorites....."
