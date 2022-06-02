@@ -12,6 +12,7 @@ import FormControl from "react-bootstrap/FormControl";
 
 function Home({ user, handleCardClick }) {
   const [listings, setListings] = useState([]);
+  const [timers, setTimers] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
   const [homeLoaded, setIsHomeLoaded] = useState(false);
@@ -27,14 +28,17 @@ function Home({ user, handleCardClick }) {
         setFilteredListings(listings);
         setIsHomeLoaded(true);
       });
+    // expirement
+    // }, [timers]);
   }, []);
-
+  // expirement
   useEffect(() => {
-    filterCategories(listings);
-    setFilteredListings(listings);
-    setIsHomeLoaded(true);
-
-  }, [listings])
+    fetch("/timers")
+      .then((res) => res.json())
+      .then((timers) => {
+        setTimers(timers);
+      });
+  }, []);
 
   function filterCategories(listings) {
     const catArr = listings.map((listing) => listing.category);
@@ -105,12 +109,32 @@ function Home({ user, handleCardClick }) {
     setFilteredListings(selection);
   };
 
+  // const expirement = filteredListings.filter((listing) => {
+  //   const endTime = new Date(listing.end_time).getTime();
+  //   const now = new Date().getTime();
+
+  //   return !(endTime <= now);
+  // });
+
+  // console.log(expirement);
+  // const renderListings = expirement.map((listing) => {
+  //   return (
+  //     <ListingItem
+  //       key={listing.id}
+  //       listing={listing}
+  //       user={user}
+  //       handleCardClick={handleCardClick}
+  //       handleDelete={handleDelete}
+  //     />
+  //   );
+  // });
+
   const renderListings = afterSearch.map((listing) => {
-    const endTime = new Date(listing.end_time).getTime()
-    const now = new Date().getTime()
+    const endTime = new Date(listing.end_time).getTime();
+    const now = new Date().getTime();
 
     if (endTime <= now) {
-      return null
+      return null;
     } else {
       return (
         <ListingItem
