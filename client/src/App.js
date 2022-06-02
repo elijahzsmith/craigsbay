@@ -17,7 +17,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const [timers, setTimers] = useState([])
+  const [timers, setTimers] = useState([]);
   // const [reRenderListings, setReRenderListings] = useState(false)
 
   const history = useHistory();
@@ -33,11 +33,10 @@ function App() {
     });
 
     fetch("/timers")
-      .then(res => res.json())
-      .then(timers => {
-        setTimers(timers)
-      })
-
+      .then((res) => res.json())
+      .then((timers) => {
+        setTimers(timers);
+      });
   }, []);
 
   const handleLogout = () => {
@@ -73,30 +72,28 @@ function App() {
   };
 
   function handleCreateTimer(listing_id) {
-    console.log({ listing_id })
+    console.log({ listing_id });
     const configObjPOST = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
       },
-      body: JSON.stringify({ listing_id })
-    }
+      body: JSON.stringify({ listing_id }),
+    };
 
-    fetch('/timers', configObjPOST)
-      .then(res => res.json())
-      .then(timer => setTimers([...timers, timer]))
+    fetch("/timers", configObjPOST)
+      .then((res) => res.json())
+      .then((timer) => setTimers([...timers, timer]));
   }
 
   useEffect(() => {
     if (timers.length > 0) {
+      const timer = timers.at(-1);
 
-      const timer = timers.at(-1)
-
-      fetch(`/countdown/${timer.id}`)
+      fetch(`/countdown/${timer.id}`);
     }
-  }, [timers])
-
+  }, [timers]);
 
   // useEffect(() => {
   //   if (reRenderListings) {
@@ -123,7 +120,7 @@ function App() {
             user={user}
             handleCardClick={handleCardClick}
             isAuthenticated={isAuthenticated}
-          // reRenderListings={reRenderListings}
+            // reRenderListings={reRenderListings}
           />
         </Route>
         <Route exact path="/login">
@@ -142,10 +139,7 @@ function App() {
           <Profile user={user} />
         </Route>
         <Route exact path="/postlisting">
-          <PostListingForm
-            user={user}
-            handleCreateTimer={handleCreateTimer}
-          />
+          <PostListingForm user={user} handleCreateTimer={handleCreateTimer} />
         </Route>
         <Route exact path="/editprofile">
           <EditProfileForm user={user} setUser={setUser} />
