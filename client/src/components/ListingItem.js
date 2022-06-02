@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -15,6 +16,7 @@ function ListingItem({
   const [buttonState, setButtonState] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const { id, image_url, what_it_is } = listing;
+  const history = useHistory();
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -75,7 +77,10 @@ function ListingItem({
   }
 
   function handleUnAuth() {
-    alert("Must be logged in to enter raffle");
+    const answer = window.confirm("Login to continue!");
+    if (answer) {
+      history.push("/login");
+    }
   }
 
   function renderButton() {

@@ -43,8 +43,9 @@ function Favorites({ handleCardClick, user }) {
 
   return (
     <Container fluid>
-      <h1>Ongoing Raffles</h1>
       <Container className="mx-auto mt-5">
+        <h1>Ongoing Raffles</h1>
+        <hr></hr>
         <Row xs={1} sm={2} md={3} lg={4}>
           {renderFavs}
         </Row>

@@ -12,6 +12,7 @@ import "./index.scss";
 import EditProfileForm from "./pages/EditProfileForm";
 import YourListings from "./pages/YourListings";
 import EditYourListingForm from "./pages/EditYourListingForm";
+import About from "./pages/About";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -97,7 +98,7 @@ function App() {
             user={user}
             handleCardClick={handleCardClick}
             isAuthenticated={isAuthenticated}
-          // reRenderListings={reRenderListings}
+            // reRenderListings={reRenderListings}
           />
         </Route>
         <Route exact path="/login">
@@ -120,6 +121,9 @@ function App() {
         </Route>
         <Route exact path="/editprofile">
           <EditProfileForm user={user} setUser={setUser} />
+        </Route>
+        <Route exact path="/about">
+          <About />
         </Route>
         <Route exact path="/yourlistings">
           <YourListings

@@ -54,7 +54,6 @@ function EditYourListingForm() {
 
   return (
     <div>
-      <h1>Edit Your Listing Form</h1>
       <Container fluid>
         <Container className="mx-auto mt-5">
           <Row className="text-center">

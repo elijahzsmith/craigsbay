@@ -53,10 +53,11 @@ function YourListings({
 
   return (
     <Container fluid>
-      <Row>
-        <h1>Your Listings</h1>
-      </Row>
       <Container className="mx-auto mt-5">
+        <Row>
+          <h1>Your Listings</h1>
+          <hr></hr>
+        </Row>
         <Row xs={1} sm={2} md={3} lg={4}>
           {renderYourListings}
         </Row>
