@@ -1,5 +1,8 @@
 class ListingsController < ApplicationController
 
+    # Authorization
+    before_action :authorize_user, only: [:create, :update, :destroy]
+
     def index
         render json: Listing.all, status: :ok
     end

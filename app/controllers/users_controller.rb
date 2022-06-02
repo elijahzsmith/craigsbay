@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+    # Authorization
+    before_action :authorize_user, except: [:create]
+
     def index
         render json: User.all, status: :ok
     end
@@ -9,7 +12,7 @@ class UsersController < ApplicationController
         render json: current_user, status: :ok
     end
 
-    def create
+    def create 
         user = User.create!(user_params)
         session[:current_user] = user.id
         render json: user, status: :created
