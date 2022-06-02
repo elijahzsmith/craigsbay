@@ -54,7 +54,6 @@ function EditYourListingForm() {
 
   return (
     <div>
-      <h1>Edit Your Listing Form</h1>
       <Container fluid>
         <Container className="mx-auto mt-5">
           <Row className="text-center">
@@ -118,7 +117,7 @@ function EditYourListingForm() {
                 />
               </Form.Group>
 
-              <Row className="d-flex justify-content-center mb-2">
+              <Row className="d-flex justify-content-center mt-4">
                 <Button variant="primary" type="submit" className="w-25">
                   Save Changes
                 </Button>

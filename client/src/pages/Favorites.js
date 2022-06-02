@@ -129,7 +129,9 @@ function Favorites({ handleCardClick, user }) {
 
   return (
     <Container fluid>
-      <h1>Ongoing Raffles</h1>
+      <Row className="text-center mt-5">
+        <h1>Entered Raffles</h1>
+      </Row>
       <Row className="d-flex justify-content-end my-2">
         <Col className="mx-auto h-100 my-2">
           <InputGroup>
@@ -163,11 +165,9 @@ function Favorites({ handleCardClick, user }) {
           </InputGroup>
         </Col>
       </Row>
-      <Container className="mx-auto mt-5">
-        <Row xs={1} sm={2} md={3} lg={4}>
-          {renderFavs}
-        </Row>
-      </Container>
+      <Row xs={1} sm={2} md={3} lg={4}>
+        {renderFavs}
+      </Row>
     </Container>
   );
 }

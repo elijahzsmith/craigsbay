@@ -203,7 +203,7 @@ function PostListingForm({ user, handleCreateTimer }) {
     <Container fluid>
       <Container className="mx-auto mt-5">
         <Row className="text-center">
-          <h1>Post A Listing</h1>
+          <h1>Post A Donation</h1>
         </Row>
 
         <Row className="mb-5">
