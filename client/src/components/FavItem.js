@@ -9,8 +9,6 @@ function FavItem({ fav, handleRemoveFavorite, handleCardClick, user }) {
   const [iconState, setIconState] = useState(null)
   const id = fav.id;
 
-  console.log(fav)
-
   const { what_it_is, image_url, end_time, winner_id } = fav.listing;
 
   useEffect(() => {

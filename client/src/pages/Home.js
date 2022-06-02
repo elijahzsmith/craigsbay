@@ -6,7 +6,6 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ListingItem from "../components/ListingItem";
-
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
@@ -146,7 +145,8 @@ function Home({ user, handleCardClick, isAuthenticated }) {
                 aria-describedby="basic-addon2"
                 name="search"
                 value={currentSearch}
-                onChange={(e) => setCurrentSearch(e.target.value)}
+                onChange={(e) =>
+                  setCurrentSearch(e.target.value)}
               />
               <Dropdown as={ButtonGroup}>
                 <Button
@@ -163,7 +163,8 @@ function Home({ user, handleCardClick, isAuthenticated }) {
                   id="dropdown-split-basic"
                 />
 
-                <Dropdown.Menu>{renderCategories}</Dropdown.Menu>
+                <Dropdown.Menu>     {renderCategories}
+                </Dropdown.Menu>
               </Dropdown>
             </InputGroup>
           </Col>
