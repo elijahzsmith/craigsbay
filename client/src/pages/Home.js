@@ -12,6 +12,7 @@ import FormControl from "react-bootstrap/FormControl";
 
 function Home({ user, handleCardClick, isAuthenticated }) {
   const [listings, setListings] = useState([]);
+  const [timers, setTimers] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
   const [filtered, setFiltered] = useState(false);
@@ -25,6 +26,8 @@ function Home({ user, handleCardClick, isAuthenticated }) {
         filterCategories(listings);
         setFilteredListings(listings);
       });
+    // expirement
+    // }, [timers]);
   }, []);
 
   // if (reRenderListings) {
@@ -106,10 +109,10 @@ function Home({ user, handleCardClick, isAuthenticated }) {
     setFilteredListings(selection);
   };
 
-
   const renderListings = afterSearch.map((listing) => {
     if (listing.winner_id) {
       return null
+
     } else {
       return (
         <ListingItem
