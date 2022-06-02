@@ -6,7 +6,7 @@ import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
-function PostListingForm({ user }) {
+function PostListingForm({ user, handleCreateTimer }) {
 
   const history = useHistory();
 
@@ -58,7 +58,7 @@ function PostListingForm({ user }) {
           end_time: "",
           user_id: user.id,
         });
-
+        handleCreateTimer(data.id)
         alert("Post Successful");
         history.push("/yourlistings");
       });

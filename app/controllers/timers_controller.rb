@@ -1,8 +1,13 @@
 class TimersController < ApplicationController
 
+    def index
+        timers = Timer.all
+        render json: timers, adapter: nil
+    end
+
     def create
         timer = Timer.create!(timer_params)
-        render json: timer, status: :created
+        render json: timer, status: :created, adapter: nil
     end 
 
     def start_countdown

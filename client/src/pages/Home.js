@@ -10,11 +10,10 @@ import ListingItem from "../components/ListingItem";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
-function Home({ user, handleCardClick }) {
+function Home({ user, handleCardClick, reRenderListings }) {
   const [listings, setListings] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
-  const [homeLoaded, setIsHomeLoaded] = useState(false);
   const [filtered, setFiltered] = useState(false);
   const [currentSearch, setCurrentSearch] = useState("");
 
@@ -25,9 +24,18 @@ function Home({ user, handleCardClick }) {
         setListings(listings);
         filterCategories(listings);
         setFilteredListings(listings);
-        setIsHomeLoaded(true);
       });
   }, []);
+
+  if (reRenderListings) {
+    fetch("/listings")
+      .then((res) => res.json())
+      .then((listings) => {
+        setListings(listings);
+        filterCategories(listings);
+        setFilteredListings(listings);
+      });
+  }
 
   function filterCategories(listings) {
     const catArr = listings.map((listing) => listing.category);
@@ -98,26 +106,11 @@ function Home({ user, handleCardClick }) {
     setFilteredListings(selection);
   };
 
-  function startCountdown(listing) {
-    const endTime = new Date(listing.end_time).getTime()
-    const now = new Date().getTime()
-    const countdown = endTime - now
-
-    const removeListing = listings.filter((ongoingListing) => {
-      return ongoingListing.id !== listing.id
-    })
-
-    setTimeout(() => {
-      setFilteredListings(removeListing)
-    }, countdown)
-  }
 
   const renderListings = afterSearch.map((listing) => {
-    const endTime = new Date(listing.end_time).getTime()
-    const now = new Date().getTime()
-
-    if (endTime > now) {
-      // startCountdown(listing)
+    if (listing.winner_id) {
+      return null
+    } else {
       return (
         <ListingItem
           key={listing.id}
@@ -127,8 +120,6 @@ function Home({ user, handleCardClick }) {
           handleDelete={handleDelete}
         />
       );
-    } else {
-      return null
     }
   }
   );
@@ -151,8 +142,6 @@ function Home({ user, handleCardClick }) {
       );
     }
   });
-
-  if (!homeLoaded) return <h3>Loading...</h3>;
 
   return (
     <div>
