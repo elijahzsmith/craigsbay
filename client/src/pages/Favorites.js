@@ -3,7 +3,7 @@ import FavItem from "../components/FavItem";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 
-function Favorites({ handleCardClick }) {
+function Favorites({ handleCardClick, user }) {
   const [favs, setFavs] = useState([]);
   const [favsLoaded, setFavsLoaded] = useState(false);
 
@@ -36,6 +36,7 @@ function Favorites({ handleCardClick }) {
       fav={fav}
       handleRemoveFavorite={handleRemoveFavorite}
       handleCardClick={handleCardClick}
+      user={user}
     />
   ));
 
