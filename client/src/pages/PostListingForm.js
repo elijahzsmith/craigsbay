@@ -7,7 +7,7 @@ import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 
 function PostListingForm({ user, handleCreateTimer }) {
-  const [selectedMonth, setSelectedMonth] = useState(null)
+  const [selectedMonth, setSelectedMonth] = useState(null);
 
   const history = useHistory();
 
@@ -59,7 +59,7 @@ function PostListingForm({ user, handleCreateTimer }) {
           end_time: "",
           user_id: user.id,
         });
-        handleCreateTimer(data.id)
+        handleCreateTimer(data.id);
         alert("Post Successful");
         history.push("/yourlistings");
       });
@@ -111,10 +111,11 @@ function PostListingForm({ user, handleCreateTimer }) {
           upcomingDays.push(i);
         }
       }
-    } else if (selectedMonth === "04"
-      || selectedMonth === "06"
-      || selectedMonth === "09"
-      || selectedMonth === "11"
+    } else if (
+      selectedMonth === "04" ||
+      selectedMonth === "06" ||
+      selectedMonth === "09" ||
+      selectedMonth === "11"
     ) {
       for (let i = 1; i < 31; i++) {
         if (i < 10) {
@@ -267,6 +268,7 @@ function PostListingForm({ user, handleCreateTimer }) {
             </Form.Group>
 
             <Row>
+              <h3>Select Raffle End Time</h3>
               <Col>
                 <Form.Group className="mb-3">
                   <Form.Label>Month</Form.Label>
@@ -274,8 +276,8 @@ function PostListingForm({ user, handleCreateTimer }) {
                     name="month"
                     value={formData.month}
                     onChange={(e) => {
-                      setSelectedMonth(e.target.value)
-                      handleChange(e)
+                      setSelectedMonth(e.target.value);
+                      handleChange(e);
                     }}
                   >
                     {renderMonths()}
