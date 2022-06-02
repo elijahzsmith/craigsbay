@@ -58,6 +58,7 @@ function Home({ user, handleCardClick, isAuthenticated }) {
   };
 
   function handleDelete(id) {
+    console.log(id);
     const configObjDELETE = {
       method: "DELETE",
       headers: {
@@ -97,8 +98,7 @@ function Home({ user, handleCardClick, isAuthenticated }) {
 
   const renderListings = afterSearch.map((listing) => {
     if (listing.winner_id) {
-      return null
-
+      return null;
     } else {
       return (
         <ListingItem
@@ -111,8 +111,7 @@ function Home({ user, handleCardClick, isAuthenticated }) {
         />
       );
     }
-  }
-  );
+  });
 
   const renderCategories = categories.map((category, index) => {
     if (category === "All") {

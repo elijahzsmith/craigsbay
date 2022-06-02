@@ -5,9 +5,15 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function ListingItem({ listing, user, handleCardClick, handleDelete, isAuthenticated }) {
+function ListingItem({
+  listing,
+  user,
+  handleCardClick,
+  handleDelete,
+  isAuthenticated,
+}) {
   const [buttonState, setButtonState] = useState(null);
-  const [favorites, setFavorites] = useState([])
+  const [favorites, setFavorites] = useState([]);
   const { id, image_url, what_it_is } = listing;
 
   useEffect(() => {
@@ -20,13 +26,12 @@ function ListingItem({ listing, user, handleCardClick, handleDelete, isAuthentic
     ) {
       setButtonState("Entered");
     } else {
-      setButtonState(null)
+      setButtonState(null);
     }
 
     if (isAuthenticated) {
-      setFavorites(user.favorites)
+      setFavorites(user.favorites);
     }
-
   }, [listing.id, listing.user_id, user.favorites, user.id, isAuthenticated]);
 
   const handleAddToFavorites = () => {
@@ -47,14 +52,13 @@ function ListingItem({ listing, user, handleCardClick, handleDelete, isAuthentic
     fetch(`/favorites`, configObjPOST)
       .then((res) => res.json())
       .then((newFav) => {
-        setFavorites([...favorites, newFav])
+        setFavorites([...favorites, newFav]);
         setButtonState("Entered");
       });
   };
 
   function handleRemoveFavorite() {
-    const rmFav = favorites.find(fav => fav.listing_id === id)
-
+    const rmFav = favorites.find((fav) => fav.listing_id === id);
     const configObjDELETE = {
       method: "DELETE",
       headers: {
@@ -63,16 +67,15 @@ function ListingItem({ listing, user, handleCardClick, handleDelete, isAuthentic
       },
     };
 
-    fetch(`/favorites/${rmFav.id}`, configObjDELETE)
-      .then(() => {
-        const newFavs = favorites.filter(fav => fav.id !== rmFav.id)
-        setFavorites(newFavs)
-        setButtonState(null)
-      });
+    fetch(`/favorites/${rmFav.id}`, configObjDELETE).then(() => {
+      const newFavs = favorites.filter((fav) => fav.id !== rmFav.id);
+      setFavorites(newFavs);
+      setButtonState(null);
+    });
   }
 
   function handleUnAuth() {
-    alert("Must be logged in to enter raffle")
+    alert("Must be logged in to enter raffle");
   }
 
   function renderButton() {
@@ -86,17 +89,14 @@ function ListingItem({ listing, user, handleCardClick, handleDelete, isAuthentic
 
       case "Owner":
         return (
-          <Button variant="warning" onClick={handleDelete}>
+          <Button variant="warning" onClick={() => handleDelete(id)}>
             Delete
           </Button>
         );
 
       case "Entered": {
         return (
-          <Button
-            variant="secondary text-white"
-            onClick={handleRemoveFavorite}
-          >
+          <Button variant="secondary text-white" onClick={handleRemoveFavorite}>
             Entered
           </Button>
         );
