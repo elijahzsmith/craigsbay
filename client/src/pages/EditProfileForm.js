@@ -87,7 +87,7 @@ function EditProfileForm({ user, setUser }) {
               />
             </Form.Group>
 
-            <Row className="d-flex justify-content-center mb-2">
+            <Row className="d-flex justify-content-center mt-4">
               <Button variant="primary" type="submit" className="w-25">
                 Save Changes
               </Button>
@@ -95,7 +95,7 @@ function EditProfileForm({ user, setUser }) {
           </Form>
         </Row>
 
-        <Row>
+        <Row >
           <Button
             className="w-25 mx-auto"
             variant="warning"

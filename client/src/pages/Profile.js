@@ -16,17 +16,17 @@ function Profile({ user }) {
         <h2>Name: {name}</h2>
         <h3>Username: {username}</h3>
         <h6>Age: {age}</h6>
-        <Button onClick={() => history.push("/editprofile")}>
+        <Button className="me-2" onClick={() => history.push("/editprofile")}>
           Edit Profile
         </Button>
-        <Button onClick={() => history.push("/postlisting")}>
-          Post A Listing
+        <Button className="me-2" onClick={() => history.push("/postdonation")}>
+          Post A Donation
         </Button>
-        <Button onClick={() => history.push("/yourlistings")}>
-          Your Listings
+        <Button className="me-2" onClick={() => history.push("/yourdonations")}>
+          Your Donations
         </Button>
-        <Button onClick={() => history.push("/ongoingraffles")}>
-          Ongoing Raffles
+        <Button className="me-2" onClick={() => history.push("/enteredraffles")}>
+          Entered Raffles
         </Button>
       </Container>
     </Container>
