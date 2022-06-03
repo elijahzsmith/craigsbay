@@ -26,7 +26,7 @@ function Favorites({ handleCardClick, user }) {
 
   const handleSortAlphabetically = () => {
     if (filtered === false) {
-      const sortedFavs = favs.sort(function (a, b) {
+      const sortedFavs = filteredFavs.sort(function (a, b) {
         let x = a.listing.what_it_is.toLowerCase();
         let y = b.listing.what_it_is.toLowerCase();
         if (x < y) {
@@ -40,7 +40,7 @@ function Favorites({ handleCardClick, user }) {
       setFilteredFavs(sortedFavs);
       setFiltered(true);
     } else {
-      const originalArray = favs.sort(function (a, b) {
+      const originalArray = filteredFavs.sort(function (a, b) {
         return a.id - b.id;
       });
       setFilteredFavs(originalArray);
@@ -95,27 +95,28 @@ function Favorites({ handleCardClick, user }) {
 
   const filterResult = (selectedCategory) => {
     const now = new Date().getTime()
+    setFilteredFavs(favs)
 
     switch (selectedCategory) {
       case "Ongoing":
-        let ongoing = filteredFavs.filter(
+        let ongoing = favs.filter(
           (fav) => new Date(fav.listing.end_time).getTime() > now
         );
-        setFavs(ongoing);
+        setFilteredFavs(ongoing);
         break;
 
       case "Won":
-        let won = filteredFavs.filter(
+        let won = favs.filter(
           (fav) => fav.listing.winner_id === user.id
         );
-        setFavs(won);
+        setFilteredFavs(won);
         break;
 
       case "Lost":
-        let lost = filteredFavs.filter(
-          (fav) => fav.listing.winner_id !== user.id
+        let lost = favs.filter(
+          (fav) => fav.listing.winner_id !== user.id && new Date(fav.listing.end_time).getTime() < now
         );
-        setFavs(lost);
+        setFilteredFavs(lost);
         break;
 
       case "All":

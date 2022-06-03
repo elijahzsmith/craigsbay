@@ -75,9 +75,9 @@ puts "Seeding Favorites....."
     f9 = Favorite.create(user_id: u4.id, listing_id: l1.id)
     
     f10 = Favorite.create(user_id: u1.id, listing_id: l3.id)
-    f11 = Favorite.create(user_id: u2.id, listing_id: l2.id)
+    f11 = Favorite.create(user_id: u2.id, listing_id: l12.id)
     f12 = Favorite.create(user_id: u3.id, listing_id: l2.id)
-    f13 = Favorite.create(user_id: u4.id, listing_id: l1.id)
+    f13 = Favorite.create(user_id: u4.id, listing_id: l21.id)
 puts "Done Seeding Favorites!"
 
 puts "Seeding Timers....."
