@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Alert from "react-bootstrap/Alert";
 
 function ListingItem({
   listing,
@@ -75,21 +73,6 @@ function ListingItem({
       setFavorites(newFavs);
       setButtonState(null);
     });
-  }
-
-  function handleUnAuth() {
-    return (
-      <Alert variant="warning" dismissible>
-        You must be logged in to enter a raffle.
-        <Alert.Link href="/login">Login or Sign Up</Alert.Link>
-        to enter.
-
-      </Alert>
-    )
-    // const answer = window.confirm("Login to continue!");
-    // if (answer) {
-    //   history.push("/login");
-    // }
   }
 
   function renderButton() {
