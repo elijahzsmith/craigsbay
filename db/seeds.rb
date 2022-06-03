@@ -17,23 +17,23 @@ puts "Seeding Listings...."
 
 
 
-    l1 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00000_9S9Lfs6dRdVz_0t20t2_600x450.jpg", what_it_is: "1977 MGB", category: "Furniture", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
+    l1 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00000_9S9Lfs6dRdVz_0t20t2_600x450.jpg", what_it_is: "1977 MGB", category: "Vehicles", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
-    l2 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/01010_cK2hunEZTKTz_0lM0t2_600x450.jpg", what_it_is: "Washburn SBF80", category: "Furniture", description: Faker::Lorem.paragraph(sentence_count: 10), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
+    l2 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/01010_cK2hunEZTKTz_0lM0t2_600x450.jpg", what_it_is: "Washburn SBF80", category: "Instruments", description: Faker::Lorem.paragraph(sentence_count: 10), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
-    l3 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00d0d_bX26HGj5yYgz_0CI0t2_600x450.jpg", what_it_is: "04 can am ds650", category: "Furniture", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
+    l3 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00d0d_bX26HGj5yYgz_0CI0t2_600x450.jpg", what_it_is: "04 can am ds650", category: "Outdoor", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
-    l4 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/01212_1feOSAGPJaBz_0t20CI_600x450.jpg", what_it_is: "ryobi leaf blower", category: "Furniture", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
+    l4 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/01212_1feOSAGPJaBz_0t20CI_600x450.jpg", what_it_is: "ryobi leaf blower", category: "Outdoor", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
-    l5 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00s0s_12IqwZZ0ew4z_0rO0CI_300x300.jpg", what_it_is: "konica A3 autoreflex film camera", category: "Furniture", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
+    l5 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00s0s_12IqwZZ0ew4z_0rO0CI_300x300.jpg", what_it_is: "konica A3 autoreflex film camera", category: "Electronics", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
-    l6 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00Z0Z_gMje8HowcZQz_0pO0jm_300x300.jpg", what_it_is: "DELL Keyboards", category: "Furniture", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
+    l6 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00Z0Z_gMje8HowcZQz_0pO0jm_300x300.jpg", what_it_is: "DELL Keyboards", category: "Electronics", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
-    l7 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/01010_buPWGSeLY1wz_0lM0t2_300x300.jpg", what_it_is: "Computer Printer", category: "Furniture", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
+    l7 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/01010_buPWGSeLY1wz_0lM0t2_300x300.jpg", what_it_is: "Computer Printer", category: "Electronics", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
-    l8 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00o0o_5XB9xViZa5Az_0t20t2_300x300.jpg", what_it_is: "i7 9700k 2080Super GPU Excellent Gaming PC", category: "Furniture", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
+    l8 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00o0o_5XB9xViZa5Az_0t20t2_300x300.jpg", what_it_is: "i7 9700k 2080Super GPU Excellent Gaming PC", category: "Electronics", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
-    l9 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00l0l_cc0hbs6Degpz_08u08u_300x300.jpg", what_it_is: " Nintendo 64 Console w/ Two Controllers", category: "Furniture", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
+    l9 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00l0l_cc0hbs6Degpz_08u08u_300x300.jpg", what_it_is: " Nintendo 64 Console w/ Two Controllers", category: "Electronics", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
     l10 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00C0C_gHxNjOcVrrOz_0t20CI_600x450.jpg", what_it_is: "Wooden Cabinet", category: "Furniture", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
