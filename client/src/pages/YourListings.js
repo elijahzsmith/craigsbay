@@ -16,6 +16,7 @@ function YourListings({
     fetch(`/users/${user.id}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setListings(data.listings);
       });
   }, [user.id]);

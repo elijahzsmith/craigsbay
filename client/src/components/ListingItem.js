@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
 
 function ListingItem({
   listing,
@@ -12,11 +13,11 @@ function ListingItem({
   handleCardClick,
   handleDelete,
   isAuthenticated,
+  setAlert
 }) {
   const [buttonState, setButtonState] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const { id, image_url, what_it_is } = listing;
-  const history = useHistory();
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -77,17 +78,25 @@ function ListingItem({
   }
 
   function handleUnAuth() {
-    const answer = window.confirm("Login to continue!");
-    if (answer) {
-      history.push("/login");
-    }
+    return (
+      <Alert variant="warning" dismissible>
+        You must be logged in to enter a raffle.
+        <Alert.Link href="/login">Login or Sign Up</Alert.Link>
+        to enter.
+
+      </Alert>
+    )
+    // const answer = window.confirm("Login to continue!");
+    // if (answer) {
+    //   history.push("/login");
+    // }
   }
 
   function renderButton() {
     switch (buttonState) {
       case "UnAuth":
         return (
-          <Button variant="primary" onClick={handleUnAuth}>
+          <Button variant="primary" onClick={setAlert}>
             Enter Raffle
           </Button>
         );

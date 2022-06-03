@@ -12,7 +12,6 @@ function NavBar({ handleLogout, isAuthenticated }) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/enteredraffles">Entered Raffles</Nav.Link>
               <Nav.Link href="/postdonation">Post a Donation</Nav.Link>
               <Nav.Link href="/yourdonations">Your Donations</Nav.Link>
@@ -21,7 +20,9 @@ function NavBar({ handleLogout, isAuthenticated }) {
                   Account Details
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/about">About Us</NavDropdown.Item>
+                <NavDropdown.Item href="/about">
+                  About Us
+                </NavDropdown.Item>
                 <NavDropdown.Item onClick={handleLogout}>
                   Logout
                 </NavDropdown.Item>

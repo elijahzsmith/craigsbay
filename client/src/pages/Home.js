@@ -8,6 +8,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ListingItem from "../components/ListingItem";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
+import Alert from "react-bootstrap/Alert";
 
 function Home({ user, handleCardClick, isAuthenticated }) {
   const [listings, setListings] = useState([]);
@@ -15,6 +16,7 @@ function Home({ user, handleCardClick, isAuthenticated }) {
   const [categories, setCategories] = useState([]);
   const [filtered, setFiltered] = useState(false);
   const [currentSearch, setCurrentSearch] = useState("");
+  const [alert, setAlert] = useState(false)
 
   useEffect(() => {
     fetch("/listings")
@@ -107,6 +109,7 @@ function Home({ user, handleCardClick, isAuthenticated }) {
           handleCardClick={handleCardClick}
           handleDelete={handleDelete}
           isAuthenticated={isAuthenticated}
+          setAlert={setAlert}
         />
       );
     }
@@ -131,11 +134,29 @@ function Home({ user, handleCardClick, isAuthenticated }) {
     }
   });
 
+  function renderAlert() {
+    if (alert) {
+      return (
+        <Alert variant="warning" onClose={() => setAlert(false)} dismissible>
+          <Alert.Heading>
+            You must be logged in to enter a raffle.
+          </Alert.Heading>
+          <Alert.Link href="/login">Login </Alert.Link> or
+          <Alert.Link href="/signup"> Sign Up </Alert.Link>
+          to enter.
+
+        </Alert>
+      )
+
+    }
+  }
+
   return (
     <div>
       <Container fluid>
         <Row className="d-flex justify-content-end my-2">
           <Col className="mx-auto h-100 my-2">
+            {renderAlert()}
             <InputGroup>
               <FormControl
                 placeholder="Search Listings..."
