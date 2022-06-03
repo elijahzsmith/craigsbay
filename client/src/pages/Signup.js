@@ -135,7 +135,10 @@ function Signup({ setUser, setIsAuthenticated, usernameInput }) {
         </Row>
 
         <Row>
-          <Button onClick={() => history.push("/login")} className="w-25 mx-auto">
+          <Button
+            onClick={() => history.push("/login")}
+            className="w-25 mx-auto"
+          >
             Login
           </Button>
         </Row>
