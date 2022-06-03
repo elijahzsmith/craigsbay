@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 
 function Home({ user, handleCardClick, isAuthenticated }) {
   const [listings, setListings] = useState([]);
-  const [allListings, setAllListings] = useState([])
+  const [filteredListings, setFilteredListings] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filtered, setFiltered] = useState(false);
   const [currentSearch, setCurrentSearch] = useState("");
@@ -26,7 +26,7 @@ function Home({ user, handleCardClick, isAuthenticated }) {
       .then((res) => res.json())
       .then((listings) => {
         setListings(listings);
-        setAllListings(listings)
+        setFilteredListings(listings)
         filterCategories(listings);
       });
   }, []);
@@ -51,13 +51,13 @@ function Home({ user, handleCardClick, isAuthenticated }) {
         }
         return 0;
       });
-      setListings(sortedListings);
+      setFilteredListings(sortedListings);
       setFiltered(true);
     } else {
       const originalArray = listings.sort(function (a, b) {
         return a.id - b.id;
       });
-      setListings(originalArray);
+      setFilteredListings(originalArray);
       setFiltered(false);
     }
   };
@@ -78,7 +78,7 @@ function Home({ user, handleCardClick, isAuthenticated }) {
     });
   }
 
-  const afterSearch = listings.filter((item) => {
+  const afterSearch = filteredListings.filter((item) => {
     if (currentSearch === "") {
       return item;
     } else if (
@@ -91,13 +91,13 @@ function Home({ user, handleCardClick, isAuthenticated }) {
   });
 
   const filterResult = (selectedCategory) => {
-    setListings(listings);
+    setFilteredListings(listings);
 
     let selection = listings.filter(
       (listing) => listing.category === selectedCategory
     );
 
-    setListings(selection);
+    setFilteredListings(selection);
   };
 
   const renderListings = afterSearch.map((listing) => {
@@ -123,7 +123,7 @@ function Home({ user, handleCardClick, isAuthenticated }) {
       return (
         <Dropdown.Item
           key={index}
-          onClick={() => setListings(allListings)}
+          onClick={() => setFilteredListings(listings)}
         >
           {category}
         </Dropdown.Item>

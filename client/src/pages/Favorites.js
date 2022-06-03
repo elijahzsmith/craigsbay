@@ -11,7 +11,7 @@ import Button from "react-bootstrap/esm/Button";
 
 function Favorites({ handleCardClick, user }) {
   const [favs, setFavs] = useState([]);
-  const [allFavs, setAllFavs] = useState([])
+  const [filteredFavs, setFilteredFavs] = useState([])
   const [currSearch, setCurrSearch] = useState("")
   const [filtered, setFiltered] = useState(false)
 
@@ -20,7 +20,7 @@ function Favorites({ handleCardClick, user }) {
       .then((res) => res.json())
       .then((favs) => {
         setFavs(favs);
-        setAllFavs(favs);
+        setFilteredFavs(favs)
       });
   }, []);
 
@@ -37,13 +37,13 @@ function Favorites({ handleCardClick, user }) {
         }
         return 0;
       });
-      setFavs(sortedFavs);
+      setFilteredFavs(sortedFavs);
       setFiltered(true);
     } else {
       const originalArray = favs.sort(function (a, b) {
         return a.id - b.id;
       });
-      setFavs(originalArray);
+      setFilteredFavs(originalArray);
       setFiltered(false);
     }
   };
@@ -57,11 +57,11 @@ function Favorites({ handleCardClick, user }) {
     };
 
     fetch(`/favorites/${id}`, configObj).then(
-      setFavs(favs.filter((fav) => fav.id !== id))
+      setFilteredFavs(favs.filter((fav) => fav.id !== id))
     );
   };
 
-  const afterSearch = favs.filter((fav) => {
+  const afterSearch = filteredFavs.filter((fav) => {
     if (currSearch === "") {
       return fav;
     } else if (
@@ -98,28 +98,28 @@ function Favorites({ handleCardClick, user }) {
 
     switch (selectedCategory) {
       case "Ongoing":
-        let ongoing = favs.filter(
+        let ongoing = filteredFavs.filter(
           (fav) => new Date(fav.listing.end_time).getTime() > now
         );
         setFavs(ongoing);
         break;
 
       case "Won":
-        let won = favs.filter(
+        let won = filteredFavs.filter(
           (fav) => fav.listing.winner_id === user.id
         );
         setFavs(won);
         break;
 
       case "Lost":
-        let lost = favs.filter(
+        let lost = filteredFavs.filter(
           (fav) => fav.listing.winner_id !== user.id
         );
         setFavs(lost);
         break;
 
       case "All":
-        setFavs(allFavs);
+        setFilteredFavs(favs);
         break;
 
       default:
