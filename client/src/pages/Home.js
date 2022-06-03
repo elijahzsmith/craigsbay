@@ -9,6 +9,8 @@ import ListingItem from "../components/ListingItem";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Alert from "react-bootstrap/Alert";
+import Modal from "react-bootstrap/Modal";
+import { useHistory } from "react-router-dom";
 
 function Home({ user, handleCardClick, isAuthenticated }) {
   const [listings, setListings] = useState([]);
@@ -17,6 +19,8 @@ function Home({ user, handleCardClick, isAuthenticated }) {
   const [filtered, setFiltered] = useState(false);
   const [currentSearch, setCurrentSearch] = useState("");
   const [alert, setAlert] = useState(false)
+
+  const history = useHistory()
 
   useEffect(() => {
     fetch("/listings")
@@ -135,20 +139,23 @@ function Home({ user, handleCardClick, isAuthenticated }) {
   });
 
   function renderAlert() {
-    if (alert) {
-      return (
-        <Alert variant="warning" onClose={() => setAlert(false)} dismissible>
-          <Alert.Heading>
-            You must be logged in to enter a raffle.
-          </Alert.Heading>
-          <Alert.Link href="/login">Login </Alert.Link> or
-          <Alert.Link href="/signup"> Sign Up </Alert.Link>
-          to enter.
+    return (
+      <Modal show={alert} onHide={() => setAlert(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Log In or Sign Up</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>You must be logged in to enter a raffle. Click one of the options below to get raffle ready. Or click away to continue browsing as a guest.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => history.push('/login')}>
+            Login
+          </Button>
+          <Button variant="secondary" className="text-white" onClick={() => history.push('/signup')}>
+            Sign Up
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    )
 
-        </Alert>
-      )
-
-    }
   }
 
   return (
