@@ -32,11 +32,9 @@ function EditYourListingForm() {
 
   const handleChange = (e) => {
     setEditFormData({ ...editFormData, [e.target.name]: e.target.value });
-    console.log(e.target.name);
   };
 
   const handleSaveChanges = (e) => {
-    console.log(e, id);
     e.preventDefault();
     fetch(`/listings/${id}`, configObjPATCH)
       .then((res) => res.json())

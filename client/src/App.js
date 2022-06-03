@@ -59,13 +59,11 @@ function App() {
   };
 
   const handleEditListing = (listing) => {
-    console.log(listing);
     setShowForm((showForm) => !showForm);
     <EditYourListingForm listing={listing} />;
   };
 
   function handleCreateTimer(listing_id) {
-    console.log({ listing_id });
     const configObjPOST = {
       method: "POST",
       headers: {

@@ -58,7 +58,6 @@ function Home({ user, handleCardClick, isAuthenticated }) {
   };
 
   function handleDelete(id) {
-    console.log(id);
     const configObjDELETE = {
       method: "DELETE",
       headers: {
