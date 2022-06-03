@@ -42,9 +42,9 @@ puts "Seeding Listings...."
 
     l12 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00909_1vzqKGtEOkpz_0t20CI_600x450.jpg", what_it_is: "Zen 3-D puzzle", category: "Games", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
-    l13 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00E0E_hgPKmrMDk5nz_0t20CI_600x450.jpg", what_it_is: "TIME TEST", category: "Exercise Equipment", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: u2.id, end_time:"2022-06-02T21:50:00")
+    l13 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00E0E_hgPKmrMDk5nz_0t20CI_600x450.jpg", what_it_is: "Livestrong Treadmill", category: "Exercise Equipment", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: u2.id, end_time:"2022-06-03T12:55:00")
 
-    l14 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00G0G_5bfk2Z45lx2z_05a03Q_600x450.jpg", what_it_is: "Free Dirt", category: "Landscaping", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: u2.id, end_time:"2022-06-02T21:52:00")
+    l14 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00G0G_5bfk2Z45lx2z_05a03Q_600x450.jpg", what_it_is: "Free Dirt", category: "Landscaping", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: u3.id, end_time:"2022-06-03T12:55:00")
 
     l15 = Listing.create(location: Faker::Address.city, image_url: "https://images.craigslist.org/00R0R_mNVnc0F9Jrz_0t90CI_600x450.jpg", what_it_is: "Wheeled Carry on Travel Bag", category: "Bags", description: Faker::Lorem.paragraph(sentence_count: 30), user_id: u1.id, winner_id: nil, end_time:"2022-07-01T12:00:00")
 
@@ -77,7 +77,7 @@ puts "Seeding Favorites....."
     f10 = Favorite.create(user_id: u1.id, listing_id: l3.id)
     f11 = Favorite.create(user_id: u2.id, listing_id: l12.id)
     f12 = Favorite.create(user_id: u3.id, listing_id: l2.id)
-    f13 = Favorite.create(user_id: u4.id, listing_id: l21.id)
+    f13 = Favorite.create(user_id: u3.id, listing_id: l14.id)
 puts "Done Seeding Favorites!"
 
 puts "Seeding Timers....."
