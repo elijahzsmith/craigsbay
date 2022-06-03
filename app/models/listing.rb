@@ -4,7 +4,7 @@ class Listing < ApplicationRecord
     has_many :users, through: :favorites
     has_one :timer, dependent: :destroy
 
-    after_update :destroy_timer
+    # after_update :destroy_timer
 
     validate :end_time_cannot_be_in_the_past, on: :create
 
@@ -14,9 +14,9 @@ class Listing < ApplicationRecord
         end
     end
 
-    def destroy_timer 
-        self.timer.destroy
-    end
+    # def destroy_timer 
+    #     self.timer.destroy
+    # end
 
     private 
     def parse_time(end_time)

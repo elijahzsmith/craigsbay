@@ -46,9 +46,9 @@ function EditYourListingForm() {
           image_url,
           what_it_is,
           category,
-          description,
+          description
         });
-        history.push("/yourlistings");
+        history.push("/yourdonations");
       });
   };
 

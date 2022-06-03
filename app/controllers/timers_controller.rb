@@ -14,6 +14,7 @@ class TimersController < ApplicationController
         timer = Timer.find(params[:id])
         timer.countdown
         render json: timer
+        timer.destroy
     end
     
     private 
