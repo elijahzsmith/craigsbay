@@ -29,7 +29,7 @@ function ListingDetails() {
         />
       </Row>
 
-      <Row className="text-center mt-4">
+      <Row className="mt-4 mx-auto" style={{ maxWidth: 1000 }}>
         <p>{description}</p>
       </Row>
       <Row className="d-flex align-items-around mx-auto mb-3">
