@@ -53,15 +53,13 @@ function YourListings({
 
   return (
     <Container fluid>
-      <Container className="mx-auto mt-5">
-        <Row>
-          <h1>Your Listings</h1>
-          <hr></hr>
-        </Row>
-        <Row xs={1} sm={2} md={3} lg={4}>
-          {renderYourListings}
-        </Row>
-      </Container>
+      <Row className="text-center mt-5 mb-3">
+        <h1>Your Donations</h1>
+      </Row>
+
+      <Row xs={1} sm={2} md={3} lg={4}>
+        {renderYourListings}
+      </Row>
     </Container>
   );
 }

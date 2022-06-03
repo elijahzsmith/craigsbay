@@ -32,11 +32,9 @@ function EditYourListingForm() {
 
   const handleChange = (e) => {
     setEditFormData({ ...editFormData, [e.target.name]: e.target.value });
-    console.log(e.target.name);
   };
 
   const handleSaveChanges = (e) => {
-    console.log(e, id);
     e.preventDefault();
     fetch(`/listings/${id}`, configObjPATCH)
       .then((res) => res.json())
@@ -46,9 +44,9 @@ function EditYourListingForm() {
           image_url,
           what_it_is,
           category,
-          description,
+          description
         });
-        history.push("/yourlistings");
+        history.push("/yourdonations");
       });
   };
 
@@ -117,7 +115,7 @@ function EditYourListingForm() {
                 />
               </Form.Group>
 
-              <Row className="d-flex justify-content-center mb-2">
+              <Row className="d-flex justify-content-center mt-4">
                 <Button variant="primary" type="submit" className="w-25">
                   Save Changes
                 </Button>
