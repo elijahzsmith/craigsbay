@@ -8,7 +8,6 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ListingItem from "../components/ListingItem";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
-import Alert from "react-bootstrap/Alert";
 import Modal from "react-bootstrap/Modal";
 import { useHistory } from "react-router-dom";
 
@@ -141,10 +140,12 @@ function Home({ user, handleCardClick, isAuthenticated }) {
   function renderAlert() {
     return (
       <Modal show={alert} onHide={() => setAlert(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Log In or Sign Up</Modal.Title>
+        <Modal.Header className="bg-dark text-white" closeButton>
+          <Modal.Title >Log In or Sign Up</Modal.Title>
         </Modal.Header>
-        <Modal.Body>You must be logged in to enter a raffle. Click one of the options below to get raffle ready. Or click away to continue browsing as a guest.</Modal.Body>
+        <Modal.Body>
+          You must be logged in to enter a raffle. Click one of the options below to get raffle ready. Or click away to continue browsing as a guest.
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={() => history.push('/login')}>
             Login
