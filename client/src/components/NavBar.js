@@ -21,6 +21,7 @@ function NavBar({ handleLogout, isAuthenticated }) {
                   Account Details
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
+                <NavDropdown.Item href="/about">About Us</NavDropdown.Item>
                 <NavDropdown.Item onClick={handleLogout}>
                   Logout
                 </NavDropdown.Item>
@@ -36,6 +37,7 @@ function NavBar({ handleLogout, isAuthenticated }) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/login">Login/Sign Up</Nav.Link>
+              <Nav.Link href="/about">About Us</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </>
